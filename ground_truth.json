@@ -1,0 +1,20 @@
+{
+  "description": "Manually curated CVE variant chains from literature review. Each chain is a list of CVE IDs in chronological order (oldest first). An edge means the later CVE is a known variant/bypass/incomplete-fix of the earlier one.",
+  "chains": [
+    {
+      "name": "Log4Shell",
+      "source": "Apache advisories",
+      "cves": ["CVE-2021-44228", "CVE-2021-45046", "CVE-2021-45105", "CVE-2021-44832"]
+    },
+    {
+      "name": "Spring4Shell",
+      "source": "VMware advisory / research papers",
+      "cves": ["CVE-2010-1622", "CVE-2022-22965"]
+    },
+    {
+      "name": "PrintNightmare",
+      "source": "Microsoft advisories",
+      "cves": ["CVE-2021-1675", "CVE-2021-34527"]
+    }
+  ]
+}

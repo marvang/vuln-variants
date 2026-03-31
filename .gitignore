@@ -1,0 +1,12 @@
+data/
+output/
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+*.egg-info/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.claude/
