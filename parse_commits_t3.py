@@ -37,7 +37,20 @@ CACHE_DIR = Path("data/commit_cache")
 REFERENCE_INDEX_PATH = OUTPUT_DIR / "reference_index.json"
 
 GITHUB_API = "https://api.github.com"
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
+
+def _load_github_token():
+    token = os.environ.get("GITHUB_TOKEN", "")
+    if token:
+        return token
+    env_file = Path(".env")
+    if env_file.exists():
+        for line in env_file.read_text().splitlines():
+            line = line.strip()
+            if line.startswith("GITHUB_TOKEN=") and not line.startswith("#"):
+                return line.split("=", 1)[1].strip().strip("'\"")
+    return ""
+
+GITHUB_TOKEN = _load_github_token()
 DEFAULT_RETRY_AFTER = 60
 
 

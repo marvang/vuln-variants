@@ -1,6 +1,6 @@
-data/
 output/
 __pycache__/
+data/
 *.pyc
 .DS_Store
 .venv/
@@ -10,3 +10,4 @@ dist/
 .mypy_cache/
 .ruff_cache/
 .claude/
+.env
