@@ -15,13 +15,10 @@ import json
 from collections import defaultdict
 from pathlib import Path
 
+from build_chains import TIER_FILES
+
 OUTPUT_DIR = Path("output")
 PARSED_OUTPUT_PATH = OUTPUT_DIR / "parsed_cves.json"
-TIER_FILES = {
-    "1": "edges_t1_description.json",
-    "2": "edges_t2_allfields.json",
-    "3": "edges_t3_advisories.json",
-}
 
 
 def load_ground_truth(path):
@@ -79,7 +76,7 @@ def extract_detected_edges(chains_data, edge_dir):
             continue
 
         data = load_generated(path)
-        for edge in data.get("edges", []):
+        for edge in data.get("edges", []) + data.get("corroborating_edges", []):
             # Raw files store child -> parent; validation compares parent -> child.
             edges.add((edge["target"], edge["source"]))
 

@@ -1,20 +1,65 @@
 {
-  "description": "Manually curated CVE variant chains from literature review. Each chain is a list of CVE IDs in chronological order (oldest first). An edge means the later CVE is a known variant/bypass/incomplete-fix of the earlier one.",
+  "description": "Manually curated CVE variant chains from literature review. Each chain is a list of CVE IDs in chronological order (oldest first). An edge means the later CVE is related to the earlier one as a variant — including incomplete fixes, bypasses, regressions, same vulnerability class, different attack paths, or variant exploitation techniques.",
   "chains": [
     {
       "name": "Log4Shell",
       "source": "Apache advisories",
+      "relationship": "incomplete fix chain",
       "cves": ["CVE-2021-44228", "CVE-2021-45046", "CVE-2021-45105", "CVE-2021-44832"]
     },
     {
-      "name": "Spring4Shell",
+      "name": "Spring4Shell (regression of 2010 fix)",
       "source": "VMware advisory / research papers",
+      "relationship": "regression — same root cause class re-exposed",
       "cves": ["CVE-2010-1622", "CVE-2022-22965"]
     },
     {
       "name": "PrintNightmare",
       "source": "Microsoft advisories",
+      "relationship": "incomplete fix",
       "cves": ["CVE-2021-1675", "CVE-2021-34527"]
+    },
+    {
+      "name": "Linux Dirty COW → Dirty Pipe",
+      "source": "Linux kernel advisories",
+      "relationship": "same vulnerability class re-introduced",
+      "cves": ["CVE-2016-5195", "CVE-2022-0847"]
+    },
+    {
+      "name": "ImageMagick ImageTragick variants",
+      "source": "ImageMagick advisories",
+      "relationship": "incomplete fix — same input validation bypass",
+      "cves": ["CVE-2016-3714", "CVE-2016-3715"]
+    },
+    {
+      "name": "PHP-CGI argument injection",
+      "source": "PHP advisories",
+      "relationship": "bypass of original fix",
+      "cves": ["CVE-2012-1823", "CVE-2012-2311"]
+    },
+    {
+      "name": "sudo Baron Samedit",
+      "source": "Qualys advisories",
+      "relationship": "related heap overflow variants in sudo",
+      "cves": ["CVE-2021-3156", "CVE-2021-23239", "CVE-2021-23240"]
+    },
+    {
+      "name": "Exchange ProxyLogon → ProxyShell",
+      "source": "Orange Tsai research / Microsoft advisories",
+      "relationship": "different exploitation path for same SSRF surface",
+      "cves": ["CVE-2021-26855", "CVE-2021-34473"]
+    },
+    {
+      "name": "Apache Struts OGNL injection variants",
+      "source": "Apache advisories",
+      "relationship": "same OGNL injection class, different entry points",
+      "cves": ["CVE-2017-5638", "CVE-2017-9805"]
+    },
+    {
+      "name": "Spectre v1 → v2",
+      "source": "Intel/Google Project Zero",
+      "relationship": "variant exploitation techniques for speculative execution",
+      "cves": ["CVE-2017-5753", "CVE-2017-5715"]
     }
   ]
 }

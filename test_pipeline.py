@@ -101,10 +101,10 @@ def make_edge_provenance(cves):
     for cve_id, data in cves.items():
         for ref in data.get("references", []):
             if ref in cves:
-                provenance[(cve_id, ref)] = {
+                provenance[(cve_id, ref)] = [{
                     "found_in": "t1_description",
                     "context": "",
-                }
+                }]
     return provenance
 
 
@@ -234,14 +234,14 @@ class TestBuildTree:
             },
         }
         edge_provenance = {
-            ("CVE-2000-0003", "CVE-2000-0001"): {
+            ("CVE-2000-0003", "CVE-2000-0001"): [{
                 "found_in": "t1_description",
                 "context": "linked from root one",
-            },
-            ("CVE-2000-0003", "CVE-2000-0002"): {
+            }],
+            ("CVE-2000-0003", "CVE-2000-0002"): [{
                 "found_in": "t2_ref_name",
                 "context": "linked from root two",
-            },
+            }],
         }
 
         children, parents = build_graph(edge_provenance, cve_data)
@@ -250,8 +250,36 @@ class TestBuildTree:
 
         child = tree["variants"][0]
         assert child["cve_id"] == "CVE-2000-0003"
-        assert child["found_in"] == "t2_ref_name"
-        assert child["match_context"] == "linked from root two"
+        assert child["evidence"] == [{"found_in": "t2_ref_name", "context": "linked from root two"}]
+
+    def test_multi_tier_evidence_preserved(self):
+        """Same edge found by two tiers should keep both evidence entries."""
+        cve_data = {
+            "CVE-2000-0001": {
+                "published": "2000-01-01T00:00:00.000Z",
+                "description": "parent",
+            },
+            "CVE-2000-0002": {
+                "published": "2000-01-02T00:00:00.000Z",
+                "description": "child",
+            },
+        }
+        edge_provenance = {
+            ("CVE-2000-0002", "CVE-2000-0001"): [
+                {"found_in": "t1_description", "context": "from description"},
+                {"found_in": "t4_advisory_redhat", "context": "from Red Hat advisory"},
+            ],
+        }
+
+        children, parents = build_graph(edge_provenance, cve_data)
+        visited = set()
+        tree = build_tree("CVE-2000-0001", cve_data, children, parents, edge_provenance, visited)
+
+        child = tree["variants"][0]
+        assert child["cve_id"] == "CVE-2000-0002"
+        assert len(child["evidence"]) == 2
+        assert child["evidence"][0]["found_in"] == "t1_description"
+        assert child["evidence"][1]["found_in"] == "t4_advisory_redhat"
 
 
 class TestMetadataAndValidationHelpers:
@@ -332,3 +360,112 @@ class TestMetadataAndValidationHelpers:
 
         assert used_fallback is True
         assert "CVE-2021-45105" in data["cves"]
+
+    def test_extract_detected_edges_includes_corroborating(self, tmp_path):
+        """Corroborating edges should count as detected for validation."""
+        edge_path = tmp_path / "edges_t2_allfields.json"
+        edge_path.write_text(json.dumps({
+            "edges": [],
+            "corroborating_edges": [
+                {
+                    "source": "CVE-2021-45046",
+                    "target": "CVE-2021-44228",
+                    "found_in": "t2_ref_name",
+                    "context": "corroborating",
+                }
+            ],
+        }))
+
+        chains_data = {
+            "metadata": {"tiers_used": ["t2"]},
+            "chains": [],
+        }
+
+        edges, _ = validate.extract_detected_edges(chains_data, tmp_path)
+        assert ("CVE-2021-44228", "CVE-2021-45046") in edges
+
+
+class TestT3RetryBound:
+
+    def test_fetch_stops_after_max_retries(self, tmp_path, monkeypatch):
+        """403 retries must be bounded — no infinite recursion."""
+        import parse_commits_t3 as t3
+
+        monkeypatch.setattr(t3, "CACHE_DIR", tmp_path / "cache")
+        monkeypatch.setattr(t3, "GITHUB_TOKEN", "fake")
+
+        call_count = 0
+
+        def fake_urlopen(req, timeout=None):
+            nonlocal call_count
+            call_count += 1
+            err = t3.HTTPError(req.full_url, 403, "rate limited", {}, None)
+            raise err
+
+        monkeypatch.setattr(t3, "urlopen", fake_urlopen)
+        monkeypatch.setattr(t3.time, "sleep", lambda _: None)
+
+        result = t3.fetch_commit_message("owner/repo", "abc1234567")
+
+        assert result is None
+        assert call_count == 1 + t3.MAX_RETRIES
+
+    def test_fetch_uses_default_for_bad_retry_after(self, tmp_path, monkeypatch):
+        """Malformed Retry-After headers should not crash the whole run."""
+        import parse_commits_t3 as t3
+
+        monkeypatch.setattr(t3, "CACHE_DIR", tmp_path / "cache")
+        monkeypatch.setattr(t3, "GITHUB_TOKEN", "fake")
+
+        call_count = 0
+        sleep_calls = []
+
+        def fake_urlopen(req, timeout=None):
+            nonlocal call_count
+            call_count += 1
+            err = t3.HTTPError(
+                req.full_url,
+                403,
+                "rate limited",
+                {"Retry-After": "not-a-number"},
+                None,
+            )
+            raise err
+
+        monkeypatch.setattr(t3, "urlopen", fake_urlopen)
+        monkeypatch.setattr(t3.time, "sleep", sleep_calls.append)
+
+        result = t3.fetch_commit_message("owner/repo", "abc1234567")
+
+        assert result is None
+        assert sleep_calls == [t3.DEFAULT_RETRY_AFTER]
+        assert call_count == 1 + t3.MAX_RETRIES
+
+
+class TestJiraRegex:
+
+    def test_cve_id_not_matched_as_jira(self):
+        """CVE IDs should not produce JIRA structured IDs."""
+        from build_reference_index import extract_structured_ids
+
+        ids = extract_structured_ids("", "CVE-2021-44228")
+        jira_ids = [s for s in ids if s["type"] == "jira"]
+        assert jira_ids == []
+
+    def test_advisory_prefixes_not_matched_as_jira(self):
+        """RHSA, DSA, etc. should not produce JIRA structured IDs."""
+        from build_reference_index import extract_structured_ids
+
+        for prefix in ["RHSA-2024", "DSA-5000", "USN-6543", "GLSA-202301"]:
+            ids = extract_structured_ids("", prefix)
+            jira_ids = [s for s in ids if s["type"] == "jira"]
+            assert jira_ids == [], f"{prefix} incorrectly matched as JIRA"
+
+    def test_real_jira_key_still_matches(self):
+        """Legitimate JIRA keys should still be extracted."""
+        from build_reference_index import extract_structured_ids
+
+        ids = extract_structured_ids("", "HADOOP-12345")
+        jira_ids = [s for s in ids if s["type"] == "jira"]
+        assert len(jira_ids) == 1
+        assert jira_ids[0]["value"] == "HADOOP-12345"

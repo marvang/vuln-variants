@@ -24,13 +24,18 @@ REFERENCE_GRAPH_PATH = OUTPUT_DIR / "cve_references.json"
 TIER_FILES = {
     "1": "edges_t1_description.json",
     "2": "edges_t2_allfields.json",
-    "3": "edges_t3_advisories.json",
+    "3": "edges_t3_commits.json",
 }
 
 
 def load_edges(tiers):
-    """Load and merge edges from specified tier files."""
-    edge_provenance = {}  # (source, target) -> first found_in
+    """Load and merge edges from specified tier files.
+
+    Returns edge_provenance as a dict mapping (source, target) to a list of
+    evidence dicts, preserving all provenance from every tier that found
+    the same edge.
+    """
+    edge_provenance = defaultdict(list)  # (source, target) -> [evidence, ...]
     edges_by_tier = {}
     missing_tiers = []
 
@@ -49,20 +54,20 @@ def load_edges(tiers):
             data = json.load(f)
 
         tier_edges = data.get("edges", [])
+        corroborating = data.get("corroborating_edges", [])
         edges_by_tier[f"t{tier}"] = len(tier_edges)
 
-        for edge in tier_edges:
+        for edge in tier_edges + corroborating:
             key = (edge["source"], edge["target"])
-            if key not in edge_provenance:
-                edge_provenance[key] = {
-                    "found_in": edge.get("found_in", f"t{tier}"),
-                    "context": edge.get("context", ""),
-                }
+            edge_provenance[key].append({
+                "found_in": edge.get("found_in", f"t{tier}"),
+                "context": edge.get("context", ""),
+            })
 
     if missing_tiers:
         print(f"NOTE: Tier file(s) not found for tier(s) {', '.join(missing_tiers)} — skipping")
 
-    return edge_provenance, edges_by_tier
+    return dict(edge_provenance), edges_by_tier
 
 
 def load_cve_metadata():
@@ -135,24 +140,20 @@ def build_tree(cve_id, cve_data, children, parents, edge_provenance, visited, pa
 
     data = cve_data.get(cve_id, {})
 
-    # Find how this node was linked to the parent chosen in the tree.
-    found_in = None
-    match_context = None
+    # Find all evidence for how this node was linked to the tree parent.
+    evidence = []
     if parent_id is not None:
         key = (cve_id, parent_id)
         if key in edge_provenance:
-            found_in = edge_provenance[key]["found_in"]
-            match_context = edge_provenance[key]["context"]
+            evidence = edge_provenance[key]
 
     node = {
         "cve_id": cve_id,
         "published": data.get("published", ""),
         "description": data.get("description", ""),
     }
-    if found_in:
-        node["found_in"] = found_in
-    if match_context:
-        node["match_context"] = match_context
+    if evidence:
+        node["evidence"] = evidence
     node["variants"] = []
 
     # Sort children chronologically
@@ -293,6 +294,26 @@ def main():
     with open(out_path, "w") as f:
         json.dump(output, f, indent=2)
 
+    # Raw graph: flat edge list with all evidence, before treeification
+    raw_edges = []
+    for (source, target), evidence_list in edge_provenance.items():
+        raw_edges.append({
+            "source": source,
+            "target": target,
+            "evidence": evidence_list,
+        })
+    graph_output = {
+        "metadata": {
+            "total_edges": len(raw_edges),
+            "tiers_used": [f"t{t}" for t in tiers],
+            "generated_at": datetime.now().isoformat(),
+        },
+        "edges": raw_edges,
+    }
+    graph_path = OUTPUT_DIR / "edge_graph.json"
+    with open(graph_path, "w") as f:
+        json.dump(graph_output, f, indent=2)
+
     # Print summary
     print(f"{'='*60}")
     print(f"Tiers used:                  {', '.join(f't{t}' for t in tiers)}")
@@ -320,6 +341,7 @@ def main():
         )
 
     print(f"\nSaved to {out_path}")
+    print(f"Raw edge graph saved to {graph_path}")
 
 
 if __name__ == "__main__":
