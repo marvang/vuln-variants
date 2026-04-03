@@ -1,16 +1,16 @@
 {
   "tier": "t3_commits",
-  "edge_count": 116,
+  "edge_count": 109,
   "corroborating_count": 34,
   "edges_by_field": {
-    "t3_commit": 150
+    "t3_commit": 143
   },
-  "commits_processed": 20684,
-  "commits_fetched": 13433,
-  "commits_cached": 7251,
+  "commits_processed": 20672,
+  "commits_fetched": 66,
+  "commits_cached": 20606,
   "commits_failed": 314,
-  "commits_with_cve_refs": 114,
-  "generated_at": "2026-04-03T13:58:22.084963",
+  "commits_with_cve_refs": 110,
+  "generated_at": "2026-04-03T21:45:08.085558",
   "edges": [
     {
       "source": "CVE-2010-3844",
@@ -167,42 +167,6 @@
       "target": "CVE-2011-1079",
       "found_in": "t3_commit",
       "context": "...mand.  This vulnerability is similar to CVE-2011-1079.  Signed-off-by: Young Xiao <YangX92@ho..."
-    },
-    {
-      "source": "CVE-2019-14816",
-      "target": "CVE-2019-14814",
-      "found_in": "t3_commit",
-      "context": "...erforming memcpy().  This fix addresses CVE-2019-14814,CVE-2019-14815,CVE-2019-14816.  Signed-..."
-    },
-    {
-      "source": "CVE-2019-14816",
-      "target": "CVE-2019-14815",
-      "found_in": "t3_commit",
-      "context": "...y().  This fix addresses CVE-2019-14814,CVE-2019-14815,CVE-2019-14816.  Signed-off-by: Wen Hua..."
-    },
-    {
-      "source": "CVE-2019-14815",
-      "target": "CVE-2019-14814",
-      "found_in": "t3_commit",
-      "context": "...erforming memcpy().  This fix addresses CVE-2019-14814,CVE-2019-14815,CVE-2019-14816.  Signed-..."
-    },
-    {
-      "source": "CVE-2019-14815",
-      "target": "CVE-2019-14816",
-      "found_in": "t3_commit",
-      "context": "...addresses CVE-2019-14814,CVE-2019-14815,CVE-2019-14816.  Signed-off-by: Wen Huang <huangwenabc..."
-    },
-    {
-      "source": "CVE-2019-14814",
-      "target": "CVE-2019-14815",
-      "found_in": "t3_commit",
-      "context": "...y().  This fix addresses CVE-2019-14814,CVE-2019-14815,CVE-2019-14816.  Signed-off-by: Wen Hua..."
-    },
-    {
-      "source": "CVE-2019-14814",
-      "target": "CVE-2019-14816",
-      "found_in": "t3_commit",
-      "context": "...addresses CVE-2019-14814,CVE-2019-14815,CVE-2019-14816.  Signed-off-by: Wen Huang <huangwenabc..."
     },
     {
       "source": "CVE-2019-3559",
@@ -421,25 +385,25 @@
       "context": "...ld help. Thanks to the reporters. Fixes CVE-2018-13003."
     },
     {
-      "source": "CVE-2023-38324",
+      "source": "CVE-2023-38315",
       "target": "CVE-2023-41101",
       "found_in": "t3_commit",
       "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
     },
     {
-      "source": "CVE-2023-38324",
+      "source": "CVE-2023-38315",
       "target": "CVE-2023-41102",
       "found_in": "t3_commit",
       "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
     },
     {
-      "source": "CVE-2023-38322",
+      "source": "CVE-2023-38324",
       "target": "CVE-2023-41101",
       "found_in": "t3_commit",
       "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
     },
     {
-      "source": "CVE-2023-38322",
+      "source": "CVE-2023-38324",
       "target": "CVE-2023-41102",
       "found_in": "t3_commit",
       "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
@@ -457,13 +421,25 @@
       "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
     },
     {
-      "source": "CVE-2023-38316",
+      "source": "CVE-2023-38313",
       "target": "CVE-2023-41101",
       "found_in": "t3_commit",
       "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
     },
     {
-      "source": "CVE-2023-38316",
+      "source": "CVE-2023-38313",
+      "target": "CVE-2023-41102",
+      "found_in": "t3_commit",
+      "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
+    },
+    {
+      "source": "CVE-2023-38322",
+      "target": "CVE-2023-41101",
+      "found_in": "t3_commit",
+      "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
+    },
+    {
+      "source": "CVE-2023-38322",
       "target": "CVE-2023-41102",
       "found_in": "t3_commit",
       "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
@@ -481,25 +457,13 @@
       "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
     },
     {
-      "source": "CVE-2023-38313",
+      "source": "CVE-2023-38316",
       "target": "CVE-2023-41101",
       "found_in": "t3_commit",
       "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
     },
     {
-      "source": "CVE-2023-38313",
-      "target": "CVE-2023-41102",
-      "found_in": "t3_commit",
-      "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
-    },
-    {
-      "source": "CVE-2023-38315",
-      "target": "CVE-2023-41101",
-      "found_in": "t3_commit",
-      "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
-    },
-    {
-      "source": "CVE-2023-38315",
+      "source": "CVE-2023-38316",
       "target": "CVE-2023-41102",
       "found_in": "t3_commit",
       "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
@@ -544,7 +508,7 @@
       "source": "CVE-2024-34199",
       "target": "CVE-2024-5193",
       "found_in": "t3_commit",
-      "context": "Fix CVE-2024-5193 (CRLF injection) and CVE-2024-34199 (bu..."
+      "context": "Add detailed CVE-2024-34199 and CVE-2024-5193 technical documentation in source code..."
     },
     {
       "source": "CVE-2024-52006",
@@ -623,12 +587,6 @@
       "target": "CVE-2024-55923",
       "found_in": "t3_commit",
       "context": "...es: CVE-2024-55922 Security-References: CVE-2024-55923 Reviewed-on: https://review.typo3.org/c..."
-    },
-    {
-      "source": "CVE-2024-5193",
-      "target": "CVE-2024-34199",
-      "found_in": "t3_commit",
-      "context": "Fix CVE-2024-5193 (CRLF injection) and CVE-2024-34199 (buffer overflow): add StripCRLF functi..."
     },
     {
       "source": "CVE-2024-5998",

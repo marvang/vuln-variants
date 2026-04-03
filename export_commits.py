@@ -21,7 +21,7 @@ from github_commit_utils import (
 
 CACHE_DIR = Path("data/commit_cache")
 REFERENCE_INDEX_PATH = Path("output/reference_index.json")
-OUTPUT_PATH = Path("output/github_commits.jsonl")
+OUTPUT_PATH = Path("datasets/github_commits.jsonl")
 
 
 def load_commit_to_cves():
@@ -100,6 +100,7 @@ def main():
     written = 0
     missing = 0
 
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_PATH, "w") as out:
         for (repo, canonical_sha), cve_ids in sorted(commit_to_cves.items()):
             cached = cached_messages.get((repo, canonical_sha))
