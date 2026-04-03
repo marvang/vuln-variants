@@ -155,14 +155,5 @@ Based on 531 CVEs classified so far (x-ai/grok-4.1-fast via OpenRouter):
 T4 candidate pairs (5,032 pairs) would cost an additional ~$10 and yield ~130 edges.
 
 **Notes:**
-- Cost distribution is skewed — 90% of CVEs cost <$0.005, but a few with large URL content cost $0.01+. Median-based estimate (~$470) is more realistic than mean-based (~$700).
-- A cheaper model ($0.10/1M tokens vs Grok's $0.24) would bring the full run to ~$200.
-- 307,671 CVEs have fetchable reference URLs. 16,038 have only aggregator URLs and will produce cheap description-only prompts.
-- Older CVEs will be cheaper — more dead links means shorter prompts.
 - Results are cumulative and resumable — runs pick up where the last one left off.
 
-## Future work
-
-1. **Scale T5** — classify more CVEs (531/323k done), target ground truth gaps
-2. **Expand ground truth** with additional curated variant chains
-3. **Evaluate T5 precision** — manual review of new edges found by LLM
