@@ -13,6 +13,7 @@ Only one real edge exists in these fixtures:
   CVE-2021-45046 → CVE-2021-44228  ("fix to address CVE-2021-44228")
 """
 
+import io
 import json
 from pathlib import Path
 
@@ -441,6 +442,219 @@ class TestT3RetryBound:
         assert sleep_calls == [t3.DEFAULT_RETRY_AFTER]
         assert call_count == 1 + t3.MAX_RETRIES
 
+    def test_fetch_handles_remote_disconnect(self, tmp_path, monkeypatch):
+        """Transient socket disconnects should fail locally, not abort T3."""
+        from http.client import RemoteDisconnected
+        import parse_commits_t3 as t3
+
+        monkeypatch.setattr(t3, "CACHE_DIR", tmp_path / "cache")
+        monkeypatch.setattr(t3, "GITHUB_TOKEN", "fake")
+        monkeypatch.setattr(
+            t3,
+            "urlopen",
+            lambda req, timeout=None: (_ for _ in ()).throw(
+                RemoteDisconnected("Remote end closed connection without response")
+            ),
+        )
+
+        result = t3.fetch_commit_message("owner/repo", "abc1234567")
+
+        assert result is None
+        assert not t3.cache_path("owner/repo", "abc1234567").exists()
+
+    @pytest.mark.parametrize("status_code", [404, 409, 410])
+    def test_fetch_caches_permanent_http_errors(self, tmp_path, monkeypatch, status_code):
+        """Stable bad commit refs should be cached so reruns skip them."""
+        import parse_commits_t3 as t3
+
+        monkeypatch.setattr(t3, "CACHE_DIR", tmp_path / "cache")
+        monkeypatch.setattr(t3, "GITHUB_TOKEN", "fake")
+
+        call_count = 0
+
+        def fake_urlopen(req, timeout=None):
+            nonlocal call_count
+            call_count += 1
+            raise t3.HTTPError(req.full_url, status_code, "bad commit", {}, None)
+
+        monkeypatch.setattr(t3, "urlopen", fake_urlopen)
+
+        first = t3.fetch_commit_message("owner/repo", "abc1234567")
+        second = t3.fetch_commit_message("owner/repo", "abc1234567")
+
+        assert first is None
+        assert second is None
+        assert call_count == 1
+
+        with open(t3.cache_path("owner/repo", "abc1234567")) as f:
+            cached = json.load(f)
+        assert cached["error"] == status_code
+        assert cached["message"] is None
+
+    def test_fetch_does_not_cache_422(self, tmp_path, monkeypatch):
+        """HTTP 422 can be transient abuse throttling and must be retried later."""
+        import parse_commits_t3 as t3
+
+        monkeypatch.setattr(t3, "CACHE_DIR", tmp_path / "cache")
+        monkeypatch.setattr(t3, "GITHUB_TOKEN", "fake")
+
+        call_count = 0
+
+        def fake_urlopen(req, timeout=None):
+            nonlocal call_count
+            call_count += 1
+            raise t3.HTTPError(req.full_url, 422, "endpoint has been spammed", {}, None)
+
+        monkeypatch.setattr(t3, "urlopen", fake_urlopen)
+
+        first = t3.fetch_commit_message("owner/repo", "abc1234567")
+        second = t3.fetch_commit_message("owner/repo", "abc1234567")
+
+        assert first is None
+        assert second is None
+        assert call_count == 2
+        assert not t3.cache_path("owner/repo", "abc1234567").exists()
+
+    def test_fetch_ignores_legacy_422_cache(self, tmp_path, monkeypatch):
+        """Old poisoned 422 cache entries should not block later successful reruns."""
+        import parse_commits_t3 as t3
+
+        monkeypatch.setattr(t3, "CACHE_DIR", tmp_path / "cache")
+        monkeypatch.setattr(t3, "GITHUB_TOKEN", "fake")
+
+        requested_sha = "abc1234567"
+        resolved_sha = "abc1234567890def1234567890def1234567890"
+        t3.write_cache("owner/repo", requested_sha, None, error=422)
+
+        call_count = 0
+
+        class FakeResponse(io.StringIO):
+            def __enter__(self):
+                return self
+
+            def __exit__(self, exc_type, exc, tb):
+                self.close()
+                return False
+
+        def fake_urlopen(req, timeout=None):
+            nonlocal call_count
+            call_count += 1
+            body = json.dumps({
+                "sha": resolved_sha,
+                "commit": {"message": "fixed on rerun"},
+            })
+            return FakeResponse(body)
+
+        monkeypatch.setattr(t3, "urlopen", fake_urlopen)
+
+        message = t3.fetch_commit_message("owner/repo", requested_sha)
+
+        assert message == "fixed on rerun"
+        assert call_count == 1
+
+        with open(t3.cache_path("owner/repo", requested_sha)) as f:
+            cached = json.load(f)
+        assert cached["sha"] == resolved_sha
+        assert cached["requested_sha"] == requested_sha
+        assert "error" not in cached
+
+
+class TestGitHubCommitNormalization:
+
+    def test_load_commit_refs_canonicalizes_equivalent_shas(self, tmp_path, monkeypatch):
+        import parse_commits_t3 as t3
+
+        shorter = "7caac62ed598a196d6ddf8d9c121e12e082cac3"
+        full = "7caac62ed598a196d6ddf8d9c121e12e082cac3a"
+        ref_path = tmp_path / "reference_index.json"
+        ref_path.write_text(json.dumps({
+            "references": [
+                {
+                    "cve_id": "CVE-2019-14814",
+                    "url": f"https://github.com/torvalds/linux/commit/{full}",
+                    "structured_ids": [
+                        {"type": "github_commit", "repo": "torvalds/linux", "value": full}
+                    ],
+                },
+                {
+                    "cve_id": "CVE-2019-14815",
+                    "url": f"https://github.com/torvalds/linux/commit/{full}",
+                    "structured_ids": [
+                        {"type": "github_commit", "repo": "torvalds/linux", "value": full}
+                    ],
+                },
+                {
+                    "cve_id": "CVE-2019-14816",
+                    "url": f"https://github.com/torvalds/linux/commit/{shorter}",
+                    "structured_ids": [
+                        {"type": "github_commit", "repo": "torvalds/linux", "value": shorter}
+                    ],
+                },
+            ]
+        }))
+
+        monkeypatch.setattr(t3, "REFERENCE_INDEX_PATH", ref_path)
+
+        commits = t3.load_commit_refs()
+
+        assert {commit["canonical_sha"] for commit in commits} == {full}
+
+    def test_export_commits_merges_equivalent_sha_variants(self, tmp_path, monkeypatch):
+        import export_commits as export
+
+        shorter = "7caac62ed598a196d6ddf8d9c121e12e082cac3"
+        full = "7caac62ed598a196d6ddf8d9c121e12e082cac3a"
+        cache_dir = tmp_path / "commit_cache"
+        cache_dir.mkdir()
+        ref_path = tmp_path / "reference_index.json"
+        out_path = tmp_path / "github_commits.jsonl"
+
+        ref_path.write_text(json.dumps({
+            "references": [
+                {
+                    "cve_id": "CVE-2019-14814",
+                    "url": f"https://github.com/torvalds/linux/commit/{full}",
+                    "structured_ids": [
+                        {"type": "github_commit", "repo": "torvalds/linux", "value": full}
+                    ],
+                },
+                {
+                    "cve_id": "CVE-2019-14815",
+                    "url": f"https://github.com/torvalds/linux/commit/{full}",
+                    "structured_ids": [
+                        {"type": "github_commit", "repo": "torvalds/linux", "value": full}
+                    ],
+                },
+                {
+                    "cve_id": "CVE-2019-14816",
+                    "url": f"https://github.com/torvalds/linux/commit/{shorter}",
+                    "structured_ids": [
+                        {"type": "github_commit", "repo": "torvalds/linux", "value": shorter}
+                    ],
+                },
+            ]
+        }))
+        (cache_dir / f"torvalds_linux_{shorter[:12]}.json").write_text(json.dumps({
+            "message": "This fix addresses CVE-2019-14814,CVE-2019-14815,CVE-2019-14816.",
+            "sha": shorter,
+            "repo": "torvalds/linux",
+        }))
+
+        monkeypatch.setattr(export, "CACHE_DIR", cache_dir)
+        monkeypatch.setattr(export, "REFERENCE_INDEX_PATH", ref_path)
+        monkeypatch.setattr(export, "OUTPUT_PATH", out_path)
+
+        export.main()
+
+        rows = [json.loads(line) for line in out_path.read_text().splitlines()]
+        assert len(rows) == 3
+        assert {row["cve_id"] for row in rows} == {
+            "CVE-2019-14814",
+            "CVE-2019-14815",
+            "CVE-2019-14816",
+        }
+        assert {row["sha"] for row in rows} == {full}
+
 
 class TestJiraRegex:
 
@@ -469,3 +683,277 @@ class TestJiraRegex:
         jira_ids = [s for s in ids if s["type"] == "jira"]
         assert len(jira_ids) == 1
         assert jira_ids[0]["value"] == "HADOOP-12345"
+
+
+# ---------------------------------------------------------------------------
+# T4: Shared bug tracker IDs (find_shared_ids_t4.py)
+# ---------------------------------------------------------------------------
+
+class TestFindSharedIdsT4:
+
+    def test_group_by_shared_bugzilla(self):
+        from find_shared_ids_t4 import group_by_shared_id
+
+        refs = [
+            ("CVE-2021-0001", {"type": "bugzilla", "domain": "bz.example.com", "value": "99"}),
+            ("CVE-2021-0002", {"type": "bugzilla", "domain": "bz.example.com", "value": "99"}),
+            ("CVE-2021-0003", {"type": "bugzilla", "domain": "bz.example.com", "value": "100"}),
+        ]
+
+        groups = group_by_shared_id(refs, {"bugzilla"})
+        assert len(groups) == 1
+        key = list(groups.keys())[0]
+        assert groups[key] == {"CVE-2021-0001", "CVE-2021-0002"}
+
+    def test_group_by_shared_github_issue(self):
+        from find_shared_ids_t4 import group_by_shared_id
+
+        refs = [
+            ("CVE-A", {"type": "github_issue", "repo": "org/repo", "value": "42"}),
+            ("CVE-B", {"type": "github_issue", "repo": "org/repo", "value": "42"}),
+        ]
+
+        groups = group_by_shared_id(refs, {"github_issue"})
+        assert len(groups) == 1
+        assert list(groups.values())[0] == {"CVE-A", "CVE-B"}
+
+    def test_jira_excluded_by_default_id_types(self):
+        from find_shared_ids_t4 import DEFAULT_ID_TYPES, group_by_shared_id
+
+        refs = [
+            ("CVE-A", {"type": "jira", "value": "PROJ-123"}),
+            ("CVE-B", {"type": "jira", "value": "PROJ-123"}),
+        ]
+
+        groups = group_by_shared_id(refs, DEFAULT_ID_TYPES)
+        assert len(groups) == 0
+
+    def test_jira_included_when_enabled(self):
+        from find_shared_ids_t4 import group_by_shared_id
+
+        refs = [
+            ("CVE-A", {"type": "jira", "value": "PROJ-123"}),
+            ("CVE-B", {"type": "jira", "value": "PROJ-123"}),
+        ]
+
+        groups = group_by_shared_id(refs, {"jira"})
+        assert len(groups) == 1
+
+    def test_max_cluster_filters_large_groups(self):
+        from find_shared_ids_t4 import group_by_shared_id
+
+        refs = [
+            (f"CVE-{i}", {"type": "bugzilla", "domain": "bz.example.com", "value": "1"})
+            for i in range(25)
+        ]
+
+        groups = group_by_shared_id(refs, {"bugzilla"})
+        assert len(groups) == 0
+
+    def test_format_context_human_readable(self):
+        from find_shared_ids_t4 import format_context
+
+        assert format_context(("bugzilla", "bz.example.com", "99")) == \
+            "shared Bugzilla #99 on bz.example.com"
+        assert format_context(("github_issue", "org/repo", "42")) == \
+            "shared GitHub issue org/repo#42"
+
+
+# ---------------------------------------------------------------------------
+# T5: LLM classification (classify_variants_t5.py)
+# ---------------------------------------------------------------------------
+
+class TestClassifyVariantsT5:
+
+    def test_load_t4_candidates_dedups_new_edges_only(self, tmp_path, monkeypatch):
+        import classify_variants_t5 as t5
+
+        path = tmp_path / "edges_t4_shared_ids.json"
+        path.write_text(json.dumps({
+            "edges": [
+                {"source": "CVE-B", "target": "CVE-A", "found_in": "t4_shared_bugzilla", "context": "shared Bugzilla #7"},
+                {"source": "CVE-A", "target": "CVE-B", "found_in": "t4_shared_bugzilla", "context": "shared Bugzilla #7"},
+            ],
+            "corroborating_edges": [
+                {"source": "CVE-C", "target": "CVE-D", "found_in": "t4_shared_bugzilla", "context": "old"},
+            ],
+        }))
+        monkeypatch.setattr(t5, "T4_EDGES_PATH", path)
+
+        candidates = t5.load_t4_candidates()
+
+        assert candidates == [{
+            "cve_a": "CVE-A",
+            "cve_b": "CVE-B",
+            "found_in": "t4_shared_bugzilla",
+            "context": "shared Bugzilla #7",
+        }]
+
+    def test_build_prompt_includes_descriptions_and_context(self):
+        from classify_variants_t5 import build_prompt
+
+        candidate = {
+            "cve_a": "CVE-2021-44228",
+            "cve_b": "CVE-2021-45046",
+            "found_in": "t4_shared_bugzilla",
+            "context": "shared Bugzilla #123 on bz.redhat.com",
+        }
+        cve_data = {
+            "CVE-2021-44228": {"published": "2021-12-10", "description": "Log4Shell original"},
+            "CVE-2021-45046": {"published": "2021-12-14", "description": "Log4Shell incomplete fix"},
+        }
+
+        messages = build_prompt(candidate, cve_data)
+        assert len(messages) == 2
+        assert messages[0]["role"] == "system"
+        assert "Log4Shell original" in messages[1]["content"]
+        assert "Log4Shell incomplete fix" in messages[1]["content"]
+        assert "shared Bugzilla #123" in messages[1]["content"]
+        assert "t4_shared_bugzilla" in messages[1]["content"]
+
+    def test_parse_classification_valid(self):
+        from classify_variants_t5 import parse_classification
+
+        result = parse_classification({
+            "relationship_type": "incomplete_fix",
+            "confidence": 0.9,
+            "direction": "b_is_variant_of_a",
+            "reasoning": "CVE-B fixes what CVE-A missed.",
+            "evidence_used": ["description_a", "description_b"],
+            "additional_related_cves": [],
+        })
+
+        assert result["relationship_type"] == "incomplete_fix"
+        assert result["confidence"] == 0.9
+        assert result["direction"] == "b_is_variant_of_a"
+
+    def test_parse_classification_clamps_confidence(self):
+        from classify_variants_t5 import parse_classification
+
+        result = parse_classification({
+            "relationship_type": "bypass",
+            "confidence": 1.5,
+            "direction": "a_is_variant_of_b",
+            "reasoning": "test",
+            "evidence_used": [],
+            "additional_related_cves": [],
+        })
+
+        assert result["confidence"] == 1.0
+
+    def test_parse_classification_invalid_defaults(self):
+        from classify_variants_t5 import parse_classification
+
+        result = parse_classification({
+            "relationship_type": "made_up_label",
+            "confidence": 0.5,
+            "direction": "invalid",
+            "reasoning": "test",
+            "evidence_used": [],
+            "additional_related_cves": ["not-a-cve", "CVE-2024-1234"],
+        })
+
+        assert result["relationship_type"] == "insufficient_evidence"
+        assert result["direction"] == "unknown"
+        assert result["additional_related_cves"] == ["CVE-2024-1234"]
+
+    def test_edge_direction_a_is_variant(self):
+        from classify_variants_t5 import classification_to_edge
+
+        edge = classification_to_edge({
+            "relationship_type": "incomplete_fix",
+            "confidence": 0.9,
+            "direction": "a_is_variant_of_b",
+            "reasoning": "A is the variant",
+            "evidence_used": [],
+            "additional_related_cves": [],
+        }, "CVE-A", "CVE-B")
+
+        assert edge["source"] == "CVE-A"
+        assert edge["target"] == "CVE-B"
+        assert edge["found_in"] == "t5_llm"
+
+    def test_edge_direction_b_is_variant(self):
+        from classify_variants_t5 import classification_to_edge
+
+        edge = classification_to_edge({
+            "relationship_type": "bypass",
+            "confidence": 0.85,
+            "direction": "b_is_variant_of_a",
+            "reasoning": "B bypasses A",
+            "evidence_used": [],
+            "additional_related_cves": [],
+        }, "CVE-A", "CVE-B")
+
+        assert edge["source"] == "CVE-B"
+        assert edge["target"] == "CVE-A"
+
+    def test_edge_not_emitted_for_non_positive_or_unknown_direction(self):
+        from classify_variants_t5 import classification_to_edge
+
+        assert classification_to_edge({
+            "relationship_type": "unrelated",
+            "confidence": 0.95,
+            "direction": "a_is_variant_of_b",
+            "reasoning": "no",
+            "evidence_used": [],
+            "additional_related_cves": [],
+        }, "CVE-A", "CVE-B") is None
+
+        assert classification_to_edge({
+            "relationship_type": "same_vuln_class",
+            "confidence": 0.8,
+            "direction": "unknown",
+            "reasoning": "unclear",
+            "evidence_used": [],
+            "additional_related_cves": [],
+        }, "CVE-A", "CVE-B") is None
+
+    def test_load_openrouter_model_from_env(self, monkeypatch):
+        from classify_variants_t5 import _load_openrouter_model
+
+        monkeypatch.setenv("OPEN_ROUTER_MODEL", "openai/gpt-4.1-mini")
+        assert _load_openrouter_model() == "openai/gpt-4.1-mini"
+
+
+# ---------------------------------------------------------------------------
+# Coverage counting
+# ---------------------------------------------------------------------------
+
+class TestEvidenceCoverage:
+
+    def test_build_coverage_summary_buckets_counts(self):
+        from count_evidence_coverage import build_coverage_summary
+
+        published = {"CVE-A", "CVE-B", "CVE-C", "CVE-D"}
+        edge_involvement = {
+            "CVE-A": {"t1"},
+            "CVE-B": {"t2"},
+            "CVE-C": {"t3"},
+        }
+        structured_involvement = {
+            "CVE-C": {"bugzilla"},
+        }
+
+        summary = build_coverage_summary(published, edge_involvement, structured_involvement)
+        assert summary["direct_evidence_total"] == 2
+        assert summary["candidate_only_total"] == 1
+        assert summary["candidate_only_default_total"] == 1
+        assert summary["jira_only_candidate_total"] == 0
+        assert summary["discovery_only_total"] == 1
+
+    def test_build_coverage_summary_separates_jira_only_lane(self):
+        from count_evidence_coverage import build_coverage_summary
+
+        published = {"CVE-A", "CVE-B", "CVE-C"}
+        edge_involvement = {}
+        structured_involvement = {
+            "CVE-A": {"jira"},
+            "CVE-B": {"github_issue"},
+        }
+
+        summary = build_coverage_summary(published, edge_involvement, structured_involvement)
+        assert summary["candidate_only_total"] == 2
+        assert summary["candidate_only_default_total"] == 1
+        assert summary["jira_only_candidate_total"] == 1
+        assert summary["discovery_only_default_total"] == 2

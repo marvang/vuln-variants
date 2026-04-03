@@ -25,6 +25,12 @@ from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
+from github_commit_utils import (
+    build_commit_alias_index,
+    canonical_commit_key,
+    normalize_commit_sha,
+)
+
 try:
     from tqdm import tqdm
 except ImportError:
@@ -53,7 +59,8 @@ def _load_github_token():
 
 GITHUB_TOKEN = _load_github_token()
 DEFAULT_RETRY_AFTER = 60
-PERMANENT_HTTP_ERRORS = {404, 409, 410, 422}
+PERMANENT_HTTP_ERRORS = {404, 409, 410}
+RETRYABLE_CACHE_ERRORS = {422}
 
 
 def load_commit_refs():
@@ -62,15 +69,26 @@ def load_commit_refs():
         data = json.load(f)
 
     commits = []
+    commit_refs = []
     for ref in data["references"]:
         for sid in ref.get("structured_ids", []):
             if sid["type"] == "github_commit":
+                sha = normalize_commit_sha(sid["value"])
                 commits.append({
                     "cve_id": ref["cve_id"],
                     "repo": sid["repo"],
-                    "sha": sid["value"],
+                    "sha": sha,
                     "url": ref["url"],
                 })
+                commit_refs.append((sid["repo"], sha))
+
+    alias_to_canonical = build_commit_alias_index(commit_refs)
+    for commit in commits:
+        commit["canonical_sha"] = canonical_commit_key(
+            commit["repo"],
+            commit["sha"],
+            alias_to_canonical,
+        )[1]
     return commits
 
 
@@ -101,14 +119,21 @@ def load_published_cves():
 def cache_path(repo, sha):
     """Return cache file path for a commit."""
     safe_repo = repo.replace("/", "_")
-    return CACHE_DIR / f"{safe_repo}_{sha[:12]}.json"
+    return CACHE_DIR / f"{safe_repo}_{normalize_commit_sha(sha)[:12]}.json"
 
 
-def write_cache(repo, sha, message, *, error=None):
+def write_cache(repo, sha, message, *, resolved_sha=None, error=None):
     """Persist commit fetch results for resumable reruns."""
     cached = cache_path(repo, sha)
     cached.parent.mkdir(parents=True, exist_ok=True)
-    payload = {"message": message, "sha": sha, "repo": repo}
+    requested_sha = normalize_commit_sha(sha)
+    payload = {
+        "message": message,
+        "sha": normalize_commit_sha(resolved_sha or sha),
+        "repo": repo,
+    }
+    if payload["sha"] != requested_sha:
+        payload["requested_sha"] = requested_sha
     if error is not None:
         payload["error"] = error
     with open(cached, "w") as f:
@@ -118,6 +143,20 @@ def write_cache(repo, sha, message, *, error=None):
 def should_cache_http_error(status_code):
     """Return whether an HTTP status is stable enough to cache."""
     return status_code in PERMANENT_HTTP_ERRORS
+
+
+def load_cached_result(repo, sha):
+    """Return a reusable cached result, ignoring transient legacy errors."""
+    cached = cache_path(repo, sha)
+    if not cached.exists():
+        return None
+
+    with open(cached) as f:
+        data = json.load(f)
+
+    if data.get("error") in RETRYABLE_CACHE_ERRORS:
+        return None
+    return data
 
 
 MAX_RETRIES = 1
@@ -133,10 +172,8 @@ def parse_retry_after_seconds(value):
 
 def fetch_commit_message(repo, sha):
     """Fetch commit message from GitHub API, with caching."""
-    cached = cache_path(repo, sha)
-    if cached.exists():
-        with open(cached) as f:
-            data = json.load(f)
+    data = load_cached_result(repo, sha)
+    if data is not None:
         return data.get("message")
 
     url = f"{GITHUB_API}/repos/{repo}/commits/{sha}"
@@ -150,8 +187,9 @@ def fetch_commit_message(repo, sha):
             with urlopen(req, timeout=15) as resp:
                 data = json.load(resp)
                 message = data.get("commit", {}).get("message", "")
+                resolved_sha = normalize_commit_sha(data.get("sha", sha))
 
-                write_cache(repo, sha, message)
+                write_cache(repo, sha, message, resolved_sha=resolved_sha)
                 return message
         except HTTPError as e:
             if should_cache_http_error(e.code):
@@ -205,8 +243,12 @@ def main():
     unique_commits = {}
     commit_to_cves = defaultdict(set)
     for c in all_commits:
-        key = (c["repo"], c["sha"])
-        unique_commits[key] = c
+        key = (c["repo"], c["canonical_sha"])
+        unique_commits[key] = {
+            "repo": c["repo"],
+            "sha": c["canonical_sha"],
+            "url": c["url"],
+        }
         commit_to_cves[key].add(c["cve_id"])
 
     print(f"Found {len(all_commits):,} commit references "
@@ -248,7 +290,7 @@ def main():
         source_cves = commit_to_cves[(repo, sha)]
 
         # Check cache first
-        if cache_path(repo, sha).exists():
+        if load_cached_result(repo, sha) is not None:
             cached_count += 1
         else:
             fetched += 1
