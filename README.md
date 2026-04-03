@@ -2,7 +2,7 @@
 
 Systematically discovers CVE vulnerability variant chains (failed patches, bypasses, incomplete fixes) by regex-matching CVE IDs across CVE record fields and external sources. When one CVE's text references another CVE, it signals a variant, bypass, or incomplete fix.
 
-**Results:** 47,156 edges across 20,088 CVEs (6.21% of all published CVEs) organized into 7,140 variant chains. See [REPORT.md](REPORT.md) for full analysis, statistics, and methodology.
+**Results:** 42,057 strong edges across 17,085 CVEs (5.28% of all published CVEs) organized into 6,172 variant chains using T1-T3 regex + T5 LLM classification. T4 adds 5,032 weak structural edges (shared bug tracker IDs). See [REPORT.md](REPORT.md) for full analysis, statistics, and methodology.
 
 ## Setup
 
@@ -92,6 +92,7 @@ Generated pipeline artifacts go to `output/`. Exported datasets go to `datasets/
 - `edges_t4_shared_ids.json` -- T4 edges from shared bug tracker IDs (weak signal)
 - `t5_classifications.json` -- per-run T5 audit artifact (all classifications with traces)
 - `datasets/edges_t5_llm.json` -- cumulative T5 edges + processed CVE/pair tracking (git-tracked)
+- `datasets/t5_classifications.jsonl` -- cumulative T5 classifications with full reasoning (git-tracked)
 - `datasets/github_commits.jsonl` -- researcher-friendly dataset linking CVEs to commit messages
 - `cve_references.json` -- graph-only subset used for reference-graph inspection
 - `reference_index.json` -- structured index of all 1.1M reference URLs
@@ -138,8 +139,30 @@ Of 323,709 published CVEs:
 - **13.66%** (44,228) are in the default T4 candidate pool with JIRA disabled
 - **66.25%** (214,466) have no cross-references (discovery-only)
 
+## T5 cost and yield projections
+
+Based on 531 CVEs classified so far (x-ai/grok-4.1-fast via OpenRouter):
+
+| Metric | Observed | Projected (full corpus) |
+|---|---|---|
+| CVEs processed | 531 | 323,709 |
+| New edges found | 10 | ~6,100 |
+| Corroborating edges | 7 | ~4,300 |
+| Edge yield rate | 1.88% of CVEs | — |
+| Tokens per CVE | median ~5k, mean ~8.8k | ~2.9B total |
+| Cost per CVE (grok-4.1-fast) | median $0.0015, mean $0.0022 | **~$470-700** |
+
+T4 candidate pairs (5,032 pairs) would cost an additional ~$10 and yield ~130 edges.
+
+**Notes:**
+- Cost distribution is skewed — 90% of CVEs cost <$0.005, but a few with large URL content cost $0.01+. Median-based estimate (~$470) is more realistic than mean-based (~$700).
+- A cheaper model ($0.10/1M tokens vs Grok's $0.24) would bring the full run to ~$200.
+- 307,671 CVEs have fetchable reference URLs. 16,038 have only aggregator URLs and will produce cheap description-only prompts.
+- Older CVEs will be cheaper — more dead links means shorter prompts.
+- Results are cumulative and resumable — runs pick up where the last one left off.
+
 ## Future work
 
-1. **Run T5 at scale** — classify CVEs and T4 candidates via OpenRouter, evaluate precision
+1. **Scale T5** — classify more CVEs (531/323k done), target ground truth gaps
 2. **Expand ground truth** with additional curated variant chains
-3. **Tune T5 prompts** — refine URL selection, content truncation, and LLM prompts based on results
+3. **Evaluate T5 precision** — manual review of new edges found by LLM

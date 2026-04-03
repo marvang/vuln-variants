@@ -32,6 +32,7 @@ uv run python classify_variants_t5.py --limit 10               # Quick test on 1
 uv run python classify_variants_t5.py --limit 0                # All CVEs (expensive)
 uv run python classify_variants_t5.py --cve CVE-2021-45046     # Specific CVE(s)
 uv run python classify_variants_t5.py --candidates             # Candidate pair mode (T4)
+uv run python classify_variants_t5.py --workers 50             # More parallel threads (default 20)
 uv run python classify_variants_t5.py --dry-run                # Count items, no API calls
 uv run python build_chains.py --tiers 1,2,3,5                  # Include strong T5 edges
 

@@ -20,9 +20,11 @@ import hashlib
 import json
 import os
 import re
+import resource
 import sys
 import time
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from pathlib import Path
 
@@ -61,7 +63,9 @@ POSITIVE_LABELS = {
 ALL_LABELS = POSITIVE_LABELS | {"unrelated", "insufficient_evidence"}
 
 CONFIDENCE_THRESHOLD = 0.7
+DEFAULT_WORKERS = 20
 MAX_URLS_PER_CVE = 15
+ABORT_AFTER_N_FAILURES = 3
 MIN_CONTENT_LENGTH = 200
 JINA_DELAY = 0.5
 FETCH_TIMEOUT = 15
@@ -800,6 +804,8 @@ def build_candidate_prompt(candidate, cve_data, url_contents_a, url_contents_b,
 
 def parse_per_cve_result(raw_json):
     """Parse LLM response for per-CVE mode."""
+    if not raw_json:
+        return []
     if isinstance(raw_json, str):
         raw_json = json.loads(raw_json)
     variants = raw_json.get("variants", [])
@@ -831,6 +837,15 @@ def parse_per_cve_result(raw_json):
 
 def parse_candidate_result(raw_json):
     """Parse LLM response for candidate mode."""
+    if not raw_json:
+        return {
+            "relationship_type": "insufficient_evidence",
+            "confidence": 0.0,
+            "direction": "unknown",
+            "reasoning": "Empty model response",
+            "evidence_used": [],
+            "additional_related_cves": [],
+        }
     if isinstance(raw_json, str):
         raw_json = json.loads(raw_json)
     result = {}
@@ -896,6 +911,52 @@ def candidate_to_edge(classification, cve_a, cve_b):
     }
 
 
+# --- LLM call helper ---
+
+def _llm_call_json_object(client, model, messages, schema):
+    """Call LLM with json_object mode, schema described in prompt."""
+    fallback_messages = list(messages)
+    schema_hint = json.dumps(schema, indent=2)
+    fallback_messages[-1] = {
+        "role": fallback_messages[-1]["role"],
+        "content": fallback_messages[-1]["content"]
+        + f"\n\nRespond with valid JSON matching this schema:\n{schema_hint}",
+    }
+    return client.chat.completions.create(
+        model=model,
+        messages=fallback_messages,
+        response_format={"type": "json_object"},
+        temperature=0,
+    )
+
+
+def _llm_call(client, model, messages, schema):
+    """Call LLM with json_schema mode, fallback to json_object if unsupported or empty."""
+    try:
+        response = client.chat.completions.create(
+            model=model,
+            messages=messages,
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "variant_classification",
+                    "strict": True,
+                    "schema": schema,
+                },
+            },
+            temperature=0,
+        )
+        content = response.choices[0].message.content
+        if not content:
+            return _llm_call_json_object(client, model, messages, schema)
+        return response
+    except Exception as first_err:
+        err_str = str(first_err).lower()
+        if "json_schema" not in err_str and "response_format" not in err_str:
+            raise
+        return _llm_call_json_object(client, model, messages, schema)
+
+
 # --- Usage tracking ---
 
 def _extract_usage(response):
@@ -936,19 +997,7 @@ def classify_per_cve(cve_id, cve_data, refs_by_cve, commits_by_cve, model, clien
     usage = {}
     error = False
     try:
-        response = client.chat.completions.create(
-            model=model,
-            messages=messages,
-            response_format={
-                "type": "json_schema",
-                "json_schema": {
-                    "name": "variant_classification",
-                    "strict": True,
-                    "schema": PER_CVE_SCHEMA,
-                },
-            },
-            temperature=0.1,
-        )
+        response = _llm_call(client, model, messages, PER_CVE_SCHEMA)
         raw_response = response.choices[0].message.content
         variants = parse_per_cve_result(raw_response)
         usage = _extract_usage(response)
@@ -1019,19 +1068,7 @@ def classify_candidate(candidate, cve_data, refs_by_cve, commits_by_cve, model, 
     usage = {}
     error = False
     try:
-        response = client.chat.completions.create(
-            model=model,
-            messages=messages,
-            response_format={
-                "type": "json_schema",
-                "json_schema": {
-                    "name": "variant_classification",
-                    "strict": True,
-                    "schema": CANDIDATE_SCHEMA,
-                },
-            },
-            temperature=0.1,
-        )
+        response = _llm_call(client, model, messages, CANDIDATE_SCHEMA)
         raw_response = response.choices[0].message.content
         classification = parse_candidate_result(raw_response)
         usage = _extract_usage(response)
@@ -1137,30 +1174,61 @@ def run_per_cve(args, cve_data, refs_by_cve, commits_by_cve, model, client):
     api_count = 0
     total_usage = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "cost": 0.0}
 
-    for cve_id in tqdm(all_cves, desc="Classifying CVEs"):
-        cve_id, variants, was_cached, trace, usage = classify_per_cve(
-            cve_id, cve_data, refs_by_cve, commits_by_cve, model, client
-        )
-        if was_cached:
-            cached_count += 1
-        else:
-            api_count += 1
-            for k in total_usage:
-                total_usage[k] += usage.get(k, 0) or 0
+    error_count = 0
+    completed_count = 0
+    workers = min(args.workers, len(all_cves)) or 1
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = {
+            pool.submit(classify_per_cve, cve_id, cve_data, refs_by_cve,
+                        commits_by_cve, model, client): cve_id
+            for cve_id in all_cves
+        }
+        with tqdm(total=len(all_cves), desc="Classifying CVEs") as pbar:
+            for future in as_completed(futures):
+                try:
+                    cve_id, variants, was_cached, trace, usage = future.result()
+                except Exception as exc:
+                    print(f"\nUnexpected error for {futures[future]}: {exc}")
+                    pbar.update(1)
+                    error_count += 1
+                    completed_count += 1
+                    if error_count >= ABORT_AFTER_N_FAILURES and error_count == completed_count:
+                        print(f"\nAborting: first {error_count} results all failed")
+                        pool.shutdown(wait=False, cancel_futures=True)
+                        break
+                    continue
 
-        all_classifications.append({
-            "cve_id": cve_id,
-            "variants": variants,
-            "trace": trace,
-        })
+                completed_count += 1
+                raw_resp = trace.get("llm_raw_response", "")
+                if isinstance(raw_resp, str) and raw_resp.startswith("ERROR:"):
+                    error_count += 1
+                    if error_count >= ABORT_AFTER_N_FAILURES and error_count == completed_count:
+                        print(f"\nAborting: first {error_count} results all failed")
+                        pool.shutdown(wait=False, cancel_futures=True)
+                        break
 
-        edges = per_cve_to_edges(cve_id, variants)
-        for edge in edges:
-            pair = tuple(sorted((edge["source"], edge["target"])))
-            if pair in prior_edges:
-                all_corroborating.append(edge)
-            else:
-                all_new_edges.append(edge)
+                if was_cached:
+                    cached_count += 1
+                else:
+                    api_count += 1
+                    for k in total_usage:
+                        total_usage[k] += usage.get(k, 0) or 0
+
+                all_classifications.append({
+                    "cve_id": cve_id,
+                    "variants": variants,
+                    "trace": trace,
+                })
+
+                edges = per_cve_to_edges(cve_id, variants)
+                for edge in edges:
+                    pair = tuple(sorted((edge["source"], edge["target"])))
+                    if pair in prior_edges:
+                        all_corroborating.append(edge)
+                    else:
+                        all_new_edges.append(edge)
+
+                pbar.update(1)
 
     _write_outputs(all_new_edges, all_corroborating, all_classifications,
                    cached_count, api_count, model, "per_cve", total_usage)
@@ -1218,33 +1286,63 @@ def run_candidates(args, cve_data, refs_by_cve, commits_by_cve, model, client):
     api_count = 0
     total_usage = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "cost": 0.0}
 
-    for candidate in tqdm(candidates, desc="Classifying pairs"):
-        candidate, classification, was_cached, trace, usage = classify_candidate(
-            candidate, cve_data, refs_by_cve, commits_by_cve, model, client
-        )
-        if was_cached:
-            cached_count += 1
-        else:
-            api_count += 1
-            for k in total_usage:
-                total_usage[k] += usage.get(k, 0) or 0
+    error_count = 0
+    completed_count = 0
+    workers = min(args.workers, len(candidates)) or 1
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = {
+            pool.submit(classify_candidate, candidate, cve_data, refs_by_cve,
+                        commits_by_cve, model, client): candidate
+            for candidate in candidates
+        }
+        with tqdm(total=len(candidates), desc="Classifying pairs") as pbar:
+            for future in as_completed(futures):
+                try:
+                    candidate, classification, was_cached, trace, usage = future.result()
+                except Exception as exc:
+                    print(f"\nUnexpected error for pair: {exc}")
+                    pbar.update(1)
+                    error_count += 1
+                    completed_count += 1
+                    if error_count >= ABORT_AFTER_N_FAILURES and error_count == completed_count:
+                        print(f"\nAborting: first {error_count} results all failed")
+                        pool.shutdown(wait=False, cancel_futures=True)
+                        break
+                    continue
 
-        all_classifications.append({
-            "cve_a": candidate["cve_a"],
-            "cve_b": candidate["cve_b"],
-            "context": candidate.get("context", ""),
-            "classification": classification,
-            "trace": trace,
-        })
+                completed_count += 1
+                raw_resp = trace.get("llm_raw_response", "")
+                if isinstance(raw_resp, str) and raw_resp.startswith("ERROR:"):
+                    error_count += 1
+                    if error_count >= ABORT_AFTER_N_FAILURES and error_count == completed_count:
+                        print(f"\nAborting: first {error_count} results all failed")
+                        pool.shutdown(wait=False, cancel_futures=True)
+                        break
 
-        edge = candidate_to_edge(classification, candidate["cve_a"], candidate["cve_b"])
-        if edge and classification["confidence"] >= CONFIDENCE_THRESHOLD:
-            pair = tuple(sorted((edge["source"], edge["target"])))
-            if pair in prior_edges:
-                all_corroborating.append(edge)
-            else:
-                all_new_edges.append(edge)
+                if was_cached:
+                    cached_count += 1
+                else:
+                    api_count += 1
+                    for k in total_usage:
+                        total_usage[k] += usage.get(k, 0) or 0
 
+                all_classifications.append({
+                    "cve_a": candidate["cve_a"],
+                    "cve_b": candidate["cve_b"],
+                    "context": candidate.get("context", ""),
+                    "classification": classification,
+                    "trace": trace,
+                })
+
+                edge = candidate_to_edge(classification, candidate["cve_a"], candidate["cve_b"])
+                if edge and classification["confidence"] >= CONFIDENCE_THRESHOLD:
+                    pair = tuple(sorted((edge["source"], edge["target"])))
+                    if pair in prior_edges:
+                        all_corroborating.append(edge)
+                    else:
+                        all_new_edges.append(edge)
+
+                pbar.update(1)
 
     _write_outputs(all_new_edges, all_corroborating, all_classifications,
                    cached_count, api_count, model, "candidate", total_usage)
@@ -1342,6 +1440,11 @@ def _write_outputs(new_edges, corroborating, classifications, cached_count,
 # --- Entry point ---
 
 def main():
+    # Raise open file limit for parallel URL fetching + cache I/O
+    soft, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
+    if soft < 10240:
+        resource.setrlimit(resource.RLIMIT_NOFILE, (min(10240, hard), hard))
+
     default_model = _load_openrouter_model()
     parser = argparse.ArgumentParser(
         description="T5: LLM classification of CVE variants"
@@ -1356,6 +1459,8 @@ def main():
     parser.add_argument("--no-export-classifications", action="store_true",
                         help="Skip exporting full classifications to datasets/ (saves space)")
     parser.add_argument("--model", default=default_model, help="OpenRouter model override")
+    parser.add_argument("--workers", type=int, default=DEFAULT_WORKERS,
+                        help=f"Parallel worker threads (default: {DEFAULT_WORKERS})")
     args = parser.parse_args()
 
     api_key = _load_openrouter_key()

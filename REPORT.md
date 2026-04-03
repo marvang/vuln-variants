@@ -15,7 +15,7 @@ The pipeline runs in tiers, each adding new edges from progressively deeper sour
 | T2 | All JSON fields | Reference names, reference URLs, titles, ADP descriptions, legacy records |
 | T3 | Git commits | GitHub commit messages fetched via API (20,684 unique commits) |
 | T4 | Shared bug IDs | CVE pairs sharing Bugzilla/GitHub issue/PR references (weak signal) |
-| T5 | LLM classification | T4 candidates + fetched URL content classified via OpenRouter (planned) |
+| T5 | LLM classification | Per-CVE evidence (fetched URLs, commits) classified via OpenRouter |
 
 Every edge carries a provenance label (`t1_description`, `t2_ref_name`, `t3_commit`, etc.) so results can be filtered or audited by source. When multiple tiers find the same edge, all evidence is preserved.
 
@@ -25,15 +25,17 @@ Every edge carries a provenance label (`t1_description`, `t2_ref_name`, `t3_comm
 
 ### Cumulative results
 
-| Metric | T1 | +T2 | +T3 | +T4 |
-|---|---|---|---|---|
-| New edges | 39,294 | +2,644 | +116 | +5,032 |
-| **Total edges** | **39,294** | **41,938** | **42,054** | **47,156** |
-| Clusters | 5,653 | 6,128 | 6,165 | 7,140 |
-| CVEs in clusters | 15,125 (4.67%) | 16,947 (5.24%) | 17,070 (5.27%) | 20,088 (6.21%) |
-| Largest cluster | 61 | 235 | 235 | 237 |
-| Deepest chain | 61 | 61 | 61 | 61 |
-| Corroborating edges | — | 37,853 | 34 | 216 |
+| Metric | T1 | +T2 | +T3 | +T4 | +T5 |
+|---|---|---|---|---|---|
+| New edges | 39,294 | +2,644 | +116 | +5,032 | +10 |
+| **Total edges** | **39,294** | **41,938** | **42,054** | **47,156** | **42,057*** |
+| Clusters | 5,653 | 6,128 | 6,165 | 7,140 | 6,172* |
+| CVEs in clusters | 15,125 (4.67%) | 16,947 (5.24%) | 17,070 (5.27%) | 20,088 (6.21%) | 17,085 (5.28%)* |
+| Largest cluster | 61 | 235 | 235 | 237 | 235* |
+| Deepest chain | 61 | 61 | 61 | 61 | 61* |
+| Corroborating edges | — | 37,853 | 34 | 216 | 7 |
+
+*T5 column shows T1+T2+T3+T5 (without T4 weak edges). T5 proof-of-concept: 531 CVEs and 362 pairs classified so far.
 
 ### T1: CNA descriptions (39,294 edges)
 
@@ -118,13 +120,13 @@ Ground truth: 10 curated variant chains, 23 CVEs, 13 edges.
 | Struts OGNL | 1 | 0 | 1 | Neither description mentions the other |
 | Spectre v1 → v2 | 1 | 0 | 1 | Neither description mentions the other |
 
-| Metric | T1 | +T2 | +T3 | +T4 |
-|---|---|---|---|---|
-| CVE dataset membership | 23/23 | 23/23 | 23/23 | 23/23 |
-| CVE cluster recall | 9/23 (39.1%) | 13/23 (56.5%) | 14/23 (60.9%) | 14/23 (60.9%) |
-| Edge recall | 3/13 (23.1%) | 5/13 (38.5%) | 5/13 (38.5%) | 5/13 (38.5%) |
+| Metric | T1 | +T2 | +T3 | +T4 | +T5 |
+|---|---|---|---|---|---|
+| CVE dataset membership | 23/23 | 23/23 | 23/23 | 23/23 | 23/23 |
+| CVE cluster recall | 9/23 (39.1%) | 13/23 (56.5%) | 14/23 (60.9%) | 14/23 (60.9%) | 14/23 (60.9%) |
+| Edge recall | 3/13 (23.1%) | 5/13 (38.5%) | 5/13 (38.5%) | 5/13 (38.5%) | 5/13 (38.5%) |
 
-All 8 missed edges are cases where neither text, commit messages, nor shared bug tracker IDs connect the CVEs — implicit relationships that only an LLM reading full context can identify (T5).
+T5 has not yet improved ground truth recall (531 CVEs classified, processed newest-first, ground truth CVEs are older). All 8 missed edges are implicit relationships where neither text, commits, nor URLs connect the CVEs. T5 found 10 new edges beyond T1-T3 in other CVEs, demonstrating the approach works.
 
 ## Reference URL Analysis
 
@@ -183,13 +185,37 @@ Two modes:
 - **Per-CVE** (default): For each CVE, fetches reference URLs (direct + Jina Reader fallback for JS-rendered pages), loads commit messages, and asks the LLM to identify variant relationships. Skips noisy domains, prioritizes vendor pages and bug trackers, filters out URL content with 0 CVE mentions.
 - **Candidate pairs** (`--candidates`): For T4 shared-ID pairs, fetches URLs for both CVEs and includes the shared bug tracker context.
 
-Results accumulate in `datasets/edges_t5_llm.json` (git-tracked), which also tracks processed CVE IDs and candidate pairs so subsequent runs (by any researcher) automatically continue from where the last run left off. Full pipeline traces (URLs selected/skipped, prompts, LLM responses, token usage, cost) are saved per-CVE in `data/llm_cache/` and per-run in `output/t5_classifications.json`.
+### Proof-of-concept results (531 CVEs, 362 pairs)
+
+| Metric | Value |
+|---|---|
+| CVEs classified | 531 |
+| Candidate pairs classified | 362 |
+| New edges (beyond T1-T3) | 10 |
+| Corroborating edges | 7 |
+| Model | x-ai/grok-4.1-fast |
+| Cost | ~$0.06 per 100 CVEs |
+
+Example new edges found by T5:
+- **CVE-2026-33732 → CVE-2026-33131** (bypass): "This is a bypass of CVE-2026-33131"
+- **CVE-2026-32284 → CVE-2022-41719** (incomplete_fix): "This code path was not covered by the fix for CVE-2022-41719"
+- **CVE-2026-27893 → CVE-2025-66448** (incomplete_fix): "CVE-2025-66448 fixed auth bypass, this is a follow-on"
+- **CVE-2025-69986 → CVE-2024-51347** (same_vuln_class): "shares a similar root cause with CVE-2024-51347"
+- **CVE-2026-32285 → CVE-2020-10675** (regression): "CVE-2020-10675 was an incomplete fix"
+
+### Design
+
+- **Parallel execution**: 20 workers by default (`--workers N`), concurrent LLM + URL fetching
+- **Cumulative dataset**: Results accumulate in `datasets/edges_t5_llm.json` (git-tracked), tracking processed CVE IDs and candidate pairs so subsequent runs automatically continue where the last left off
+- **Full audit trail**: Per-CVE traces (URLs selected/skipped with reasons, prompts, LLM responses, token usage, cost) saved in `data/llm_cache/` and `datasets/t5_classifications.jsonl`
+- **Model fallback**: Tries `json_schema` structured output, falls back to `json_object` for models that don't support strict schemas
+- **Resumable**: LLM results cached per CVE; re-runs skip already-classified CVEs
 
 ## Future Work
 
-1. **Run T5 at scale** — classify more CVEs and T4 candidates, evaluate precision
+1. **Scale T5** — classify more CVEs, target ground truth gaps specifically
 2. **Expand ground truth** with additional curated variant chains
-3. **Tune T5** — refine URL selection, prompts, and model choice based on results
+3. **Evaluate T5 precision** — manual review of new edges found by LLM
 
 ## Outputs
 
@@ -201,6 +227,7 @@ Results accumulate in `datasets/edges_t5_llm.json` (git-tracked), which also tra
 | `output/edges_t3_commits.json` | T3 edges from GitHub commit messages |
 | `output/edges_t4_shared_ids.json` | T4 edges from shared bug tracker IDs (weak signal) |
 | `datasets/edges_t5_llm.json` | Cumulative T5 edges + processed CVE/pair tracking (git-tracked) |
+| `datasets/t5_classifications.jsonl` | Cumulative T5 classifications with full reasoning (git-tracked) |
 | `datasets/github_commits.jsonl` | Researcher-friendly dataset: CVE-to-commit-message mapping |
 | `output/t5_classifications.json` | Per-run T5 audit artifact with full pipeline traces |
 | `output/cve_references.json` | Reference-graph subset (only CVEs involved in T1 description edges) |
