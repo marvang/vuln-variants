@@ -14,6 +14,7 @@ Set GITHUB_TOKEN env var for 5,000 req/hour (vs 60 unauthenticated).
 """
 
 import argparse
+from http.client import IncompleteRead, RemoteDisconnected
 import json
 import os
 import re
@@ -52,6 +53,7 @@ def _load_github_token():
 
 GITHUB_TOKEN = _load_github_token()
 DEFAULT_RETRY_AFTER = 60
+PERMANENT_HTTP_ERRORS = {404, 409, 410, 422}
 
 
 def load_commit_refs():
@@ -102,6 +104,22 @@ def cache_path(repo, sha):
     return CACHE_DIR / f"{safe_repo}_{sha[:12]}.json"
 
 
+def write_cache(repo, sha, message, *, error=None):
+    """Persist commit fetch results for resumable reruns."""
+    cached = cache_path(repo, sha)
+    cached.parent.mkdir(parents=True, exist_ok=True)
+    payload = {"message": message, "sha": sha, "repo": repo}
+    if error is not None:
+        payload["error"] = error
+    with open(cached, "w") as f:
+        json.dump(payload, f)
+
+
+def should_cache_http_error(status_code):
+    """Return whether an HTTP status is stable enough to cache."""
+    return status_code in PERMANENT_HTTP_ERRORS
+
+
 MAX_RETRIES = 1
 
 
@@ -133,16 +151,11 @@ def fetch_commit_message(repo, sha):
                 data = json.load(resp)
                 message = data.get("commit", {}).get("message", "")
 
-                cached.parent.mkdir(parents=True, exist_ok=True)
-                with open(cached, "w") as f:
-                    json.dump({"message": message, "sha": sha, "repo": repo}, f)
-
+                write_cache(repo, sha, message)
                 return message
         except HTTPError as e:
-            if e.code == 404:
-                cached.parent.mkdir(parents=True, exist_ok=True)
-                with open(cached, "w") as f:
-                    json.dump({"message": None, "sha": sha, "repo": repo, "error": 404}, f)
+            if should_cache_http_error(e.code):
+                write_cache(repo, sha, None, error=e.code)
                 return None
             if e.code == 403 and attempt < MAX_RETRIES:
                 retry_after = parse_retry_after_seconds(e.headers.get("Retry-After"))
@@ -151,7 +164,7 @@ def fetch_commit_message(repo, sha):
                 continue
             print(f"\nHTTP {e.code} for {repo}/{sha[:12]}")
             return None
-        except (URLError, TimeoutError):
+        except (URLError, TimeoutError, RemoteDisconnected, IncompleteRead):
             return None
     return None
 

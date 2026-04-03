@@ -1,0 +1,918 @@
+{
+  "tier": "t3_commits",
+  "edge_count": 116,
+  "corroborating_count": 34,
+  "edges_by_field": {
+    "t3_commit": 150
+  },
+  "commits_processed": 20684,
+  "commits_fetched": 13433,
+  "commits_cached": 7251,
+  "commits_failed": 314,
+  "commits_with_cve_refs": 114,
+  "generated_at": "2026-04-03T13:58:22.084963",
+  "edges": [
+    {
+      "source": "CVE-2010-3844",
+      "target": "CVE-2010-3843",
+      "found_in": "t3_commit",
+      "context": "More changes to mitigate: CVE-2010-3843 CVE-2010-3844"
+    },
+    {
+      "source": "CVE-2012-2674",
+      "target": "CVE-2009-0607",
+      "found_in": "t3_commit",
+      "context": "...This patch complements commit 6f04a0f4 (CVE-2009-0607).  Change-Id: Id899bcd2bcd2ea2205e5753c..."
+    },
+    {
+      "source": "CVE-2013-0228",
+      "target": "CVE-2013-0190",
+      "found_in": "t3_commit",
+      "context": "...8 / XSA-42  Drew Jones while working on CVE-2013-0190 found that that unprivileged guest user..."
+    },
+    {
+      "source": "CVE-2014-0238",
+      "target": "CVE-2014-0207",
+      "found_in": "t3_commit",
+      "context": "CVE-2014-0207: Prevent 0 element vectors and vectors..."
+    },
+    {
+      "source": "CVE-2014-0207",
+      "target": "CVE-2012-1571",
+      "found_in": "t3_commit",
+      "context": "Apply patches from file-CVE-2012-1571.patch From Francisco Alonso Espejo:..."
+    },
+    {
+      "source": "CVE-2014-9701",
+      "target": "CVE-2014-6316",
+      "found_in": "t3_commit",
+      "context": "...com on certain browsers.  Fixes #17997 (CVE-2014-6316)"
+    },
+    {
+      "source": "CVE-2014-9701",
+      "target": "CVE-2015-1042",
+      "found_in": "t3_commit",
+      "context": "...com on certain browsers.  Fixes #17997 (CVE-2015-1042)"
+    },
+    {
+      "source": "CVE-2015-10082",
+      "target": "CVE-2013-0339",
+      "found_in": "t3_commit",
+      "context": "...s still fix it nevertheless. Related to CVE-2013-0339 for libxml2 and CWE-827. Reported by Lo..."
+    },
+    {
+      "source": "CVE-2015-3185",
+      "target": "CVE-2015-3183",
+      "found_in": "t3_commit",
+      "context": "SECURITY: CVE-2015-3183 (cve.mitre.org)  Replacement of ap_some..."
+    },
+    {
+      "source": "CVE-2016-10270",
+      "target": "CVE-2016-9273",
+      "found_in": "t3_commit",
+      "context": "...lla.maptools.org/show_bug.cgi?id=2587 / CVE-2016-9273 since the above change is a better fix..."
+    },
+    {
+      "source": "CVE-2016-2847",
+      "target": "CVE-2013-4312",
+      "found_in": "t3_commit",
+      "context": "...-kernel@I-love.SAKURA.ne.jp> Mitigates: CVE-2013-4312 (Linux 2.0+) Suggested-by: Linus Torval..."
+    },
+    {
+      "source": "CVE-2016-8637",
+      "target": "CVE-2012-4453",
+      "found_in": "t3_commit",
+      "context": "...d5c55c6897e33f88b9ab90 Previously fixed CVE-2012-4453: e1b48995c26c4f06d1a718539cb1bd5b0179af..."
+    },
+    {
+      "source": "CVE-2017-0902",
+      "target": "CVE-2015-3900",
+      "found_in": "t3_commit",
+      "context": "...lity has the same net effect/impact as [CVE-2015-3900](https://nvd.nist.gov/vuln/detail/CVE-2..."
+    },
+    {
+      "source": "CVE-2017-0902",
+      "target": "CVE-2015-4020",
+      "found_in": "t3_commit",
+      "context": "...ist.gov/vuln/detail/CVE-2015-3900) and [CVE-2015-4020](https://nvd.nist.gov/vuln/detail/CVE-2..."
+    },
+    {
+      "source": "CVE-2017-11664",
+      "target": "CVE-2017-11661",
+      "found_in": "t3_commit",
+      "context": "Fix bug #175:  CVE-2017-11661, CVE-2017-11662, CVE-2017-11663, CVE-20..."
+    },
+    {
+      "source": "CVE-2017-11664",
+      "target": "CVE-2017-11662",
+      "found_in": "t3_commit",
+      "context": "Fix bug #175:  CVE-2017-11661, CVE-2017-11662, CVE-2017-11663, CVE-2017-11664: Add a..."
+    },
+    {
+      "source": "CVE-2017-11664",
+      "target": "CVE-2017-11663",
+      "found_in": "t3_commit",
+      "context": "...#175:  CVE-2017-11661, CVE-2017-11662, CVE-2017-11663, CVE-2017-11664: Add a new size paramet..."
+    },
+    {
+      "source": "CVE-2017-14608",
+      "target": "CVE-2017-1438",
+      "found_in": "t3_commit",
+      "context": "CVE-2017-1438 credits; fix for Kodak 65000 out of bou..."
+    },
+    {
+      "source": "CVE-2017-16931",
+      "target": "CVE-2017-9049",
+      "found_in": "t3_commit",
+      "context": "...10 is not set.  This fixes bugs 781205 (CVE-2017-9049) and 781361 (CVE-2017-9050). Thanks to..."
+    },
+    {
+      "source": "CVE-2017-16931",
+      "target": "CVE-2017-9050",
+      "found_in": "t3_commit",
+      "context": "...bugs 781205 (CVE-2017-9049) and 781361 (CVE-2017-9050). Thanks to Marcel B\u00f6hme and Thuan Pham..."
+    },
+    {
+      "source": "CVE-2017-16642",
+      "target": "CVE-2016-1283",
+      "found_in": "t3_commit",
+      "context": "...b_meridian()   Apply upstream patch for CVE-2016-1283"
+    },
+    {
+      "source": "CVE-2017-7572",
+      "target": "CVE-2011-1485",
+      "found_in": "t3_commit",
+      "context": "...calation-Exploits-Pack/blob/master/2011/CVE-2011-1485/polkit-pwnage.c  Polkit uses the real-u..."
+    },
+    {
+      "source": "CVE-2018-20546",
+      "target": "CVE-2018-20547",
+      "found_in": "t3_commit",
+      "context": "...Fixes: #38 (CVE-2018-20546) Fixes: #39 (CVE-2018-20547)"
+    },
+    {
+      "source": "CVE-2018-20545",
+      "target": "CVE-2018-20548",
+      "found_in": "t3_commit",
+      "context": "...Fixes: #37 (CVE-2018-20545) Fixes: #40 (CVE-2018-20548) Fixes: #41 (CVE-2018-20549)"
+    },
+    {
+      "source": "CVE-2018-20545",
+      "target": "CVE-2018-20549",
+      "found_in": "t3_commit",
+      "context": "...Fixes: #40 (CVE-2018-20548) Fixes: #41 (CVE-2018-20549)"
+    },
+    {
+      "source": "CVE-2019-11884",
+      "target": "CVE-2011-1079",
+      "found_in": "t3_commit",
+      "context": "...mand.  This vulnerability is similar to CVE-2011-1079.  Signed-off-by: Young Xiao <YangX92@ho..."
+    },
+    {
+      "source": "CVE-2019-14816",
+      "target": "CVE-2019-14814",
+      "found_in": "t3_commit",
+      "context": "...erforming memcpy().  This fix addresses CVE-2019-14814,CVE-2019-14815,CVE-2019-14816.  Signed-..."
+    },
+    {
+      "source": "CVE-2019-14816",
+      "target": "CVE-2019-14815",
+      "found_in": "t3_commit",
+      "context": "...y().  This fix addresses CVE-2019-14814,CVE-2019-14815,CVE-2019-14816.  Signed-off-by: Wen Hua..."
+    },
+    {
+      "source": "CVE-2019-14815",
+      "target": "CVE-2019-14814",
+      "found_in": "t3_commit",
+      "context": "...erforming memcpy().  This fix addresses CVE-2019-14814,CVE-2019-14815,CVE-2019-14816.  Signed-..."
+    },
+    {
+      "source": "CVE-2019-14815",
+      "target": "CVE-2019-14816",
+      "found_in": "t3_commit",
+      "context": "...addresses CVE-2019-14814,CVE-2019-14815,CVE-2019-14816.  Signed-off-by: Wen Huang <huangwenabc..."
+    },
+    {
+      "source": "CVE-2019-14814",
+      "target": "CVE-2019-14815",
+      "found_in": "t3_commit",
+      "context": "...y().  This fix addresses CVE-2019-14814,CVE-2019-14815,CVE-2019-14816.  Signed-off-by: Wen Hua..."
+    },
+    {
+      "source": "CVE-2019-14814",
+      "target": "CVE-2019-14816",
+      "found_in": "t3_commit",
+      "context": "...addresses CVE-2019-14814,CVE-2019-14815,CVE-2019-14816.  Signed-off-by: Wen Huang <huangwenabc..."
+    },
+    {
+      "source": "CVE-2019-3559",
+      "target": "CVE-2019-3552",
+      "found_in": "t3_commit",
+      "context": "...to skip a value of invalid type.  Fixes CVE-2019-3552  Reviewed By: stevegury  Differential R..."
+    },
+    {
+      "source": "CVE-2019-3564",
+      "target": "CVE-2019-3552",
+      "found_in": "t3_commit",
+      "context": "...is common to all protocols.  This fixes CVE-2019-3552.  Reviewed By: spalamarchuk  Differenti..."
+    },
+    {
+      "source": "CVE-2020-11031",
+      "target": "CVE-2020-5248",
+      "found_in": "t3_commit",
+      "context": "...m-4vjr-jvqh  * Deprecate GLPIKEY usage  CVE-2020-5248  Deprecate GLPIKEY usage, and replace i..."
+    },
+    {
+      "source": "CVE-2020-13112",
+      "target": "CVE-2016-6328",
+      "found_in": "t3_commit",
+      "context": "...s://sourceforge.net/p/libexif/bugs/125/ CVE-2016-6328 and for all the MakerNote types. Likely..."
+    },
+    {
+      "source": "CVE-2020-14093",
+      "target": "CVE-2014-2567",
+      "found_in": "t3_commit",
+      "context": "...a PREAUTH response.  This is similar to CVE-2014-2567 and CVE-2020-12398.  STARTTLS is not al..."
+    },
+    {
+      "source": "CVE-2020-14093",
+      "target": "CVE-2020-12398",
+      "found_in": "t3_commit",
+      "context": "....  This is similar to CVE-2014-2567 and CVE-2020-12398.  STARTTLS is not allowed in the Authen..."
+    },
+    {
+      "source": "CVE-2020-26217",
+      "target": "CVE-2017-9805",
+      "found_in": "t3_commit",
+      "context": "Fix for CVE-2017-9805."
+    },
+    {
+      "source": "CVE-2020-27560",
+      "target": "CVE-2019-13454",
+      "found_in": "t3_commit",
+      "context": "...ut argument *image. This is similar to\r CVE-2019-13454."
+    },
+    {
+      "source": "CVE-2020-7042",
+      "target": "CVE-2020-7041",
+      "found_in": "t3_commit",
+      "context": "...either (which is a separate issue, with CVE-2020-7041, and which has been fixed by the previo..."
+    },
+    {
+      "source": "CVE-2021-20271",
+      "target": "CVE-2021-3421",
+      "found_in": "t3_commit",
+      "context": "...Bug:1935035, RhBug:1934125, ...  Fixes: CVE-2021-3421, CVE-2021-20271"
+    },
+    {
+      "source": "CVE-2021-3757",
+      "target": "CVE-2020-28477",
+      "found_in": "t3_commit",
+      "context": "fix(security): Follow up on CVE-2020-28477 where `path: [[\"__proto__\"], \"x\"]` coul..."
+    },
+    {
+      "source": "CVE-2021-23222",
+      "target": "CVE-2021-23214",
+      "found_in": "t3_commit",
+      "context": "...be possible with a server vulnerable to CVE-2021-23214.  To fix, throw a protocol-violation er..."
+    },
+    {
+      "source": "CVE-2021-3020",
+      "target": "CVE-2020-35459",
+      "found_in": "t3_commit",
+      "context": "...tup authorized ssh access for hacluster(CVE-2020-35459, bsc#1179999; CVE-2021-3020, bsc#118057..."
+    },
+    {
+      "source": "CVE-2021-3866",
+      "target": "CVE-2021-3853",
+      "found_in": "t3_commit",
+      "context": "CVE-2021-3853: Fix HTML escaping in recipient_row.  C..."
+    },
+    {
+      "source": "CVE-2021-41146",
+      "target": "CVE-2018-1000006",
+      "found_in": "t3_commit",
+      "context": ".../cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1000006 - https://medium.com/hackernoon/exploit..."
+    },
+    {
+      "source": "CVE-2021-42073",
+      "target": "CVE-2021-42072",
+      "found_in": "t3_commit",
+      "context": "...verification [SECURITY VULNERABILITIES CVE-2021-42072, CVE-2021-42073]"
+    },
+    {
+      "source": "CVE-2021-43807",
+      "target": "CVE-2019-12419",
+      "found_in": "t3_commit",
+      "context": "...rsion 3.4.3, fixing among other things [CVE-2019-12419], [CVE-2019-12423], [CVE-2021-22696], [..."
+    },
+    {
+      "source": "CVE-2021-43807",
+      "target": "CVE-2019-12423",
+      "found_in": "t3_commit",
+      "context": "...g among other things [CVE-2019-12419], [CVE-2019-12423], [CVE-2021-22696], [CVE-2019-12406], [..."
+    },
+    {
+      "source": "CVE-2021-43807",
+      "target": "CVE-2021-22696",
+      "found_in": "t3_commit",
+      "context": "...gs [CVE-2019-12419], [CVE-2019-12423], [CVE-2021-22696], [CVE-2019-12406], [CVE-2020-13954], [..."
+    },
+    {
+      "source": "CVE-2021-43807",
+      "target": "CVE-2019-12406",
+      "found_in": "t3_commit",
+      "context": "...], [CVE-2019-12423], [CVE-2021-22696], [CVE-2019-12406], [CVE-2020-13954], [CVE-2019-17573], [..."
+    },
+    {
+      "source": "CVE-2021-43807",
+      "target": "CVE-2020-13954",
+      "found_in": "t3_commit",
+      "context": "...], [CVE-2021-22696], [CVE-2019-12406], [CVE-2020-13954], [CVE-2019-17573], [CVE-2020-1954].  T..."
+    },
+    {
+      "source": "CVE-2021-43807",
+      "target": "CVE-2019-17573",
+      "found_in": "t3_commit",
+      "context": "...], [CVE-2019-12406], [CVE-2020-13954], [CVE-2019-17573], [CVE-2020-1954].  The security issues..."
+    },
+    {
+      "source": "CVE-2021-43807",
+      "target": "CVE-2020-1954",
+      "found_in": "t3_commit",
+      "context": "...], [CVE-2020-13954], [CVE-2019-17573], [CVE-2020-1954].  The security issues should not be pr..."
+    },
+    {
+      "source": "CVE-2021-4118",
+      "target": "CVE-2020-1747",
+      "found_in": "t3_commit",
+      "context": "Fix CVE-2020-1747 and CVE-2020-14343 (#11099)"
+    },
+    {
+      "source": "CVE-2021-4118",
+      "target": "CVE-2020-14343",
+      "found_in": "t3_commit",
+      "context": "Fix CVE-2020-1747 and CVE-2020-14343 (#11099)"
+    },
+    {
+      "source": "CVE-2022-23465",
+      "target": "CVE-2003-0063",
+      "found_in": "t3_commit",
+      "context": "...nd then requesting the values back (see CVE-2003-0063[2] and https://marc.info/?l=bugtraq&m=1..."
+    },
+    {
+      "source": "CVE-2022-23465",
+      "target": "CVE-2008-2383",
+      "found_in": "t3_commit",
+      "context": "...an.org/cgi-bin/bugreport.cgi?bug=510030 CVE-2008-2383[3]  These bugs were found and disclosed..."
+    },
+    {
+      "source": "CVE-2022-25918",
+      "target": "CVE-2022-36064",
+      "found_in": "t3_commit",
+      "context": "...include known ReDoS strings related to CVE-2022-36064.  The `redos` value is intentionally a..."
+    },
+    {
+      "source": "CVE-2022-41138",
+      "target": "CVE-2008-2383",
+      "found_in": "t3_commit",
+      "context": "...g my attention to this issue.  See also CVE-2008-2383 and the discussion on Debian bug #51003..."
+    },
+    {
+      "source": "CVE-2022-4605",
+      "target": "CVE-2022-24588",
+      "found_in": "t3_commit",
+      "context": "...hub.com/Nguyen-Trung-Kien/CVE/blob/main/CVE-2022-24588/CVE-2022-24588.pdf"
+    },
+    {
+      "source": "CVE-2023-0435",
+      "target": "CVE-2021-20088",
+      "found_in": "t3_commit",
+      "context": "use patched MooTools-More.min.js for CVE-2021-20088"
+    },
+    {
+      "source": "CVE-2023-24533",
+      "target": "CVE-2023-24532",
+      "found_in": "t3_commit",
+      "context": "...sed in a future CL.  Fixes #58647 Fixes CVE-2023-24532  (Filed with the \"safe APIs like comple..."
+    },
+    {
+      "source": "CVE-2023-30620",
+      "target": "CVE-2007-4559",
+      "found_in": "t3_commit",
+      "context": "Use safe extract to prevent CVE-2007-4559 bug"
+    },
+    {
+      "source": "CVE-2023-36812",
+      "target": "CVE-2018-12972",
+      "found_in": "t3_commit",
+      "context": "...nly plain ASCII printables first. Fixes CVE-2018-12972, CVE-2020-35476"
+    },
+    {
+      "source": "CVE-2023-36812",
+      "target": "CVE-2020-35476",
+      "found_in": "t3_commit",
+      "context": "...printables first. Fixes CVE-2018-12972, CVE-2020-35476"
+    },
+    {
+      "source": "CVE-2023-36812",
+      "target": "CVE-2018-13003",
+      "found_in": "t3_commit",
+      "context": "...ld help. Thanks to the reporters. Fixes CVE-2018-13003."
+    },
+    {
+      "source": "CVE-2023-38324",
+      "target": "CVE-2023-41101",
+      "found_in": "t3_commit",
+      "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
+    },
+    {
+      "source": "CVE-2023-38324",
+      "target": "CVE-2023-41102",
+      "found_in": "t3_commit",
+      "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
+    },
+    {
+      "source": "CVE-2023-38322",
+      "target": "CVE-2023-41101",
+      "found_in": "t3_commit",
+      "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
+    },
+    {
+      "source": "CVE-2023-38322",
+      "target": "CVE-2023-41102",
+      "found_in": "t3_commit",
+      "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
+    },
+    {
+      "source": "CVE-2023-38314",
+      "target": "CVE-2023-41101",
+      "found_in": "t3_commit",
+      "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
+    },
+    {
+      "source": "CVE-2023-38314",
+      "target": "CVE-2023-41102",
+      "found_in": "t3_commit",
+      "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
+    },
+    {
+      "source": "CVE-2023-38316",
+      "target": "CVE-2023-41101",
+      "found_in": "t3_commit",
+      "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
+    },
+    {
+      "source": "CVE-2023-38316",
+      "target": "CVE-2023-41102",
+      "found_in": "t3_commit",
+      "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
+    },
+    {
+      "source": "CVE-2023-38320",
+      "target": "CVE-2023-41101",
+      "found_in": "t3_commit",
+      "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
+    },
+    {
+      "source": "CVE-2023-38320",
+      "target": "CVE-2023-41102",
+      "found_in": "t3_commit",
+      "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
+    },
+    {
+      "source": "CVE-2023-38313",
+      "target": "CVE-2023-41101",
+      "found_in": "t3_commit",
+      "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
+    },
+    {
+      "source": "CVE-2023-38313",
+      "target": "CVE-2023-41102",
+      "found_in": "t3_commit",
+      "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
+    },
+    {
+      "source": "CVE-2023-38315",
+      "target": "CVE-2023-41101",
+      "found_in": "t3_commit",
+      "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
+    },
+    {
+      "source": "CVE-2023-38315",
+      "target": "CVE-2023-41102",
+      "found_in": "t3_commit",
+      "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
+    },
+    {
+      "source": "CVE-2023-39533",
+      "target": "CVE-2023-29409",
+      "found_in": "t3_commit",
+      "context": "...porting this issue.  Fixes #61460 Fixes CVE-2023-29409  Change-Id: Ie35038515a649199a36a12fc2c..."
+    },
+    {
+      "source": "CVE-2023-41102",
+      "target": "CVE-2023-41101",
+      "found_in": "t3_commit",
+      "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
+    },
+    {
+      "source": "CVE-2023-41101",
+      "target": "CVE-2023-41102",
+      "found_in": "t3_commit",
+      "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
+    },
+    {
+      "source": "CVE-2023-49086",
+      "target": "CVE-2023-49088",
+      "found_in": "t3_commit",
+      "context": "QA: Fix 2 of 3 - Commits for CVE-2023-49088 and CVE-2023-48086  Missed here https:/..."
+    },
+    {
+      "source": "CVE-2024-27304",
+      "target": "CVE-2024-27289",
+      "found_in": "t3_commit",
+      "context": "...rentheses  pgx v5 was not vulnerable to CVE-2024-27289 do to how the sanitizer was being calle..."
+    },
+    {
+      "source": "CVE-2024-32020",
+      "target": "CVE-2024-32021",
+      "found_in": "t3_commit",
+      "context": "...int in time by the   untrusted user.  - CVE-2024-32021:    When cloning a local source reposit..."
+    },
+    {
+      "source": "CVE-2024-34199",
+      "target": "CVE-2024-5193",
+      "found_in": "t3_commit",
+      "context": "Fix CVE-2024-5193 (CRLF injection) and CVE-2024-34199 (bu..."
+    },
+    {
+      "source": "CVE-2024-52006",
+      "target": "CVE-2024-50338",
+      "found_in": "t3_commit",
+      "context": "...it Credential Manager addressed this as CVE-2024-50338, but other credential helpers may still..."
+    },
+    {
+      "source": "CVE-2024-52804",
+      "target": "CVE-2024-7592",
+      "found_in": "t3_commit",
+      "context": "...Python 3.5).  Fixes CVE-2024-52804 See CVE-2024-7592 for a similar vulnerability in cpython...."
+    },
+    {
+      "source": "CVE-2024-53263",
+      "target": "CVE-2020-5260",
+      "found_in": "t3_commit",
+      "context": "...o address the vulnerability reported in CVE-2020-5260:    https://github.com/git/git/blob/v2...."
+    },
+    {
+      "source": "CVE-2024-55894",
+      "target": "CVE-2024-55893",
+      "found_in": "t3_commit",
+      "context": "...3-CORE-SA-2025-008 Security-References: CVE-2024-55893 Security-References: CVE-2024-55894 Sec..."
+    },
+    {
+      "source": "CVE-2024-55894",
+      "target": "CVE-2024-55920",
+      "found_in": "t3_commit",
+      "context": "...es: CVE-2024-55894 Security-References: CVE-2024-55920 Security-References: CVE-2024-55921 Sec..."
+    },
+    {
+      "source": "CVE-2024-55894",
+      "target": "CVE-2024-55921",
+      "found_in": "t3_commit",
+      "context": "...es: CVE-2024-55920 Security-References: CVE-2024-55921 Security-References: CVE-2024-55922 Sec..."
+    },
+    {
+      "source": "CVE-2024-55894",
+      "target": "CVE-2024-55922",
+      "found_in": "t3_commit",
+      "context": "...es: CVE-2024-55921 Security-References: CVE-2024-55922 Security-References: CVE-2024-55923 Rev..."
+    },
+    {
+      "source": "CVE-2024-55894",
+      "target": "CVE-2024-55923",
+      "found_in": "t3_commit",
+      "context": "...es: CVE-2024-55922 Security-References: CVE-2024-55923 Reviewed-on: https://review.typo3.org/c..."
+    },
+    {
+      "source": "CVE-2024-55893",
+      "target": "CVE-2024-55894",
+      "found_in": "t3_commit",
+      "context": "...es: CVE-2024-55893 Security-References: CVE-2024-55894 Security-References: CVE-2024-55920 Sec..."
+    },
+    {
+      "source": "CVE-2024-55893",
+      "target": "CVE-2024-55920",
+      "found_in": "t3_commit",
+      "context": "...es: CVE-2024-55894 Security-References: CVE-2024-55920 Security-References: CVE-2024-55921 Sec..."
+    },
+    {
+      "source": "CVE-2024-55893",
+      "target": "CVE-2024-55921",
+      "found_in": "t3_commit",
+      "context": "...es: CVE-2024-55920 Security-References: CVE-2024-55921 Security-References: CVE-2024-55922 Sec..."
+    },
+    {
+      "source": "CVE-2024-55893",
+      "target": "CVE-2024-55922",
+      "found_in": "t3_commit",
+      "context": "...es: CVE-2024-55921 Security-References: CVE-2024-55922 Security-References: CVE-2024-55923 Rev..."
+    },
+    {
+      "source": "CVE-2024-55893",
+      "target": "CVE-2024-55923",
+      "found_in": "t3_commit",
+      "context": "...es: CVE-2024-55922 Security-References: CVE-2024-55923 Reviewed-on: https://review.typo3.org/c..."
+    },
+    {
+      "source": "CVE-2024-5193",
+      "target": "CVE-2024-34199",
+      "found_in": "t3_commit",
+      "context": "Fix CVE-2024-5193 (CRLF injection) and CVE-2024-34199 (buffer overflow): add StripCRLF functi..."
+    },
+    {
+      "source": "CVE-2024-5998",
+      "target": "CVE-2024-3095",
+      "found_in": "t3_commit",
+      "context": "...Force opt-in for WebResearchRetriever (CVE-2024-3095) (#24451)  This PR addresses the issue..."
+    },
+    {
+      "source": "CVE-2025-26625",
+      "target": "CVE-2021-21300",
+      "found_in": "t3_commit",
+      "context": "...ion for the vulnerability identified as CVE-2021-21300.  Further, Git would also need to consi..."
+    },
+    {
+      "source": "CVE-2025-26625",
+      "target": "CVE-2024-32004",
+      "found_in": "t3_commit",
+      "context": "...tion to the vulnerability identified as CVE-2024-32004, on Windows this type of implementation..."
+    },
+    {
+      "source": "CVE-2025-40929",
+      "target": "CVE-2025-40928",
+      "found_in": "t3_commit",
+      "context": "...verflows  with fuzzed overlong numbers. CVE-2025-40928 Really the comparisons were wrong."
+    },
+    {
+      "source": "CVE-2025-46342",
+      "target": "CVE-2025-22871",
+      "found_in": "t3_commit",
+      "context": "...a.com>  * fix: Update Go version to fix CVE-2025-22871 vulnerability (#12714)  Update Go versi..."
+    },
+    {
+      "source": "CVE-2025-52565",
+      "target": "CVE-2024-4531",
+      "found_in": "t3_commit",
+      "context": "...have resulted     in a worse version of CVE-2024-4531. Luckily, this all happens after     pi..."
+    },
+    {
+      "source": "CVE-2025-52565",
+      "target": "CVE-2024-21626",
+      "found_in": "t3_commit",
+      "context": "...take advantage of leaks such     as in CVE-2024-21626). However, O_CREAT|O_NOFOLLOW is what w..."
+    },
+    {
+      "source": "CVE-2025-52565",
+      "target": "CVE-2024-45310",
+      "found_in": "t3_commit",
+      "context": "...st files.  We did have a similar bug in CVE-2024-45310, but in that case we (luckily) didn't h..."
+    },
+    {
+      "source": "CVE-2025-5878",
+      "target": "CVE-2025-48976",
+      "found_in": "t3_commit",
+      "context": "...Update to FileUploads 1.6.0 to address CVE-2025-48976, which likely didn't affect HTTPUtiliti..."
+    },
+    {
+      "source": "CVE-2025-64761",
+      "target": "CVE-2025-5999",
+      "found_in": "t3_commit",
+      "context": "...system was patched.  In HCSEC-2025-13 / CVE-2025-5999 as fixed upstream, the fix was correctl..."
+    },
+    {
+      "source": "CVE-2026-0895",
+      "target": "CVE-2026-0859",
+      "found_in": "t3_commit",
+      "context": "...port`  Resolves: CVE-2026-0895 Related: CVE-2026-0859"
+    },
+    {
+      "source": "CVE-2026-1615",
+      "target": "CVE-2025-61140",
+      "found_in": "t3_commit",
+      "context": "CVE-2025-61140: Prevent prototype pollution in JSON pa..."
+    },
+    {
+      "source": "CVE-2026-22036",
+      "target": "CVE-2022-32206",
+      "found_in": "t3_commit",
+      "context": "...by urllib3 (GHSA-gm62-xv2j-4w53), curl (CVE-2022-32206), and the recent fix in lib/web/fetch/i..."
+    }
+  ],
+  "corroborating_edges": [
+    {
+      "source": "CVE-2002-2443",
+      "target": "CVE-1999-0103",
+      "found_in": "t3_commit",
+      "context": "...ur own error packets.  Some authors use CVE-1999-0103 to refer to the kpasswd UDP ping-pong a..."
+    },
+    {
+      "source": "CVE-2011-0530",
+      "target": "CVE-2005-3534",
+      "found_in": "t3_commit",
+      "context": "...ng  Yes, this means we've re-introduced CVE-2005-3534. Sigh."
+    },
+    {
+      "source": "CVE-2011-1575",
+      "target": "CVE-2011-0411",
+      "found_in": "t3_commit",
+      "context": "...itching to TLS. Fixes a flaw similar to CVE-2011-0411."
+    },
+    {
+      "source": "CVE-2011-2182",
+      "target": "CVE-2011-1017",
+      "found_in": "t3_commit",
+      "context": "...Hutchings discovered [1], the patch for CVE-2011-1017 (buffer overflow in ldm_frag_add) is no..."
+    },
+    {
+      "source": "CVE-2012-2100",
+      "target": "CVE-2009-4307",
+      "found_in": "t3_commit",
+      "context": "...o mount a corrupted file system\") fixes CVE-2009-4307 by performing a sanity check on s_log_g..."
+    },
+    {
+      "source": "CVE-2014-3597",
+      "target": "CVE-2014-4049",
+      "found_in": "t3_commit",
+      "context": "...ecord CVE-2014-3597  Incomplete fix for CVE-2014-4049  Check possible buffer overflow - pass..."
+    },
+    {
+      "source": "CVE-2014-8598",
+      "target": "CVE-2014-7146",
+      "found_in": "t3_commit",
+      "context": "...with the one described in issue #17725 (CVE-2014-7146) as it makes for a very simple and easi..."
+    },
+    {
+      "source": "CVE-2014-8369",
+      "target": "CVE-2014-3601",
+      "found_in": "t3_commit",
+      "context": "...third parameter of kvm_iommu_put_pages (CVE-2014-3601)\"), which fixes the lack of un-pinning..."
+    },
+    {
+      "source": "CVE-2015-2698",
+      "target": "CVE-2015-2696",
+      "found_in": "t3_commit",
+      "context": "...import [CVE-2015-2698]  The patches for CVE-2015-2696 contained a regression in the newly add..."
+    },
+    {
+      "source": "CVE-2015-7990",
+      "target": "CVE-2015-6937",
+      "found_in": "t3_commit",
+      "context": "...ut.  Complete earlier incomplete fix to CVE-2015-6937:    74e98eb08588 (\"RDS: verify the unde..."
+    },
+    {
+      "source": "CVE-2017-5551",
+      "target": "CVE-2016-7097",
+      "found_in": "t3_commit",
+      "context": "...was missed the tmpfs modification in In CVE-2016-7097 commit 073931017b49 (\"posix_acl: Clear..."
+    },
+    {
+      "source": "CVE-2018-18710",
+      "target": "CVE-2018-16658",
+      "found_in": "t3_commit",
+      "context": "...lot_status().  This issue is similar to CVE-2018-16658 and CVE-2018-10940.  Signed-off-by: You..."
+    },
+    {
+      "source": "CVE-2018-18710",
+      "target": "CVE-2018-10940",
+      "found_in": "t3_commit",
+      "context": "...issue is similar to CVE-2018-16658 and CVE-2018-10940.  Signed-off-by: Young_X <YangX92@hotma..."
+    },
+    {
+      "source": "CVE-2018-20750",
+      "target": "CVE-2018-15127",
+      "found_in": "t3_commit",
+      "context": "...int type (expected by rfbReadExact()).  CVE-2018-15127 <https://github.com/LibVNC/libvncserver..."
+    },
+    {
+      "source": "CVE-2018-3741",
+      "target": "CVE-2018-8048",
+      "found_in": "t3_commit",
+      "context": "Make sure we address CVE-2018-8048  Even that the issue was fixed on loofa..."
+    },
+    {
+      "source": "CVE-2019-12973",
+      "target": "CVE-2018-6616",
+      "found_in": "t3_commit",
+      "context": "...advertized width/length.  Fixes #1059 (CVE-2018-6616)."
+    },
+    {
+      "source": "CVE-2019-16718",
+      "target": "CVE-2019-14745",
+      "found_in": "t3_commit",
+      "context": "More fixes for the CVE-2019-14745"
+    },
+    {
+      "source": "CVE-2020-12278",
+      "target": "CVE-2019-1352",
+      "found_in": "t3_commit",
+      "context": "...f `.git`.  This is libgit2's variant of CVE-2019-1352.  Signed-off-by: Johannes Schindelin <j..."
+    },
+    {
+      "source": "CVE-2020-14147",
+      "target": "CVE-2015-8080",
+      "found_in": "t3_commit",
+      "context": "[FIX] revisit CVE-2015-8080 vulnerability"
+    },
+    {
+      "source": "CVE-2020-36254",
+      "target": "CVE-2018-20685",
+      "found_in": "t3_commit",
+      "context": "scp.c: Port OpenSSH CVE-2018-20685 fix (#80)"
+    },
+    {
+      "source": "CVE-2021-23436",
+      "target": "CVE-2020-28477",
+      "found_in": "t3_commit",
+      "context": "fix(security): Follow up on CVE-2020-28477 where `path: [[\"__proto__\"], \"x\"]` coul..."
+    },
+    {
+      "source": "CVE-2021-29482",
+      "target": "CVE-2020-16845",
+      "found_in": "t3_commit",
+      "context": "...reported for the Go Standard Library as CVE-2020-16845.  The fix simply adds a check for the n..."
+    },
+    {
+      "source": "CVE-2021-38114",
+      "target": "CVE-2013-0868",
+      "found_in": "t3_commit",
+      "context": "...agate function return value  Similar to CVE-2013-0868, here return value check for 'init_vlc'..."
+    },
+    {
+      "source": "CVE-2022-30767",
+      "target": "CVE-2019-14196",
+      "found_in": "t3_commit",
+      "context": "CVE-2019-14196: nfs: fix unbounded memcpy with a faile..."
+    },
+    {
+      "source": "CVE-2023-38745",
+      "target": "CVE-2023-35936",
+      "found_in": "t3_commit",
+      "context": "Fix new variant of the vulnerability in CVE-2023-35936.  Guilhem Moulin noticed that the fix t..."
+    },
+    {
+      "source": "CVE-2023-7256",
+      "target": "CVE-2023-40400",
+      "found_in": "t3_commit",
+      "context": "...free in some cases.  This is apparently CVE-2023-40400."
+    },
+    {
+      "source": "CVE-2024-32465",
+      "target": "CVE-2024-32004",
+      "found_in": "t3_commit",
+      "context": "...issions. This issue has been designated CVE-2024-32004.  The fix in this commit's parent helps..."
+    },
+    {
+      "source": "CVE-2024-52006",
+      "target": "CVE-2020-5260",
+      "found_in": "t3_commit",
+      "context": "...and what is worse: Git's remedy against CVE-2020-5260 does not catch when credential helpers..."
+    },
+    {
+      "source": "CVE-2025-26520",
+      "target": "CVE-2024-54146",
+      "found_in": "t3_commit",
+      "context": "CVE-2024-54146 / GHSA-vj9g-p7f2-4wqj fix (#6096)  * CV..."
+    },
+    {
+      "source": "CVE-2025-40926",
+      "target": "CVE-2025-40923",
+      "found_in": "t3_commit",
+      "context": "...iddleware::Session, which was insecure [CVE-2025-40923]. This was fixed in v0.35 by using a se..."
+    },
+    {
+      "source": "CVE-2026-22695",
+      "target": "CVE-2025-65018",
+      "found_in": "t3_commit",
+      "context": "...rect_scaled`, introduced by the fix for CVE-2025-65018, copies transformed row data from an in..."
+    },
+    {
+      "source": "CVE-2026-25481",
+      "target": "CVE-2025-46724",
+      "found_in": "t3_commit",
+      "context": "Fix CVE-2025-46724 bypass in TableChatAgent sanitization (..."
+    },
+    {
+      "source": "CVE-2026-27837",
+      "target": "CVE-2023-26132",
+      "found_in": "t3_commit",
+      "context": "...segments for dangerous keys (bypass of CVE-2023-26132)  The previous fix (7d3aee1) only check..."
+    },
+    {
+      "source": "CVE-2026-28292",
+      "target": "CVE-2022-25912",
+      "found_in": "t3_commit",
+      "context": "In extension to CVE-2022-25912, switch to case-insensitive check for `..."
+    }
+  ]
+}
