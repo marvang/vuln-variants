@@ -14,13 +14,13 @@ Set GITHUB_TOKEN env var for 5,000 req/hour (vs 60 unauthenticated).
 """
 
 import argparse
-from http.client import IncompleteRead, RemoteDisconnected
 import json
 import os
 import re
 import time
 from collections import defaultdict
 from datetime import datetime
+from http.client import IncompleteRead, RemoteDisconnected
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen

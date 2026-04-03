@@ -2,7 +2,7 @@
 
 Systematically discovers CVE vulnerability variant chains (failed patches, bypasses, incomplete fixes) by regex-matching CVE IDs across CVE record fields and external sources. When one CVE's text references another CVE, it signals a variant, bypass, or incomplete fix.
 
-**Results:** 41,938 edges across 16,947 CVEs (5.24% of all published CVEs) organized into 6,128 variant chains. See [REPORT.md](REPORT.md) for full analysis, statistics, and methodology.
+**Results:** 47,156 edges across 20,088 CVEs (6.21% of all published CVEs) organized into 7,140 variant chains. See [REPORT.md](REPORT.md) for full analysis, statistics, and methodology.
 
 ## Setup
 
@@ -36,6 +36,28 @@ GITHUB_TOKEN=ghp_... uv run python parse_commits_t3.py  # All ~22k commits
 uv run python build_chains.py --tiers 1,2,3
 ```
 
+### Tier 4: Shared bug tracker IDs (fast, local)
+```bash
+uv run python find_shared_ids_t4.py              # finds CVE pairs sharing Bugzilla/GitHub IDs
+uv run python build_chains.py --tiers 1,2,3,4    # include T4 weak edges
+```
+
+T4 edges are weak signals — two CVEs linking to the same bug doesn't prove a variant relationship. Default `build_chains.py` (no flags) uses only strong T1-T3 edges. Add `4` to include T4.
+
+### Tier 5: LLM classification (needs OPENROUTER_API_KEY)
+```bash
+uv run python classify_variants_t5.py                          # per-CVE mode, default 100 CVEs
+uv run python classify_variants_t5.py --limit 500              # first 500 CVEs
+uv run python classify_variants_t5.py --cve CVE-2021-45046     # specific CVE(s), comma-separated
+uv run python classify_variants_t5.py --candidates             # candidate pair mode (T4 pairs)
+uv run python classify_variants_t5.py --dry-run                # count items, no API/fetch calls
+uv run python build_chains.py --tiers 1,2,3,5                  # include T5 strong edges
+```
+
+T5 has two modes. **Per-CVE** (default) fetches reference URLs for each CVE and asks the LLM to identify variant relationships from the content. **Candidate** mode classifies T4 shared-ID pairs with both CVEs' evidence. Both are resumable — cached results are skipped on re-run. Use `--cve` to test specific CVEs. Tracks token usage and cost per run.
+
+Set `OPENROUTER_API_KEY` and optionally `OPENROUTER_MODEL` in `.env` (see `.env.example`).
+
 ### Validate against ground truth
 ```bash
 uv run python validate.py
@@ -48,6 +70,8 @@ Validation uses `parsed_cves.json` for dataset membership and the raw tier edge 
 ```bash
 uv run python analyze_references.py --all    # Reference URL domain/tag analysis
 uv run python build_reference_index.py       # Structured reference index with domain taxonomy
+uv run python count_evidence_coverage.py     # Corpus coverage: direct / candidate / discovery
+uv run python export_commits.py             # Export commit cache as researcher-friendly JSONL
 ```
 
 ### Filter by chain size
@@ -57,7 +81,7 @@ uv run python build_chains.py --tiers 1,2 --min-size 3
 
 ## Output
 
-Results go to `output/`:
+Generated pipeline artifacts go to `output/`. Exported datasets go to `datasets/`:
 
 - `variant_chains.json` -- tree-structured chains with per-edge evidence lists
 - `edge_graph.json` -- raw flat edge list with all evidence (for auditing)
@@ -65,9 +89,14 @@ Results go to `output/`:
 - `edges_t1_description.json` -- T1 edges
 - `edges_t2_allfields.json` -- T2 edges (new only)
 - `edges_t3_commits.json` -- T3 edges from GitHub commit messages
+- `edges_t4_shared_ids.json` -- T4 edges from shared bug tracker IDs (weak signal)
+- `t5_classifications.json` -- per-run T5 audit artifact (all classifications with traces)
+- `datasets/edges_t5_llm.json` -- cumulative T5 edges + processed CVE/pair tracking (git-tracked)
+- `datasets/github_commits.jsonl` -- researcher-friendly dataset linking CVEs to commit messages
 - `cve_references.json` -- graph-only subset used for reference-graph inspection
 - `reference_index.json` -- structured index of all 1.1M reference URLs
 - `reference_analysis.json` -- domain/tag distribution analysis
+- `evidence_coverage.json` -- corpus coverage split (direct / candidate / discovery)
 - `stats.json` -- parsing statistics
 - `validation_results.json` -- ground truth comparison
 
@@ -88,6 +117,8 @@ Each tier scans progressively deeper fields in the CVE JSON records:
 | T1 | Description | `containers.cna.descriptions` |
 | T2 | All fields | Reference names/URLs, titles, ADP descriptions, legacy records |
 | T3 | Git commits | GitHub commit messages fetched via API |
+| T4 | Shared bug IDs | CVE pairs sharing Bugzilla/GitHub issue/PR (weak signal) |
+| T5 | LLM classification | Per-CVE URL fetching + LLM, or T4 candidate pairs via OpenRouter |
 
 Every edge is tagged with its source (`t1_description`, `t2_ref_name`, `t3_commit`, etc.) and multiple tiers finding the same edge produces multiple evidence entries.
 
@@ -99,9 +130,16 @@ Vendor advisory pages (Red Hat, Debian, Cisco) largely mirror the same CNA descr
 
 See [REPORT.md](REPORT.md) for full results and statistics.
 
+## Evidence coverage
+
+Of 323,709 published CVEs:
+- **5.24%** (16,947) have direct regex evidence (T1/T2 edges)
+- **28.51%** (92,296) have candidate-only signals in the broad sense (all structured IDs, including noisy JIRA matches)
+- **13.66%** (44,228) are in the default T4 candidate pool with JIRA disabled
+- **66.25%** (214,466) have no cross-references (discovery-only)
+
 ## Future work
 
-1. **Run T3 at scale** — all 22k GitHub commits with `GITHUB_TOKEN` (~4.5 hours)
-2. **T4: LLM classification** — feed candidate CVE pairs (from T3 snippets, shared bug IDs) to an LLM to classify variant relationships via OpenRouter API
-3. **Shared-ID extraction** — CVEs referencing the same bug tracker issue or advisory ID as candidate signals for LLM classification
-4. **Expand ground truth** with additional curated variant chains
+1. **Run T5 at scale** — classify CVEs and T4 candidates via OpenRouter, evaluate precision
+2. **Expand ground truth** with additional curated variant chains
+3. **Tune T5 prompts** — refine URL selection, content truncation, and LLM prompts based on results

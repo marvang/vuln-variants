@@ -58,7 +58,7 @@ def normalize_tier_label(label):
     return label
 
 
-def extract_detected_edges(chains_data, edge_dir):
+def extract_detected_edges(chains_data, edge_dir=None):
     """Load the full detected edge set from raw tier outputs."""
     tiers_used = chains_data.get("metadata", {}).get("tiers_used") or ["t1"]
     edges = set()
@@ -66,11 +66,11 @@ def extract_detected_edges(chains_data, edge_dir):
 
     for tier_label in tiers_used:
         tier = normalize_tier_label(tier_label)
-        filename = TIER_FILES.get(tier)
-        if not filename:
+        tier_path = TIER_FILES.get(tier)
+        if not tier_path:
             continue
 
-        path = edge_dir / filename
+        path = edge_dir / tier_path.name if edge_dir else tier_path
         if not path.exists():
             missing_files.append(str(path))
             continue

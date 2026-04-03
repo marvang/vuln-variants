@@ -1,6 +1,6 @@
 # CVE Variant Chain Analysis Report
 
-**Date:** 2026-04-02
+**Date:** 2026-04-03
 **Dataset:** cvelistV5 (341,154 files, 323,709 published CVEs)
 
 ## Method
@@ -13,58 +13,79 @@ The pipeline runs in tiers, each adding new edges from progressively deeper sour
 |---|---|---|
 | T1 | CNA description | `containers.cna.descriptions[].value` |
 | T2 | All JSON fields | Reference names, reference URLs, titles, ADP descriptions, legacy records |
-| T3 | Git commits | GitHub commit messages fetched via API (22k commits identified) |
+| T3 | Git commits | GitHub commit messages fetched via API (20,684 unique commits) |
+| T4 | Shared bug IDs | CVE pairs sharing Bugzilla/GitHub issue/PR references (weak signal) |
+| T5 | LLM classification | T4 candidates + fetched URL content classified via OpenRouter (planned) |
 
 Every edge carries a provenance label (`t1_description`, `t2_ref_name`, `t3_commit`, etc.) so results can be filtered or audited by source. When multiple tiers find the same edge, all evidence is preserved.
 
-## Results: T1 vs T1+T2
+## Results by Tier
 
-| Metric | T1 (description only) | T1+T2 (all fields) | Delta |
-|---|---|---|---|
-| Edges | 39,294 | 41,938 | +2,644 (+6.7%) |
-| Chains | 5,653 | 6,128 | +475 |
-| CVEs in chains | 15,125 (4.67%) | 16,947 (5.24%) | +1,822 |
-| Largest chain | 61 | 235 | merged via new edges |
-| Deepest chain | 61 | 61 | unchanged |
+**Terminology:** A *cluster* is a connected component — all CVEs transitively linked by edges. A *chain depth* is the longest linear path within a cluster (A→B→C→D = depth 4). A cluster of 237 CVEs means they are all reachable from each other through some sequence of edges, not that there is a single chain of 237.
 
-### T2 Edge Breakdown
+### Cumulative results
 
-| Field | New edges found |
+| Metric | T1 | +T2 | +T3 | +T4 |
+|---|---|---|---|---|
+| New edges | 39,294 | +2,644 | +116 | +5,032 |
+| **Total edges** | **39,294** | **41,938** | **42,054** | **47,156** |
+| Clusters | 5,653 | 6,128 | 6,165 | 7,140 |
+| CVEs in clusters | 15,125 (4.67%) | 16,947 (5.24%) | 17,070 (5.27%) | 20,088 (6.21%) |
+| Largest cluster | 61 | 235 | 235 | 237 |
+| Deepest chain | 61 | 61 | 61 | 61 |
+| Corroborating edges | — | 37,853 | 34 | 216 |
+
+### T1: CNA descriptions (39,294 edges)
+
+Regex-matches CVE IDs in the primary CNA description field. This is the core dataset — when a CVE's description explicitly says "this is related to CVE-XXXX", that's a strong signal.
+
+### T2: All JSON fields (+2,644 edges)
+
+Scans reference names, reference URLs, titles, ADP descriptions, and legacy records. Reference names (mailing list subjects like "[oss-security] CVE-2021-XXXX") are the biggest new source. T2 also found 37,853 corroborating edges — same edge as T1 but from a different field, giving 47% of tree nodes multi-source evidence.
+
+| Field | New edges |
 |---|---|
 | `references[].name` | 1,910 |
 | `references[].url` | 710 |
 | `title` | 21 |
 | `x_legacyV4Record` | 3 |
-| **Total T2** | **2,644** |
 
-Reference names (mailing list subjects like "[oss-security] CVE-2021-XXXX") are the biggest new source.
+### T3: GitHub commit messages (+116 edges)
 
-### T2 Corroborating Evidence
+Fetched 20,684 unique commit messages via GitHub API. Developers write "fix for CVE-X" in commits but this text doesn't appear in CVE descriptions. 314 commits failed (deleted repos, force-pushed — HTTP 404/409/422). 114 commits contained CVE cross-references. Dataset exported as `datasets/github_commits.jsonl` (21,762 records).
 
-T2 also found 37,853 edges that were already in T1 (same CVE cross-reference in a different field). These are stored as `corroborating_edges` and merged into the evidence model, so 47% of tree nodes now carry multi-source evidence.
+### T4: Shared bug tracker IDs (+5,032 edges, weak signal)
 
-## Chain Size Distribution (T1+T2)
+Finds CVE pairs that reference the same Bugzilla bug, GitHub issue, or GitHub PR but never mention each other in text. These are structural links — same bug doesn't prove a variant relationship — but provide context for T5 LLM classification.
 
-| Chain Size | Count |
+| ID Type | Edges |
 |---|---|
-| 2 | 4,478 |
-| 3 | 860 |
-| 4 | 325 |
-| 5 | 167 |
-| 6-9 | 187 |
-| 10-19 | 106 |
-| 20-49 | 14 |
-| 50+ | 4 |
+| GitHub issues | 2,452 |
+| Bugzilla | 1,913 |
+| GitHub PRs | 883 |
 
-## Top 5 Largest Chains (T1+T2)
+### Top 5 largest clusters (T1+T2+T3+T4)
 
-| Size | Root CVE(s) | Notes |
-|---|---|---|
-| 235 | CVE-2021-31618, CVE-2007-0086, CVE-2008-3281 | Multi-root, merged by T2 edges |
-| 61 | CVE-2015-8450 | Adobe Flash Player |
-| 49 | CVE-2021-30468, CVE-2010-1632 | Apache CXF / Axis |
-| 49 | CVE-2016-7009 | Adobe Reader/Acrobat |
-| 47 | CVE-2016-4105 | Adobe Flash Player |
+| Cluster size | Deepest chain | Root CVE(s) | Notes |
+|---|---|---|---|
+| 237 | 8 | CVE-2007-0086, CVE-2008-3281, CVE-2003-1564 | Multi-root, XML/HTTP parser vulnerabilities |
+| 61 | 61 | CVE-2015-8428 | Adobe Flash Player |
+| 50 | 4 | CVE-2010-1632, CVE-2021-30468 | Apache CXF / Axis |
+| 49 | 49 | CVE-2016-6995 | Adobe Reader/Acrobat |
+| 47 | 47 | CVE-2016-4101 | Adobe Flash Player |
+
+### Cluster size distribution (T1+T2+T3+T4)
+
+| Cluster size | Count |
+|---|---|
+| 2 | 5,101 |
+| 3 | 1,030 |
+| 4 | 403 |
+| 5 | 201 |
+| 6-9 | 272 |
+| 10-19 | 132 |
+| 20-49 | 13 |
+| 50+ | 5 |
 
 ## Year-by-Year Trend
 
@@ -97,13 +118,13 @@ Ground truth: 10 curated variant chains, 23 CVEs, 13 edges.
 | Struts OGNL | 1 | 0 | 1 | Neither description mentions the other |
 | Spectre v1 → v2 | 1 | 0 | 1 | Neither description mentions the other |
 
-| Metric | Result |
-|---|---|
-| CVE dataset membership | 23/23 (100%) — all ground truth CVEs found in parsed corpus |
-| CVE chain recall | 13/23 (56.5%) — 13 appear in a generated chain |
-| Edge recall | 5/13 (38.5%) — measured against raw tier edge files |
+| Metric | T1 | +T2 | +T3 | +T4 |
+|---|---|---|---|---|
+| CVE dataset membership | 23/23 | 23/23 | 23/23 | 23/23 |
+| CVE cluster recall | 9/23 (39.1%) | 13/23 (56.5%) | 14/23 (60.9%) | 14/23 (60.9%) |
+| Edge recall | 3/13 (23.1%) | 5/13 (38.5%) | 5/13 (38.5%) | 5/13 (38.5%) |
 
-All 8 missed edges are due to descriptions that don't cross-reference the prior CVE — not missing data.
+All 8 missed edges are cases where neither text, commit messages, nor shared bug tracker IDs connect the CVEs — implicit relationships that only an LLM reading full context can identify (T5).
 
 ## Reference URL Analysis
 
@@ -133,14 +154,19 @@ We investigated whether vendor advisory pages contain CVE cross-references not f
 
 **Conclusion:** Vendor advisory pages largely mirror the same CNA description that T1 already scans. Structured advisory extraction does NOT find new edges. The unique vendor-authored text (impact statements, mitigation advice) does not typically contain CVE cross-references.
 
-## T3: GitHub Commit Messages (in progress)
 
-GitHub commit messages are the most promising untapped source. When developers fix an incomplete patch, they often write "fix for CVE-X" in the commit message — text that doesn't make it into the CVE description.
+## Evidence Coverage
 
-- 22,141 GitHub commit references identified in the dataset
-- T3 script fetches commit messages via GitHub API, applies same CVE regex
-- Pilot test (50 commits): 1 commit with CVE refs, 1 corroborating edge
-- Full run requires `GITHUB_TOKEN` (~4.5 hours at 5,000 req/hr)
+Of 323,709 published CVEs:
+
+| Bucket | Count | % |
+|---|---|---|
+| Direct evidence (T1/T2 edges) | 16,947 | 5.24% |
+| Candidate-only, broad (all structured IDs + T3) | 92,296 | 28.51% |
+| Candidate-only, default T4 (JIRA off) | 44,228 | 13.66% |
+| Discovery-only (no cross-references) | 214,466 | 66.25% |
+
+The broad candidate-only pool (28.51%) is an upper bound on indirect evidence. The practical default T4 queue is 44,228 CVEs (13.66%) once JIRA-only cases are excluded.
 
 ## Limitations
 
@@ -149,12 +175,21 @@ GitHub commit messages are the most promising untapped source. When developers f
 3. **CNA bias.** Well-documented products (Adobe, Microsoft, Apache) are over-represented because their CNAs write cross-referencing descriptions.
 4. **Post-2020 gap.** Modern CVE descriptions rarely cross-reference prior CVEs (<1%), meaning recent variant chains are systematically missed by regex methods.
 
+## T5: LLM Classification
+
+T5 feeds all available evidence per CVE (descriptions, fetched URL content, commit messages) to an LLM via OpenRouter and lets it identify variant relationships. This targets the 8 missed ground truth edges where no text or structural signal exists — only an analyst reading full context can find these.
+
+Two modes:
+- **Per-CVE** (default): For each CVE, fetches reference URLs (direct + Jina Reader fallback for JS-rendered pages), loads commit messages, and asks the LLM to identify variant relationships. Skips noisy domains, prioritizes vendor pages and bug trackers, filters out URL content with 0 CVE mentions.
+- **Candidate pairs** (`--candidates`): For T4 shared-ID pairs, fetches URLs for both CVEs and includes the shared bug tracker context.
+
+Results accumulate in `datasets/edges_t5_llm.json` (git-tracked), which also tracks processed CVE IDs and candidate pairs so subsequent runs (by any researcher) automatically continue from where the last run left off. Full pipeline traces (URLs selected/skipped, prompts, LLM responses, token usage, cost) are saved per-CVE in `data/llm_cache/` and per-run in `output/t5_classifications.json`.
+
 ## Future Work
 
-1. **Run T3 at scale** on all 22k GitHub commits with authenticated API access.
-2. **Shared-ID extraction** — CVEs referencing the same bug tracker issue or advisory ID as candidate signals (not chain edges).
-3. **LLM classification** — feed candidate CVE pairs from T3 snippets or shared IDs to an LLM to classify variant relationships. Narrower and cheaper than full-page extraction.
-4. **Expand ground truth** with additional curated variant chains for more robust evaluation.
+1. **Run T5 at scale** — classify more CVEs and T4 candidates, evaluate precision
+2. **Expand ground truth** with additional curated variant chains
+3. **Tune T5** — refine URL selection, prompts, and model choice based on results
 
 ## Outputs
 
@@ -164,6 +199,10 @@ GitHub commit messages are the most promising untapped source. When developers f
 | `output/edges_t1_description.json` | T1 edges with provenance |
 | `output/edges_t2_allfields.json` | T2 edges (new + corroborating, deduplicated against T1) |
 | `output/edges_t3_commits.json` | T3 edges from GitHub commit messages |
+| `output/edges_t4_shared_ids.json` | T4 edges from shared bug tracker IDs (weak signal) |
+| `datasets/edges_t5_llm.json` | Cumulative T5 edges + processed CVE/pair tracking (git-tracked) |
+| `datasets/github_commits.jsonl` | Researcher-friendly dataset: CVE-to-commit-message mapping |
+| `output/t5_classifications.json` | Per-run T5 audit artifact with full pipeline traces |
 | `output/cve_references.json` | Reference-graph subset (only CVEs involved in T1 description edges) |
 | `output/variant_chains.json` | Tree-structured chains with per-edge evidence lists |
 | `output/edge_graph.json` | Raw flat edge list with all evidence (for auditing) |

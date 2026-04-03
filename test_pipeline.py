@@ -445,6 +445,7 @@ class TestT3RetryBound:
     def test_fetch_handles_remote_disconnect(self, tmp_path, monkeypatch):
         """Transient socket disconnects should fail locally, not abort T3."""
         from http.client import RemoteDisconnected
+
         import parse_commits_t3 as t3
 
         monkeypatch.setattr(t3, "CACHE_DIR", tmp_path / "cache")
@@ -771,11 +772,14 @@ class TestClassifyVariantsT5:
         path = tmp_path / "edges_t4_shared_ids.json"
         path.write_text(json.dumps({
             "edges": [
-                {"source": "CVE-B", "target": "CVE-A", "found_in": "t4_shared_bugzilla", "context": "shared Bugzilla #7"},
-                {"source": "CVE-A", "target": "CVE-B", "found_in": "t4_shared_bugzilla", "context": "shared Bugzilla #7"},
+                {"source": "CVE-B", "target": "CVE-A",
+                 "found_in": "t4_shared_bugzilla", "context": "shared Bugzilla #7"},
+                {"source": "CVE-A", "target": "CVE-B",
+                 "found_in": "t4_shared_bugzilla", "context": "shared Bugzilla #7"},
             ],
             "corroborating_edges": [
-                {"source": "CVE-C", "target": "CVE-D", "found_in": "t4_shared_bugzilla", "context": "old"},
+                {"source": "CVE-C", "target": "CVE-D",
+                 "found_in": "t4_shared_bugzilla", "context": "old"},
             ],
         }))
         monkeypatch.setattr(t5, "T4_EDGES_PATH", path)
@@ -789,8 +793,8 @@ class TestClassifyVariantsT5:
             "context": "shared Bugzilla #7",
         }]
 
-    def test_build_prompt_includes_descriptions_and_context(self):
-        from classify_variants_t5 import build_prompt
+    def test_build_candidate_prompt_includes_descriptions_and_context(self):
+        from classify_variants_t5 import build_candidate_prompt
 
         candidate = {
             "cve_a": "CVE-2021-44228",
@@ -800,21 +804,23 @@ class TestClassifyVariantsT5:
         }
         cve_data = {
             "CVE-2021-44228": {"published": "2021-12-10", "description": "Log4Shell original"},
-            "CVE-2021-45046": {"published": "2021-12-14", "description": "Log4Shell incomplete fix"},
+            "CVE-2021-45046": {
+                "published": "2021-12-14",
+                "description": "Log4Shell incomplete fix",
+            },
         }
 
-        messages = build_prompt(candidate, cve_data)
+        messages = build_candidate_prompt(candidate, cve_data, [], [], [], [])
         assert len(messages) == 2
         assert messages[0]["role"] == "system"
         assert "Log4Shell original" in messages[1]["content"]
         assert "Log4Shell incomplete fix" in messages[1]["content"]
         assert "shared Bugzilla #123" in messages[1]["content"]
-        assert "t4_shared_bugzilla" in messages[1]["content"]
 
-    def test_parse_classification_valid(self):
-        from classify_variants_t5 import parse_classification
+    def test_parse_candidate_result_valid(self):
+        from classify_variants_t5 import parse_candidate_result
 
-        result = parse_classification({
+        result = parse_candidate_result({
             "relationship_type": "incomplete_fix",
             "confidence": 0.9,
             "direction": "b_is_variant_of_a",
@@ -827,10 +833,10 @@ class TestClassifyVariantsT5:
         assert result["confidence"] == 0.9
         assert result["direction"] == "b_is_variant_of_a"
 
-    def test_parse_classification_clamps_confidence(self):
-        from classify_variants_t5 import parse_classification
+    def test_parse_candidate_result_clamps_confidence(self):
+        from classify_variants_t5 import parse_candidate_result
 
-        result = parse_classification({
+        result = parse_candidate_result({
             "relationship_type": "bypass",
             "confidence": 1.5,
             "direction": "a_is_variant_of_b",
@@ -841,10 +847,10 @@ class TestClassifyVariantsT5:
 
         assert result["confidence"] == 1.0
 
-    def test_parse_classification_invalid_defaults(self):
-        from classify_variants_t5 import parse_classification
+    def test_parse_candidate_result_invalid_defaults(self):
+        from classify_variants_t5 import parse_candidate_result
 
-        result = parse_classification({
+        result = parse_candidate_result({
             "relationship_type": "made_up_label",
             "confidence": 0.5,
             "direction": "invalid",
@@ -857,10 +863,10 @@ class TestClassifyVariantsT5:
         assert result["direction"] == "unknown"
         assert result["additional_related_cves"] == ["CVE-2024-1234"]
 
-    def test_edge_direction_a_is_variant(self):
-        from classify_variants_t5 import classification_to_edge
+    def test_candidate_edge_direction_a_is_variant(self):
+        from classify_variants_t5 import candidate_to_edge
 
-        edge = classification_to_edge({
+        edge = candidate_to_edge({
             "relationship_type": "incomplete_fix",
             "confidence": 0.9,
             "direction": "a_is_variant_of_b",
@@ -873,10 +879,10 @@ class TestClassifyVariantsT5:
         assert edge["target"] == "CVE-B"
         assert edge["found_in"] == "t5_llm"
 
-    def test_edge_direction_b_is_variant(self):
-        from classify_variants_t5 import classification_to_edge
+    def test_candidate_edge_direction_b_is_variant(self):
+        from classify_variants_t5 import candidate_to_edge
 
-        edge = classification_to_edge({
+        edge = candidate_to_edge({
             "relationship_type": "bypass",
             "confidence": 0.85,
             "direction": "b_is_variant_of_a",
@@ -888,10 +894,10 @@ class TestClassifyVariantsT5:
         assert edge["source"] == "CVE-B"
         assert edge["target"] == "CVE-A"
 
-    def test_edge_not_emitted_for_non_positive_or_unknown_direction(self):
-        from classify_variants_t5 import classification_to_edge
+    def test_candidate_edge_not_emitted_for_non_positive_or_unknown(self):
+        from classify_variants_t5 import candidate_to_edge
 
-        assert classification_to_edge({
+        assert candidate_to_edge({
             "relationship_type": "unrelated",
             "confidence": 0.95,
             "direction": "a_is_variant_of_b",
@@ -900,7 +906,7 @@ class TestClassifyVariantsT5:
             "additional_related_cves": [],
         }, "CVE-A", "CVE-B") is None
 
-        assert classification_to_edge({
+        assert candidate_to_edge({
             "relationship_type": "same_vuln_class",
             "confidence": 0.8,
             "direction": "unknown",
@@ -908,6 +914,54 @@ class TestClassifyVariantsT5:
             "evidence_used": [],
             "additional_related_cves": [],
         }, "CVE-A", "CVE-B") is None
+
+    def test_per_cve_to_edges(self):
+        from classify_variants_t5 import per_cve_to_edges
+
+        variants = [
+            {
+                "related_cve": "CVE-2021-44228",
+                "relationship_type": "incomplete_fix",
+                "direction": "this_is_variant_of",
+                "confidence": 0.9,
+                "reasoning": "Incomplete fix for Log4Shell",
+            },
+            {
+                "related_cve": "CVE-2021-99999",
+                "relationship_type": "unrelated",
+                "direction": "this_is_variant_of",
+                "confidence": 0.8,
+                "reasoning": "Not related",
+            },
+        ]
+        edges = per_cve_to_edges("CVE-2021-45046", variants)
+        assert len(edges) == 1
+        assert edges[0]["source"] == "CVE-2021-45046"
+        assert edges[0]["target"] == "CVE-2021-44228"
+
+    def test_parse_per_cve_result(self):
+        from classify_variants_t5 import parse_per_cve_result
+
+        result = parse_per_cve_result({
+            "variants": [
+                {
+                    "related_cve": "CVE-2021-44228",
+                    "relationship_type": "incomplete_fix",
+                    "direction": "this_is_variant_of",
+                    "confidence": 0.9,
+                    "reasoning": "Fix was incomplete",
+                },
+                {
+                    "related_cve": "not-a-cve",
+                    "relationship_type": "bypass",
+                    "direction": "this_is_variant_of",
+                    "confidence": 0.8,
+                    "reasoning": "Bad CVE ID",
+                },
+            ]
+        })
+        assert len(result) == 1
+        assert result[0]["related_cve"] == "CVE-2021-44228"
 
     def test_load_openrouter_model_from_env(self, monkeypatch):
         from classify_variants_t5 import _load_openrouter_model

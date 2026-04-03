@@ -18,13 +18,16 @@ from datetime import datetime
 from pathlib import Path
 
 OUTPUT_DIR = Path("output")
+DATASETS_DIR = Path("datasets")
 PARSED_OUTPUT_PATH = OUTPUT_DIR / "parsed_cves.json"
 REFERENCE_GRAPH_PATH = OUTPUT_DIR / "cve_references.json"
 
 TIER_FILES = {
-    "1": "edges_t1_description.json",
-    "2": "edges_t2_allfields.json",
-    "3": "edges_t3_commits.json",
+    "1": OUTPUT_DIR / "edges_t1_description.json",
+    "2": OUTPUT_DIR / "edges_t2_allfields.json",
+    "3": OUTPUT_DIR / "edges_t3_commits.json",
+    "4": OUTPUT_DIR / "edges_t4_shared_ids.json",
+    "5": DATASETS_DIR / "edges_t5_llm.json",
 }
 
 
@@ -45,7 +48,7 @@ def load_edges(tiers):
             print(f"WARNING: Unknown tier '{tier}', skipping")
             continue
 
-        path = OUTPUT_DIR / filename
+        path = filename
         if not path.exists():
             missing_tiers.append(tier)
             continue
@@ -191,8 +194,8 @@ def main():
         "--min-size", type=int, default=2, help="Minimum chain size (default: 2)"
     )
     parser.add_argument(
-        "--tiers", default="1",
-        help="Comma-separated tier numbers to include (default: 1). E.g., '1,2,3'"
+        "--tiers", default="1,2,3",
+        help="Comma-separated tier numbers (default: 1,2,3). Add 4 for weak T4, 5 for LLM T5"
     )
     args = parser.parse_args()
 
