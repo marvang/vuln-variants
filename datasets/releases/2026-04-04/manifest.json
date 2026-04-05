@@ -1,0 +1,46 @@
+{
+  "release_id": "2026-04-04",
+  "release_type": "frozen_snapshot",
+  "description": "Published snapshot of the main graph artifacts for the T1+T2+T3+T5 run.",
+  "source": {
+    "copied_from": "output/",
+    "git_commit": "9a3a63d4689a60d14b366407fae8003402371389",
+    "report_path": "REPORT.md"
+  },
+  "pipeline": {
+    "tiers_used": [
+      "t1",
+      "t2",
+      "t3",
+      "t5"
+    ],
+    "total_cves_scanned": 323709,
+    "total_cves_in_chains": 17085,
+    "pct_cves_in_chains": 5.28,
+    "chains_found": 6172,
+    "largest_chain_size": 235,
+    "deepest_chain_depth": 61,
+    "total_unique_edges": 42057
+  },
+  "files": [
+    {
+      "path": "variant_chains.json",
+      "description": "Tree-structured chains with per-edge evidence lists.",
+      "generated_at": "2026-04-04T01:15:42.318885",
+      "bytes": 14710072,
+      "sha256": "5ca2f8f6cb6afcd0080dcea709961778c7dc6831add8d92a0979cb4f0e3d6fd6"
+    },
+    {
+      "path": "edge_graph.json",
+      "description": "Flat edge graph with all evidence preserved for auditing.",
+      "generated_at": "2026-04-04T01:15:42.499101",
+      "bytes": 17964154,
+      "sha256": "6b597ffbb5943842a352e469079bef350de2a63dc06bb01f9f212413fb384d1e"
+    }
+  ],
+  "authoritative_files": [
+    "variant_chains.json",
+    "edge_graph.json",
+    "manifest.json"
+  ]
+}

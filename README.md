@@ -1,8 +1,23 @@
 # vuln-variants
 
-Systematically discovers CVE vulnerability variant chains (failed patches, bypasses, incomplete fixes) by regex-matching CVE IDs across CVE record fields and external sources. When one CVE's text references another CVE, it signals a variant, bypass, or incomplete fix.
+Discovers CVE variant chains (failed patches, bypasses, incomplete fixes) by mining cross-references across CVE records, commit messages, shared bug tracker IDs, and LLM classification via OpenRouter.
 
-**Results:** 42,057 strong edges across 17,085 CVEs (5.28% of all published CVEs) organized into 6,172 variant chains using T1-T3 regex + T5 LLM classification. T4 adds 5,032 weak structural edges (shared bug tracker IDs). See [REPORT.md](REPORT.md) for full analysis, statistics, and methodology.
+**Results:** 42,057 edges across 17,085 CVEs organized into 6,172 variant chains. See [REPORT.md](REPORT.md) for full analysis and methodology.
+
+**Use the results:** Published release snapshot: [`datasets/releases/2026-04-04/`](datasets/releases/2026-04-04/) with frozen copies of `variant_chains.json`, `edge_graph.json`, and `manifest.json`. Live rerunnable artifacts: `output/variant_chains.json` and `output/edge_graph.json`.
+
+**Quick start:** Want to use the published snapshot as-is? Start at [`datasets/releases/2026-04-04/`](datasets/releases/2026-04-04/). Want to reproduce T1-T4 from scratch? Start at [Setup](#setup). Want to continue T5 LLM classification? Jump to [Tier 5](#tier-5-llm-classification-needs-openrouter_api_key).
+
+## Table of contents
+
+- [Setup](#setup)
+- [Usage](#usage) — T1 through T5 pipeline, validation, analysis tools
+- [Output](#output) — generated artifacts and datasets
+- [Tests and linting](#tests-and-linting)
+- [How it works](#how-it-works) — tier architecture and key findings
+- [Evidence coverage](#evidence-coverage)
+- [T5 cost and yield projections](#t5-cost-and-yield-projections)
+- [Future work](#future-work)
 
 ## Setup
 
@@ -28,9 +43,13 @@ uv run python parse_cves_t2.py
 uv run python build_chains.py --tiers 1,2
 ```
 
+### Build reference index (required for T3, T4, T5)
+```bash
+uv run python build_reference_index.py           # ~1 minute, indexes all 1.1M reference URLs
+```
+
 ### Tier 3: GitHub commit messages (needs GITHUB_TOKEN)
 ```bash
-uv run python build_reference_index.py           # Build reference index first
 uv run python parse_commits_t3.py --sample 50    # Test on 50 commits
 GITHUB_TOKEN=ghp_... uv run python parse_commits_t3.py  # All ~22k commits
 uv run python build_chains.py --tiers 1,2,3
@@ -54,7 +73,7 @@ uv run python classify_variants_t5.py --dry-run                # count items, no
 uv run python build_chains.py --tiers 1,2,3,5                  # include T5 strong edges
 ```
 
-T5 has two modes. **Per-CVE** (default) fetches reference URLs for each CVE and asks the LLM to identify variant relationships from the content. **Candidate** mode classifies T4 shared-ID pairs with both CVEs' evidence. Both are resumable — cached results are skipped on re-run. Use `--cve` to test specific CVEs. Tracks token usage and cost per run.
+T5 has two modes. **Per-CVE** (default) fetches reference URLs for each CVE and asks the LLM to identify variant relationships from the content. **Candidate** mode classifies T4 shared-ID pairs with both CVEs' evidence. Runs in parallel (`--workers N`, default 20). Resumable — results accumulate in `datasets/` and re-runs skip already-classified CVEs. Falls back to `json_object` mode for models that don't support strict `json_schema`.
 
 Set `OPENROUTER_API_KEY` and optionally `OPENROUTER_MODEL` in `.env` (see `.env.example`).
 
@@ -67,9 +86,11 @@ Edit `ground_truth.json` to add your own curated chains (10 chains, 23 CVEs curr
 Validation uses `parsed_cves.json` for dataset membership and the raw tier edge files for edge recall.
 
 ### Analysis tools
+
+Optional exploration scripts used during development to understand the dataset and inform pipeline design. Not required for the main pipeline.
+
 ```bash
 uv run python analyze_references.py --all    # Reference URL domain/tag analysis
-uv run python build_reference_index.py       # Structured reference index with domain taxonomy
 uv run python count_evidence_coverage.py     # Corpus coverage: direct / candidate / discovery
 uv run python export_commits.py             # Export commit cache as researcher-friendly JSONL
 ```
@@ -81,32 +102,35 @@ uv run python build_chains.py --tiers 1,2 --min-size 3
 
 ## Output
 
-Generated pipeline artifacts go to `output/`. Exported datasets go to `datasets/`:
+Generated pipeline artifacts go to `output/`. Frozen release snapshots go to `datasets/releases/`. Other exported datasets stay in `datasets/`:
 
-- `variant_chains.json` -- tree-structured chains with per-edge evidence lists
-- `edge_graph.json` -- raw flat edge list with all evidence (for auditing)
-- `parsed_cves.json` -- full parsed corpus for all published CVEs
-- `edges_t1_description.json` -- T1 edges
-- `edges_t2_allfields.json` -- T2 edges (new only)
-- `edges_t3_commits.json` -- T3 edges from GitHub commit messages
-- `edges_t4_shared_ids.json` -- T4 edges from shared bug tracker IDs (weak signal)
-- `t5_classifications.json` -- per-run T5 audit artifact (all classifications with traces)
+- `datasets/releases/2026-04-04/variant_chains.json` -- frozen published snapshot of the tree-structured chains
+- `datasets/releases/2026-04-04/edge_graph.json` -- frozen published snapshot of the flat edge graph
+- `datasets/releases/2026-04-04/manifest.json` -- release metadata, provenance, file hashes, and summary counts
+- `output/variant_chains.json` -- live tree-structured chains with per-edge evidence lists
+- `output/edge_graph.json` -- live raw flat edge list with all evidence (for auditing)
+- `output/parsed_cves.json` -- full parsed corpus for all published CVEs
+- `output/edges_t1_description.json` -- T1 edges
+- `output/edges_t2_allfields.json` -- T2 edges (new + corroborating, deduplicated against T1)
+- `output/edges_t3_commits.json` -- T3 edges from GitHub commit messages
+- `output/edges_t4_shared_ids.json` -- T4 edges from shared bug tracker IDs (weak signal)
+- `output/t5_classifications.json` -- per-run T5 audit artifact (all classifications with traces)
 - `datasets/edges_t5_llm.json` -- cumulative T5 edges + processed CVE/pair tracking (git-tracked)
 - `datasets/t5_classifications.jsonl` -- cumulative T5 classifications with full reasoning (git-tracked)
 - `datasets/github_commits.jsonl` -- researcher-friendly dataset linking CVEs to commit messages
-- `cve_references.json` -- graph-only subset used for reference-graph inspection
-- `reference_index.json` -- structured index of all 1.1M reference URLs
-- `reference_analysis.json` -- domain/tag distribution analysis
-- `evidence_coverage.json` -- corpus coverage split (direct / candidate / discovery)
-- `stats.json` -- parsing statistics
-- `validation_results.json` -- ground truth comparison
+- `output/cve_references.json` -- graph-only subset used for reference-graph inspection
+- `output/reference_index.json` -- structured index of all 1.1M reference URLs
+- `output/reference_analysis.json` -- domain/tag distribution analysis
+- `output/evidence_coverage.json` -- corpus coverage split (direct / candidate / discovery)
+- `output/stats.json` -- parsing statistics
+- `output/validation_results.json` -- ground truth comparison
 
 ## Tests and linting
 
 ```bash
 uv run pytest -v
 uv run ruff check .
-uv run mypy parse_cves.py parse_cves_t2.py build_chains.py validate.py
+uv run mypy *.py
 ```
 
 ## How it works
@@ -133,27 +157,11 @@ See [REPORT.md](REPORT.md) for full results and statistics.
 
 ## Evidence coverage
 
-Of 323,709 published CVEs:
-- **5.24%** (16,947) have direct regex evidence (T1/T2 edges)
-- **28.51%** (92,296) have candidate-only signals in the broad sense (all structured IDs, including noisy JIRA matches)
-- **13.66%** (44,228) are in the default T4 candidate pool with JIRA disabled
-- **66.25%** (214,466) have no cross-references (discovery-only)
+Of 323,709 published CVEs, 5.24% have direct regex evidence (T1/T2), 13.66% are in the default T4 candidate pool, and 66.25% have no cross-references. See [REPORT.md](REPORT.md) for full coverage breakdown and T5 cost projections.
 
-## T5 cost and yield projections
+## Future work
 
-Based on 531 CVEs classified so far (x-ai/grok-4.1-fast via OpenRouter):
-
-| Metric | Observed | Projected (full corpus) |
-|---|---|---|
-| CVEs processed | 531 | 323,709 |
-| New edges found | 10 | ~6,100 |
-| Corroborating edges | 7 | ~4,300 |
-| Edge yield rate | 1.88% of CVEs | — |
-| Tokens per CVE | median ~5k, mean ~8.8k | ~2.9B total |
-| Cost per CVE (grok-4.1-fast) | median $0.0015, mean $0.0022 | **~$470-700** |
-
-T4 candidate pairs (5,032 pairs) would cost an additional ~$10 and yield ~130 edges.
-
-**Notes:**
-- Results are cumulative and resumable — runs pick up where the last one left off.
-
+1. **Scale T5** — classify more CVEs (531/323k done), target ground truth gaps
+2. **Precision evaluation** — sample and manually verify edges from each tier to estimate per-tier accuracy
+3. **Expand ground truth** with additional curated variant chains
+4. **Visualizations** — interactive chain explorer, timeline views, and tier contribution diagrams

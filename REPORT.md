@@ -5,7 +5,7 @@
 
 ## Method
 
-We identify CVE variant chains by regex-matching CVE IDs (`CVE-\d{4}-\d{4,}`) across CVE record fields and external sources. When a CVE mentions another CVE, we treat it as a directed edge (the newer CVE is a variant/bypass/incomplete-fix of the older). Edges are assembled into a graph, connected components extracted, and each component arranged into a chronological tree.
+We identify candidate CVE variant chains by regex-matching CVE IDs (`CVE-\d{4}-\d{4,}`) across CVE record fields and external sources. When a CVE mentions another CVE, we treat it as evidence for a directed edge from the newer CVE to the older one. This often corresponds to a variant/bypass/incomplete-fix relationship, but it is not proof on its own. Edges are assembled into a graph, connected components extracted, and each component arranged into a chronological tree.
 
 The pipeline runs in tiers, each adding new edges from progressively deeper sources:
 
@@ -13,7 +13,7 @@ The pipeline runs in tiers, each adding new edges from progressively deeper sour
 |---|---|---|
 | T1 | CNA description | `containers.cna.descriptions[].value` |
 | T2 | All JSON fields | Reference names, reference URLs, titles, ADP descriptions, legacy records |
-| T3 | Git commits | GitHub commit messages fetched via API (20,684 unique commits) |
+| T3 | Git commits | GitHub commit messages fetched via API (20,672 unique commits) |
 | T4 | Shared bug IDs | CVE pairs sharing Bugzilla/GitHub issue/PR references (weak signal) |
 | T5 | LLM classification | Per-CVE evidence (fetched URLs, commits) classified via OpenRouter |
 
@@ -27,10 +27,10 @@ Every edge carries a provenance label (`t1_description`, `t2_ref_name`, `t3_comm
 
 | Metric | T1 | +T2 | +T3 | +T4 | +T5 |
 |---|---|---|---|---|---|
-| New edges | 39,294 | +2,644 | +116 | +5,032 | +10 |
-| **Total edges** | **39,294** | **41,938** | **42,054** | **47,156** | **42,057*** |
-| Clusters | 5,653 | 6,128 | 6,165 | 7,140 | 6,172* |
-| CVEs in clusters | 15,125 (4.67%) | 16,947 (5.24%) | 17,070 (5.27%) | 20,088 (6.21%) | 17,085 (5.28%)* |
+| New edges | 39,294 | +2,644 | +109 | +5,032 | +10 |
+| **Total edges** | **39,294** | **41,938** | **42,047** | **47,149** | **42,057*** |
+| Clusters | 5,653 | 6,128 | 6,164 | 7,139 | 6,172* |
+| CVEs in clusters | 15,125 (4.67%) | 16,947 (5.24%) | 17,067 (5.27%) | 20,085 (6.21%) | 17,085 (5.28%)* |
 | Largest cluster | 61 | 235 | 235 | 237 | 235* |
 | Deepest chain | 61 | 61 | 61 | 61 | 61* |
 | Corroborating edges | — | 37,853 | 34 | 216 | 7 |
@@ -52,9 +52,9 @@ Scans reference names, reference URLs, titles, ADP descriptions, and legacy reco
 | `title` | 21 |
 | `x_legacyV4Record` | 3 |
 
-### T3: GitHub commit messages (+116 edges)
+### T3: GitHub commit messages (+109 edges)
 
-Fetched 20,684 unique commit messages via GitHub API. Developers write "fix for CVE-X" in commits but this text doesn't appear in CVE descriptions. 314 commits failed (deleted repos, force-pushed — HTTP 404/409/422). 114 commits contained CVE cross-references. Dataset exported as `datasets/github_commits.jsonl` (21,762 records).
+Fetched 20,672 unique commit messages via GitHub API. Developers write "fix for CVE-X" in commits but this text doesn't appear in CVE descriptions. 314 commits failed (deleted repos, force-pushed — HTTP 404/409/422). 110 commits contained published CVE cross-references. Dataset exported as `datasets/github_commits.jsonl` (21,765 records).
 
 ### T4: Shared bug tracker IDs (+5,032 edges, weak signal)
 
@@ -81,13 +81,13 @@ Finds CVE pairs that reference the same Bugzilla bug, GitHub issue, or GitHub PR
 | Cluster size | Count |
 |---|---|
 | 2 | 5,101 |
-| 3 | 1,030 |
+| 3 | 1,029 |
 | 4 | 403 |
 | 5 | 201 |
 | 6-9 | 272 |
-| 10-19 | 132 |
-| 20-49 | 13 |
-| 50+ | 5 |
+| 10-19 | 111 |
+| 20-49 | 19 |
+| 50+ | 3 |
 
 ## Year-by-Year Trend
 
@@ -122,7 +122,6 @@ Ground truth: 10 curated variant chains, 23 CVEs, 13 edges.
 
 | Metric | T1 | +T2 | +T3 | +T4 | +T5 |
 |---|---|---|---|---|---|
-| CVE dataset membership | 23/23 | 23/23 | 23/23 | 23/23 | 23/23 |
 | CVE cluster recall | 9/23 (39.1%) | 13/23 (56.5%) | 14/23 (60.9%) | 14/23 (60.9%) | 14/23 (60.9%) |
 | Edge recall | 3/13 (23.1%) | 5/13 (38.5%) | 5/13 (38.5%) | 5/13 (38.5%) | 5/13 (38.5%) |
 
@@ -202,20 +201,6 @@ Example new edges found by T5:
 - **CVE-2026-27893 → CVE-2025-66448** (incomplete_fix): "CVE-2025-66448 fixed auth bypass, this is a follow-on"
 - **CVE-2025-69986 → CVE-2024-51347** (same_vuln_class): "shares a similar root cause with CVE-2024-51347"
 - **CVE-2026-32285 → CVE-2020-10675** (regression): "CVE-2020-10675 was an incomplete fix"
-
-### Design
-
-- **Parallel execution**: 20 workers by default (`--workers N`), concurrent LLM + URL fetching
-- **Cumulative dataset**: Results accumulate in `datasets/edges_t5_llm.json` (git-tracked), tracking processed CVE IDs and candidate pairs so subsequent runs automatically continue where the last left off
-- **Full audit trail**: Per-CVE traces (URLs selected/skipped with reasons, prompts, LLM responses, token usage, cost) saved in `data/llm_cache/` and `datasets/t5_classifications.jsonl`
-- **Model fallback**: Tries `json_schema` structured output, falls back to `json_object` for models that don't support strict schemas
-- **Resumable**: LLM results cached per CVE; re-runs skip already-classified CVEs
-
-## Future Work
-
-1. **Scale T5** — classify more CVEs, target ground truth gaps specifically
-2. **Expand ground truth** with additional curated variant chains
-3. **Evaluate T5 precision** — manual review of new edges found by LLM
 
 ## Outputs
 

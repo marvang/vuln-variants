@@ -68,6 +68,7 @@ parse_commits_t3.py       → output/edges_t3_commits.json        (GitHub commit
 export_commits.py         → datasets/github_commits.jsonl       (research export)
 find_shared_ids_t4.py     → output/edges_t4_shared_ids.json     (shared-ID weak edges)
 classify_variants_t5.py   → datasets/edges_t5_llm.json          (cumulative LLM edges, git-tracked)
+                          → datasets/t5_classifications.jsonl   (cumulative classifications, git-tracked)
                           → output/t5_classifications.json      (per-run audit artifact)
 build_chains.py           → output/variant_chains.json          (trees with provenance)
                           → output/edge_graph.json              (raw flat edge list)
@@ -104,12 +105,14 @@ The raw graph (`edge_graph.json`) preserves all edges with all evidence before t
 - `url_utils.normalize_url(url)` — URL normalization for consistent caching/dedup
 - `find_shared_ids_t4.group_by_shared_id(refs, enabled_types)` — groups CVEs by shared bug tracker ID
 - `find_shared_ids_t4.format_context(key)` — renders human-readable shared-ID context
-- `classify_variants_t5.select_urls(refs)` — URL selection with skip logic, returns (selected, skipped) with reasons
-- `classify_variants_t5.fetch_url(url)` — direct fetch + Jina Reader fallback, cached
 - `classify_variants_t5.classify_per_cve(cve_id, ...)` — per-CVE classification with full trace
 - `classify_variants_t5.classify_candidate(candidate, ...)` — candidate pair classification with full trace
-- `classify_variants_t5.parse_per_cve_result(raw_json)` — validates per-CVE LLM output
-- `classify_variants_t5.parse_candidate_result(raw_json)` — validates candidate LLM output
+- `classify_variants_t5.select_urls(refs)` — URL selection with skip/priority logic
+- `classify_variants_t5.fetch_url(url)` — direct fetch + Jina Reader fallback, cached
+- `classify_variants_t5._llm_call(client, model, messages, schema)` — json_schema with json_object fallback
+- `classify_variants_t5.load_dataset()` / `save_dataset()` — cumulative dataset in datasets/
+- `classify_variants_t5.merge_into_dataset(...)` — deduplicating edge merge into cumulative dataset
+- `classify_variants_t5.append_classifications(...)` — cumulative JSONL export
 
 ### CVE JSON structure (cvelistV5)
 
@@ -139,10 +142,14 @@ Output goes to `output/edges_t4_shared_ids.json` and is wired into `build_chains
 
 Two modes, one script, same output files:
 
-**Per-CVE mode** (default): For each CVE (reverse-chronological), fetches reference URLs (direct + Jina Reader fallback for JS pages), loads commit messages, sends everything to the LLM. Skips noisy domains by name. Prioritizes unknown/vendor pages > bug trackers > code repos > mailing lists. Caps at 15 URLs per CVE, skips URL content with 0 CVE mentions from the prompt. 200k chars total content budget (~50k tokens).
+**Per-CVE mode** (default): For each CVE (reverse-chronological), fetches reference URLs (direct + Jina Reader fallback for JS pages), loads commit messages, sends everything to the LLM. Skips noisy domains (SKIP_DOMAINS set). Prioritizes bug trackers > code repos > mailing lists > per-CVE pages > vendor advisories. Caps at 15 URLs per CVE, skips URL content with 0 CVE mentions from the prompt. 200k chars total content budget (~50k tokens).
 
 **Candidate mode** (`--candidates`): For T4 shared-ID pairs (5,032 pairs, newest first), fetches URLs for both CVEs, includes shared bug context.
 
-**Resumable across researchers**: `datasets/edges_t5_llm.json` is the single source of truth — stores edges, and lists of processed CVE IDs and candidate pairs. Re-running automatically skips already-processed items. Use `--cve` to force re-processing specific CVEs. Default `--limit 100`.
+**Parallel execution**: Default 20 workers (`--workers N`). Raises file descriptor limit to 10,240 at startup. Aborts if the first N results all fail (config error detection).
 
-Tracks token usage and cost per run (OpenRouter `usage` field). Full pipeline traces saved per CVE in `data/llm_cache/` and `output/t5_classifications.json`: CVE metadata, URLs selected/skipped with reasons, fetched content, full prompt, raw LLM response.
+**Model compatibility**: Tries `json_schema` structured output first, falls back to `json_object` mode for models that don't support strict schemas. Empty responses are handled gracefully.
+
+**Resumable across researchers**: `datasets/edges_t5_llm.json` is the single source of truth — stores edges, and lists of processed CVE IDs and candidate pairs. Re-running automatically skips already-processed items. Classifications with full reasoning exported to `datasets/t5_classifications.jsonl` (disable with `--no-export-classifications`). Use `--cve` to force re-processing specific CVEs. Default `--limit 100`.
+
+Tracks token usage and cost per run (OpenRouter `usage` field). Full pipeline traces saved per CVE in `data/llm_cache/` and `output/t5_classifications.json`.
