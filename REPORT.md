@@ -15,7 +15,7 @@ The pipeline runs in tiers, each adding new edges from progressively deeper sour
 | T2 | All JSON fields | Reference names, reference URLs, titles, ADP descriptions, legacy records |
 | T3 | Git commits | GitHub commit messages fetched via API (20,672 unique commits) |
 | T4 | Shared bug IDs | CVE pairs sharing Bugzilla/GitHub issue/PR references (weak signal) |
-| T5 | LLM classification | Per-CVE evidence (fetched URLs, commits) classified via OpenRouter |
+| T5 | LLM classification | Discovery (per-CVE) or verification (existing edges) via OpenRouter |
 | T6 | Variant phrases | Signal-phrase regex across all fields (88 patterns, 5 categories) |
 
 Every edge carries a provenance label (`t1_description`, `t2_ref_name`, `t3_commit`, etc.) so results can be filtered or audited by source. When multiple tiers find the same edge, all evidence is preserved.
@@ -26,43 +26,40 @@ Every edge carries a provenance label (`t1_description`, `t2_ref_name`, `t3_comm
 
 ### Cumulative results
 
-| Metric | T1 | +T2 | +T3 | +T4 | +T5 |
-|---|---|---|---|---|---|
-| New edges | 39,294 | +2,644 | +109 | +5,032 | +10 |
-| **Total edges** | **39,294** | **41,938** | **42,047** | **47,149** | **42,057*** |
-| Clusters | 5,653 | 6,128 | 6,164 | 7,139 | 6,172* |
-| CVEs in clusters | 15,125 (4.67%) | 16,947 (5.24%) | 17,067 (5.27%) | 20,085 (6.21%) | 17,085 (5.28%)* |
-| Largest cluster | 61 | 235 | 235 | 237 | 235* |
-| Deepest chain | 61 | 61 | 61 | 61 | 61* |
-| Corroborating edges | — | 37,853 | 34 | 216 | 7 |
+| Metric | T1 | +T2 | +T3 | +T4* | +T5 | +T6 |
+|---|---|---|---|---|---|---|
+| New edges | 39,294 | +2,644 | +109 | +5,102 | +8 | +0 |
+| **Total edges** | **39,294** | **41,938** | **42,047** | **47,149** | **47,157** | **47,157** |
+| Clusters | 5,653 | 6,128 | 6,164 | 7,139 | 7,144 | 7,144 |
+| CVEs in clusters | 15,125 (4.67%) | 16,947 (5.24%) | 17,067 (5.27%) | 20,085 (6.20%) | 20,097 (6.21%) | 20,097 (6.21%) |
+| Largest cluster | 61 | 235 | 235 | 237 | 237 | 237 |
+| Deepest chain | 61 | 61 | 61 | 61 | 61 | 61 |
 
-*T5 column shows T1+T2+T3+T5 (without T4 weak edges). The published
-T1+T2+T3+T5+T6 snapshot has the same 42,057 unique edges because every T6
-pair is already present in T1 or T2. T5 proof-of-concept: 531 CVEs and 362
-pairs classified so far.
+*T4 edges are weak structural signals (shared bug tracker IDs). T5 proof-of-concept: 531 CVEs and 362 pairs classified so far. T6 adds 0 new unique edges — all T6 pairs are already present in T1 or T2.
 
 ### T1: CNA descriptions (39,294 edges)
 
-Regex-matches CVE IDs in the primary CNA description field. This is the core dataset — when a CVE's description explicitly says "this is related to CVE-XXXX", that's a strong signal.
+Regex-matches CVE IDs in the primary CNA description field (`containers.cna.descriptions[].value`).
 
 ### T2: All JSON fields (+2,644 edges)
 
 Scans reference names, reference URLs, titles, ADP descriptions, and legacy records. Reference names (mailing list subjects like "[oss-security] CVE-2021-XXXX") are the biggest new source. T2 also found 37,853 corroborating edges — same edge as T1 but from a different field, giving 47% of tree nodes multi-source evidence.
 
-| Field | New edges |
-|---|---|
-| `references[].name` | 1,910 |
-| `references[].url` | 710 |
-| `title` | 21 |
-| `x_legacyV4Record` | 3 |
+| Field | New edges | Corroborating |
+|---|---|---|
+| `references[].name` | 1,910 | 151 |
+| `references[].url` | 710 | 70 |
+| `title` | 21 | 52 |
+| `x_legacyV4Record` | 3 | 37,579 |
+| `adp[].descriptions` | 0 | 1 |
 
 ### T3: GitHub commit messages (+109 edges)
 
 Fetched 20,672 unique commit messages via GitHub API. Developers write "fix for CVE-X" in commits but this text doesn't appear in CVE descriptions. 314 commits failed (deleted repos, force-pushed — HTTP 404/409/422). 110 commits contained published CVE cross-references. Dataset exported as `datasets/github_commits.jsonl` (21,765 records).
 
-### T4: Shared bug tracker IDs (+5,032 edges, weak signal)
+### T4: Shared bug tracker IDs (+5,102 edges, weak signal)
 
-Finds CVE pairs that reference the same Bugzilla bug, GitHub issue, or GitHub PR but never mention each other in text. These are structural links — same bug doesn't prove a variant relationship — but provide context for T5 LLM classification.
+Finds CVE pairs that reference the same Bugzilla bug, GitHub issue, or GitHub PR but never mention each other in text. These are structural links — same bug doesn't prove a variant relationship.
 
 | ID type | New edges |
 |---|---|
@@ -73,21 +70,19 @@ Finds CVE pairs that reference the same Bugzilla bug, GitHub issue, or GitHub PR
 
 ### T6: Variant-phrase search (36,387 edges: 3,207 positive + 33,180 negative)
 
-Searches all CVE text fields for specific phrases that indicate the nature of a cross-reference. Derived from a 140-sample edge taxonomy study that classified why CVEs reference each other (see `datasets/edge_taxonomy_report.md`). Uses 88 regex patterns across 5 categories.
+What does it mean that a CVE references another CVE? T6 searches all CVE text fields for specific phrases that indicate a relation, and the nature of it. An analysis of 140 samples inspired the use of this keyword patterns to classify why CVEs reference each other (see `datasets/edge_taxonomy_report.md`). Uses 88 regex patterns across 5 categories.
 
-| Category | Edges | Signal | Description |
-|---|---|---|---|
-| batch_disambiguation | 33,180 | Negative | "different vulnerability than" / "unique from" |
-| related_issue | 1,564 | Positive | "related issue to" / "similar to" / "variant of" / "differs from" / "SPLIT from" |
-| incomplete_fix | 857 | Positive | "insufficient fix" / "bypass" / "regression" / "re-introduced" |
-| same_or_duplicate | 616 | Positive | "same issue as" / "duplicate of" / "equivalent to" |
-| chained | 170 | Positive | "by exploiting" / "in conjunction with" / "leveraging" |
+| Category             | Edges  | Signal   | Description                                                                      |
+| -------------------- | ------ | -------- | -------------------------------------------------------------------------------- |
+| batch_disambiguation | 33,180 | Negative | "different vulnerability than" / "unique from"                                   |
+| related_issue        | 1,564  | Positive | "related issue to" / "similar to" / "variant of" / "differs from" / "SPLIT from" |
+| incomplete_fix       | 857    | Positive | "insufficient fix" / "bypass" / "regression" / "re-introduced"                   |
+| same_or_duplicate    | 616    | Positive | "same issue as" / "duplicate of" / "equivalent to"                               |
+| chained              | 170    | Positive | "by exploiting" / "in conjunction with" / "leveraging"                           |
 
 All unique positive T6 pairs already appear in T1 or T2, and 99%
 already appear in T1. T6 heuristically classifies a substantial portion of T1's 39,294 edges
-as noise or positive signal. The
-857 incomplete_fix edges represent the strongest heuristic variant
-signals in the dataset outside of T5 LLM classification.
+as noise or positive signal. The 857 incomplete_fix edges represent the strongest heuristic variant signals in the dataset outside of T5 LLM classification.
 
 ### Edge taxonomy study
 
@@ -182,45 +177,31 @@ We investigated whether vendor advisory pages contain CVE cross-references not f
 
 **Conclusion:** Vendor advisory pages largely mirror the same CNA description that T1 already scans. Structured advisory extraction does NOT find new edges. The unique vendor-authored text (impact statements, mitigation advice) does not typically contain CVE cross-references.
 
-
-## Evidence Coverage
-
-Of 323,709 published CVEs:
-
-| Bucket | Count | % |
-|---|---|---|
-| Direct evidence (T1/T2 edges) | 16,947 | 5.24% |
-| Candidate-only, broad (all structured IDs + T3) | 92,296 | 28.51% |
-| Candidate-only, default T4 (JIRA off) | 44,228 | 13.66% |
-| Discovery-only (no cross-references) | 214,466 | 66.25% |
-
-The broad candidate-only pool (28.51%) is an upper bound on indirect evidence. The practical default T4 queue is 44,228 CVEs (13.66%) once JIRA-only cases are excluded.
-
 ## Limitations
 
 1. **Explicit references only.** Many real variant relationships are never stated in CVE text or commit messages.
-2. **False positives.** A CVE mentioning another CVE may mean "discovered during same audit" rather than "variant of."
+2. **False positives.** A CVE mentioning another CVE may mean "discovered during same audit" rather than "variant of". In some cases, it means the opposite: "different from", although this is partly solved by T6 negative signals.
 3. **CNA bias.** Well-documented products (Adobe, Microsoft, Apache) are over-represented because their CNAs write cross-referencing descriptions.
 4. **Post-2020 gap.** Modern CVE descriptions rarely cross-reference prior CVEs (<1%), meaning recent variant chains are systematically missed by regex methods.
 
 ## T5: LLM Classification
 
-T5 feeds all available evidence per CVE (descriptions, fetched URL content, commit messages) to an LLM via OpenRouter and lets it identify variant relationships. This targets the 8 missed ground truth edges where no text or structural signal exists — only an analyst reading full context can find these.
+T5 feeds all available evidence per CVE (descriptions, fetched URL content, commit messages) to an LLM via OpenRouter and lets it identify variant relationships.
 
 Two modes:
-- **Per-CVE** (default): For each CVE, fetches reference URLs (direct + Jina Reader fallback for JS-rendered pages), loads commit messages, and asks the LLM to identify variant relationships. Skips noisy domains, prioritizes vendor pages and bug trackers, filters out URL content with 0 CVE mentions.
-- **Candidate pairs** (`--candidates`): For T4 shared-ID pairs, fetches URLs for both CVEs and includes the shared bug tracker context.
+- **Discovery** (default): For each CVE, fetches reference URLs (direct + Jina Reader fallback for JS-rendered pages), loads commit messages, and asks the LLM to identify variant relationships. Skips noisy domains, prioritizes bug trackers and code repos, filters out URL content with 0 CVE mentions.
+- **Verification** (`--verify`): Takes existing edges from any tier and asks the LLM to confirm or reclassify them. Fetches URLs for both CVEs and includes the original evidence context.
 
 ### Proof-of-concept results (531 CVEs, 362 pairs)
 
-| Metric | Value |
-|---|---|
-| CVEs classified | 531 |
-| Candidate pairs classified | 362 |
-| New edges (beyond T1-T3) | 10 |
-| Corroborating edges | 7 |
-| Model | x-ai/grok-4.1-fast |
-| Cost | ~$0.06 per 100 CVEs |
+| Metric                     | Value               |
+| -------------------------- | ------------------- |
+| CVEs processed             | 531                 |
+| Pairs processed            | 362                 |
+| New edges (beyond T1-T3)   | 10                  |
+| Corroborating edges        | 7                   |
+| Model                      | x-ai/grok-4.1-fast  |
+| Cost                       | ~$0.06 per 100 CVEs |
 
 Example new edges found by T5:
 - **CVE-2026-33732 → CVE-2026-33131** (bypass): "This is a bypass of CVE-2026-33131"
@@ -231,22 +212,22 @@ Example new edges found by T5:
 
 ## Outputs
 
-| File | Description |
-|---|---|
-| `output/parsed_cves.json` | Full parsed corpus (all published CVEs with parsed metadata) |
-| `output/edges_t1_description.json` | T1 edges with provenance |
-| `output/edges_t2_allfields.json` | T2 edges (new + corroborating, deduplicated against T1) |
-| `output/edges_t3_commits.json` | T3 edges from GitHub commit messages |
-| `output/edges_t4_shared_ids.json` | T4 edges from shared bug tracker IDs (weak signal) |
-| `output/edges_t6_variant_phrases.json` | T6 edges with signal-phrase categories and matched patterns |
-| `datasets/edges_t5_llm.json` | Cumulative T5 edges + processed CVE/pair tracking (git-tracked) |
-| `datasets/t5_classifications.jsonl` | Cumulative T5 classifications with full reasoning (git-tracked) |
-| `datasets/github_commits.jsonl` | Researcher-friendly dataset: CVE-to-commit-message mapping |
-| `output/t5_classifications.json` | Per-run T5 audit artifact with full pipeline traces |
-| `output/cve_references.json` | Reference-graph subset (only CVEs involved in T1 description edges) |
-| `output/variant_chains.json` | Tree-structured chains with per-edge evidence lists |
-| `output/edge_graph.json` | Raw flat edge list with all evidence (for auditing) |
-| `output/reference_index.json` | Structured index of all 1.1M reference URLs with domain taxonomy |
-| `output/reference_analysis.json` | Domain/tag distribution analysis |
-| `output/stats.json` | Parsing statistics and year-by-year breakdown |
-| `output/validation_results.json` | Ground truth validation results |
+| File                                   | Description                                                         |
+| -------------------------------------- | ------------------------------------------------------------------- |
+| `output/parsed_cves.json`              | Full parsed corpus (all published CVEs with parsed metadata)        |
+| `output/edges_t1_description.json`     | T1 edges with provenance                                            |
+| `output/edges_t2_allfields.json`       | T2 edges (new + corroborating, deduplicated against T1)             |
+| `output/edges_t3_commits.json`         | T3 edges from GitHub commit messages                                |
+| `output/edges_t4_shared_ids.json`      | T4 edges from shared bug tracker IDs (weak signal)                  |
+| `output/edges_t6_variant_phrases.json` | T6 edges with signal-phrase categories and matched patterns         |
+| `datasets/edges_t5_llm.json`           | Cumulative T5 edges + processed CVE/pair tracking (git-tracked)     |
+| `datasets/t5_classifications.jsonl`    | Cumulative T5 classifications with full reasoning (git-tracked)     |
+| `datasets/github_commits.jsonl`        | Researcher-friendly dataset: CVE-to-commit-message mapping          |
+| `output/t5_classifications.json`       | Per-run T5 audit artifact with full pipeline traces                 |
+| `output/cve_references.json`           | Reference-graph subset (only CVEs involved in T1 description edges) |
+| `output/variant_chains.json`           | Tree-structured chains with per-edge evidence lists                 |
+| `output/edge_graph.json`               | Raw flat edge list with all evidence (for auditing)                 |
+| `output/reference_index.json`          | Structured index of all 1.1M reference URLs with domain taxonomy    |
+| `output/reference_analysis.json`       | Domain/tag distribution analysis                                    |
+| `output/stats.json`                    | Parsing statistics and year-by-year breakdown                       |
+| `output/validation_results.json`       | Ground truth validation results                                     |

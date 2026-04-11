@@ -10,7 +10,7 @@ This project discovers candidate CVE variant chains by extracting CVE-to-CVE ref
 - T2 scans additional JSON fields such as reference names, URLs, titles, ADP descriptions, and legacy fields.
 - T3 scans GitHub commit messages linked from CVE references.
 - T4 finds weak structural links from shared Bugzilla/GitHub issue/PR IDs.
-- T5 uses an LLM to classify variant relationships from fetched evidence.
+- T5 uses an LLM in two modes: discovery (find new relationships per CVE) and verification (confirm/reclassify existing edges from any tier).
 - T6 searches for specific signal phrases ("insufficient fix", "bypass", "regression", "in conjunction with") that indicate the nature of a cross-reference. Produces both positive and negative signal.
 
 Important interpretation rules:
@@ -31,6 +31,7 @@ uv run python build_reference_index.py
 uv run python parse_commits_t3.py --sample 50
 uv run python find_shared_ids_t4.py
 uv run python classify_variants_t5.py --dry-run
+uv run python classify_variants_t5.py --verify --dry-run
 uv run python find_variant_phrases_t6.py
 uv run python build_chains.py                    # auto-includes all completed tiers
 uv run python validate.py

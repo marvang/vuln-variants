@@ -871,11 +871,11 @@ class TestFindSharedIdsT4:
 
 class TestClassifyVariantsT5:
 
-    def test_load_t4_candidates_dedups_new_edges_only(self, tmp_path, monkeypatch):
+    def test_load_verification_edges_dedups_and_spans_tiers(self, tmp_path, monkeypatch):
         import classify_variants_t5 as t5
 
-        path = tmp_path / "edges_t4_shared_ids.json"
-        path.write_text(json.dumps({
+        t4_path = tmp_path / "edges_t4_shared_ids.json"
+        t4_path.write_text(json.dumps({
             "edges": [
                 {"source": "CVE-B", "target": "CVE-A",
                  "found_in": "t4_shared_bugzilla", "context": "shared Bugzilla #7"},
@@ -887,16 +887,23 @@ class TestClassifyVariantsT5:
                  "found_in": "t4_shared_bugzilla", "context": "old"},
             ],
         }))
-        monkeypatch.setattr(t5, "T4_EDGES_PATH", path)
+        t1_path = tmp_path / "edges_t1_description.json"
+        t1_path.write_text(json.dumps({
+            "edges": [
+                {"source": "CVE-X", "target": "CVE-Y",
+                 "found_in": "t1_description", "context": "fix for CVE-Y"},
+            ],
+        }))
+        monkeypatch.setattr(t5, "TIER_FILES", {
+            "1": t1_path,
+            "4": t4_path,
+        })
 
-        candidates = t5.load_t4_candidates()
+        candidates = t5.load_verification_edges(["4", "1"])
 
-        assert candidates == [{
-            "cve_a": "CVE-A",
-            "cve_b": "CVE-B",
-            "found_in": "t4_shared_bugzilla",
-            "context": "shared Bugzilla #7",
-        }]
+        pairs = {(c["cve_a"], c["cve_b"]) for c in candidates}
+        assert pairs == {("CVE-A", "CVE-B"), ("CVE-X", "CVE-Y")}
+        assert len(candidates) == 2
 
     def test_build_candidate_prompt_includes_descriptions_and_context(self):
         from classify_variants_t5 import build_candidate_prompt

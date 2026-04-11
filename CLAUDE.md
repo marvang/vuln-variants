@@ -27,11 +27,12 @@ uv run python find_shared_ids_t4.py --include-jira  # Include noisy JIRA matches
 uv run python build_chains.py                    # Rebuild graph
 
 # T5: LLM classification (needs OPENROUTER_API_KEY)
-uv run python classify_variants_t5.py                          # Per-CVE, default 100 CVEs
+uv run python classify_variants_t5.py                          # Discovery mode, default 100 CVEs
 uv run python classify_variants_t5.py --limit 10               # Quick test on 10 CVEs
 uv run python classify_variants_t5.py --limit 0                # All CVEs (expensive)
 uv run python classify_variants_t5.py --cve CVE-2021-45046     # Specific CVE(s)
-uv run python classify_variants_t5.py --candidates             # Candidate pair mode (T4)
+uv run python classify_variants_t5.py --verify                 # Verify edges from all tiers
+uv run python classify_variants_t5.py --verify --tiers 1,6     # Verify only T1+T6 edges
 uv run python classify_variants_t5.py --workers 50             # More parallel threads (default 20)
 uv run python classify_variants_t5.py --dry-run                # Count items, no API calls
 uv run python build_chains.py                                  # Rebuild graph
@@ -118,7 +119,7 @@ The raw graph (`edge_graph.json`) preserves all edges with all evidence before t
 - `find_shared_ids_t4.group_by_shared_id(refs, enabled_types)` — groups CVEs by shared bug tracker ID
 - `find_shared_ids_t4.format_context(key)` — renders human-readable shared-ID context
 - `classify_variants_t5.classify_per_cve(cve_id, ...)` — per-CVE classification with full trace
-- `classify_variants_t5.classify_candidate(candidate, ...)` — candidate pair classification with full trace
+- `classify_variants_t5.classify_candidate(candidate, ...)` — verification pair classification with full trace
 - `classify_variants_t5.select_urls(refs)` — URL selection with skip/priority logic
 - `classify_variants_t5.fetch_url(url)` — direct fetch + Jina Reader fallback, cached
 - `classify_variants_t5._llm_call(client, model, messages, schema)` — json_schema with json_object fallback
@@ -144,27 +145,27 @@ Files are at `data/cvelistV5/cves/{year}/{id_bucket}/CVE-{year}-{id}.json` where
 
 Vendor advisory pages (Red Hat API, Debian tracker, Cisco) mirror the same CNA description text that T1 already scans. Structured advisory extraction does NOT find new edges. GitHub commit messages are the best untapped source — developers write "fix for CVE-X" in commits but that text doesn't make it into CVE descriptions.
 
-### T4 shared-ID candidates
+### T4 shared-ID edges
 
 `find_shared_ids_t4.py` generates weak-signal edges from CVEs sharing the same Bugzilla bug, GitHub issue, or GitHub PR. These are structural links, not proof of a variant relationship.
 
 Default ID types: `bugzilla`, `github_issue`, `github_pr`. JIRA is disabled by default because the current extracted JIRA keys are still noisy.
 
-Output goes to `output/edges_t4_shared_ids.json` and is wired into `build_chains.py` as opt-in tier `4`.
+Output goes to `output/edges_t4_shared_ids.json` and is auto-included by `build_chains.py` when present (use `--tiers` to exclude).
 
 ### T5 LLM classification
 
 Two modes, one script, same output files:
 
-**Per-CVE mode** (default): For each CVE (reverse-chronological), fetches reference URLs (direct + Jina Reader fallback for JS pages), loads commit messages, sends everything to the LLM. Skips noisy domains (SKIP_DOMAINS set). Prioritizes bug trackers > code repos > mailing lists > per-CVE pages > vendor advisories. Caps at 15 URLs per CVE, skips URL content with 0 CVE mentions from the prompt. 200k chars total content budget (~50k tokens).
+**Discovery mode** (default): For each CVE (reverse-chronological), fetches reference URLs (direct + Jina Reader fallback for JS pages), loads commit messages, sends everything to the LLM. Skips noisy domains (SKIP_DOMAINS set). Prioritizes bug trackers > vendor-specific pages > code repos > mailing lists > per-CVE pages > third-party advisories. Caps at 15 URLs per CVE, skips URL content with 0 CVE mentions from the prompt. 200k chars total content budget (~50k tokens).
 
-**Candidate mode** (`--candidates`): For T4 shared-ID pairs (5,032 pairs, newest first), fetches URLs for both CVEs, includes shared bug context.
+**Verification mode** (`--verify`): Takes existing edges from other tiers and asks the LLM to confirm or reclassify them. Fetches URLs for both CVEs, includes the original evidence context. Use `--tiers` to select which tiers' edges to verify (default: all available non-T5 tiers).
 
 **Parallel execution**: Default 20 workers (`--workers N`). Raises file descriptor limit to 10,240 at startup. Aborts if the first N results all fail (config error detection).
 
 **Model compatibility**: Tries `json_schema` structured output first, falls back to `json_object` mode for models that don't support strict schemas. Empty responses are handled gracefully.
 
-**Resumable across researchers**: `datasets/edges_t5_llm.json` is the single source of truth — stores edges, and lists of processed CVE IDs and candidate pairs. Re-running automatically skips already-processed items. Classifications with full reasoning exported to `datasets/t5_classifications.jsonl` (disable with `--no-export-classifications`). Use `--cve` to force re-processing specific CVEs. Default `--limit 100`.
+**Resumable across researchers**: `datasets/edges_t5_llm.json` is the single source of truth — stores edges, and lists of processed CVE IDs and verified pairs. Re-running automatically skips already-processed items. Classifications with full reasoning exported to `datasets/t5_classifications.jsonl` (disable with `--no-export-classifications`). Use `--cve` to force re-processing specific CVEs. Default `--limit 100`.
 
 Tracks token usage and cost per run (OpenRouter `usage` field). Full pipeline traces saved per CVE in `data/llm_cache/` and `output/t5_classifications.json`.
 

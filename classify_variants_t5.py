@@ -2,16 +2,17 @@
 Tier 5: LLM classification of CVE variants via OpenRouter.
 
 Two modes:
-  Per-CVE (default): For each CVE, fetch reference URLs, load commit messages,
+  Discovery (default): For each CVE, fetch reference URLs, load commit messages,
   and ask the LLM whether this CVE is a variant of any other CVE.
 
-  Candidate (--candidates): For T4 shared-ID pairs, load both CVEs' evidence
-  and ask the LLM to classify the pair.
+  Verification (--verify): Take existing edges from other tiers and ask the LLM
+  to confirm or reclassify them. Accepts edges from any tier via --tiers.
 
 Usage:
-  uv run python classify_variants_t5.py              # per-CVE mode, all CVEs
+  uv run python classify_variants_t5.py              # discovery mode, default 100 CVEs
   uv run python classify_variants_t5.py --limit 100  # first 100 CVEs
-  uv run python classify_variants_t5.py --candidates  # candidate pair mode
+  uv run python classify_variants_t5.py --verify     # verify edges from all available tiers
+  uv run python classify_variants_t5.py --verify --tiers 1,6  # verify only T1+T6 edges
   uv run python classify_variants_t5.py --dry-run    # count, no API/fetch calls
 """
 
@@ -42,7 +43,6 @@ except ImportError:
 
 OUTPUT_DIR = Path("output")
 DATASETS_DIR = Path("datasets")
-T4_EDGES_PATH = OUTPUT_DIR / "edges_t4_shared_ids.json"
 PARSED_CVES_PATH = OUTPUT_DIR / "parsed_cves.json"
 REFERENCE_INDEX_PATH = OUTPUT_DIR / "reference_index.json"
 COMMIT_CACHE_DIR = Path("data/commit_cache")
@@ -50,7 +50,15 @@ URL_CACHE_DIR = Path("data/url_cache")
 LLM_CACHE_DIR = Path("data/llm_cache")
 T5_EDGES_DATASET = DATASETS_DIR / "edges_t5_llm.json"
 T5_CLASSIFICATIONS_DATASET = DATASETS_DIR / "t5_classifications.jsonl"
-PROMPT_VERSION = "t5_v2"
+PROMPT_VERSION = "t5_v3"
+
+TIER_FILES = {
+    "1": OUTPUT_DIR / "edges_t1_description.json",
+    "2": OUTPUT_DIR / "edges_t2_allfields.json",
+    "3": OUTPUT_DIR / "edges_t3_commits.json",
+    "4": OUTPUT_DIR / "edges_t4_shared_ids.json",
+    "6": OUTPUT_DIR / "edges_t6_variant_phrases.json",
+}
 
 POSITIVE_LABELS = {
     "incomplete_fix",
@@ -206,13 +214,17 @@ describes a variant-like relationship (fix for, bypass of, regression of, etc.).
 - Be conservative — if the evidence is thin or ambiguous, do not report a relationship.
 """
 
-CANDIDATE_SYSTEM_PROMPT = """\
+VERIFY_SYSTEM_PROMPT = """\
 You are a cybersecurity vulnerability analyst specializing in CVE variant chain detection.
 
-Given two CVEs that share a bug tracker reference, plus all available evidence for both, \
-decide whether they have a variant-like relationship. A variant-like relationship means \
-one CVE is a failed fix, bypass, regression, or closely related follow-on vulnerability \
-to the other.
+Given two CVEs that were linked by automated analysis, plus all available evidence for \
+both, decide whether they have a variant-like relationship. A variant-like relationship \
+means one CVE is a failed fix, bypass, regression, or closely related follow-on \
+vulnerability to the other.
+
+The "Why this pair was selected" section tells you how the pair was originally identified \
+(e.g., regex match in a description, shared bug tracker ID, signal-phrase match). Use \
+this as context, but evaluate the full evidence independently.
 
 Allowed relationship labels:
 - incomplete_fix, bypass, regression, same_vuln_class, different_attack_path, variant_technique
@@ -328,26 +340,44 @@ def load_commit_messages(refs_by_cve=None):
     return dict(cve_commits)
 
 
-def load_t4_candidates():
-    """Load T4 shared-ID edges as candidate pairs (skip corroborating)."""
-    if not T4_EDGES_PATH.exists():
-        print(f"Error: {T4_EDGES_PATH} not found. Run find_shared_ids_t4.py first.")
+def load_verification_edges(tiers=None):
+    """Load edges from specified tiers as verification pairs.
+
+    Args:
+        tiers: List of tier numbers (strings). None = auto-detect all available.
+
+    Returns list of dicts with cve_a, cve_b, found_in, context.
+    """
+    if tiers is None:
+        tiers = [t for t, path in sorted(TIER_FILES.items()) if path.exists()]
+
+    if not tiers:
+        print("Error: No tier files found for verification.")
         sys.exit(1)
-    with open(T4_EDGES_PATH) as f:
-        data = json.load(f)
+
     seen = set()
     candidates = []
-    for edge in data.get("edges", []):
-        pair = tuple(sorted((edge["source"], edge["target"])))
-        if pair in seen:
+    for tier in tiers:
+        path = TIER_FILES.get(tier)
+        if not path or not path.exists():
+            print(f"  Skipping tier {tier} (file not found)")
             continue
-        seen.add(pair)
-        candidates.append({
-            "cve_a": pair[0],
-            "cve_b": pair[1],
-            "found_in": edge.get("found_in", "t4_shared_ids"),
-            "context": edge.get("context", ""),
-        })
+        with open(path) as f:
+            data = json.load(f)
+        tier_count = 0
+        for edge in data.get("edges", []):
+            pair = tuple(sorted((edge["source"], edge["target"])))
+            if pair in seen:
+                continue
+            seen.add(pair)
+            candidates.append({
+                "cve_a": pair[0],
+                "cve_b": pair[1],
+                "found_in": edge.get("found_in", f"t{tier}"),
+                "context": edge.get("context", ""),
+            })
+            tier_count += 1
+        print(f"  T{tier}: {tier_count:,} unique pairs")
     return candidates
 
 
@@ -673,7 +703,7 @@ def _llm_cache_key(cve_id, model, mode="per_cve"):
 
 
 def _llm_cache_key_pair(cve_a, cve_b, model):
-    canonical = f"{min(cve_a, cve_b)}|{max(cve_a, cve_b)}|{model}|candidate|{PROMPT_VERSION}"
+    canonical = f"{min(cve_a, cve_b)}|{max(cve_a, cve_b)}|{model}|verify|{PROMPT_VERSION}"
     return hashlib.sha256(canonical.encode()).hexdigest()
 
 
@@ -751,7 +781,7 @@ def build_per_cve_prompt(cve_id, cve_data, url_contents, commit_messages):
     ]
 
 
-# --- Prompting: candidate mode ---
+# --- Prompting: verification mode ---
 
 def build_candidate_prompt(candidate, cve_data, url_contents_a, url_contents_b,
                            commits_a, commits_b):
@@ -791,11 +821,20 @@ def build_candidate_prompt(candidate, cve_data, url_contents_a, url_contents_b,
         _append_url_contents(parts, url_contents_b, MAX_TOTAL_CONTENT - used_a, prefix="  ")
 
     parts.append("\n== Why this pair was selected ==")
-    parts.append(candidate.get("context", "Shared external reference"))
+    found_in = candidate.get("found_in", "")
+    context = candidate.get("context", "")
+    if found_in and context:
+        parts.append(f"[{found_in}] {context}")
+    elif context:
+        parts.append(context)
+    elif found_in:
+        parts.append(f"Linked by {found_in}")
+    else:
+        parts.append("Linked by automated analysis")
 
     user_content = "\n".join(parts)
     return [
-        {"role": "system", "content": CANDIDATE_SYSTEM_PROMPT},
+        {"role": "system", "content": VERIFY_SYSTEM_PROMPT},
         {"role": "user", "content": user_content},
     ]
 
@@ -1040,7 +1079,7 @@ def classify_per_cve(cve_id, cve_data, refs_by_cve, commits_by_cve, model, clien
     return cve_id, variants, False, trace, usage
 
 
-# --- Candidate classification ---
+# --- Verification classification ---
 
 def classify_candidate(candidate, cve_data, refs_by_cve, commits_by_cve, model, client):
     """Classify a candidate pair: fetch URLs for both, build prompt, call LLM.
@@ -1241,12 +1280,17 @@ def run_per_cve(args, cve_data, refs_by_cve, commits_by_cve, model, client):
         append_classifications(all_classifications, "per_cve")
 
 
-# --- Main: candidate mode ---
+# --- Main: verification mode ---
 
-def run_candidates(args, cve_data, refs_by_cve, commits_by_cve, model, client):
-    """Run candidate pair classification on T4 pairs, newest first."""
+def run_verify(args, cve_data, refs_by_cve, commits_by_cve, model, client):
+    """Verify edges from other tiers via LLM, newest first."""
     ds_edges, ds_corr, ds_cves, ds_pairs = load_dataset()
-    candidates = load_t4_candidates()
+
+    verify_tiers = None
+    if args.tiers:
+        verify_tiers = [t.strip() for t in args.tiers.split(",")]
+    print("Loading edges for verification:")
+    candidates = load_verification_edges(verify_tiers)
     candidates.sort(
         key=lambda c: max(
             cve_data.get(c["cve_a"], {}).get("published", "") or "",
@@ -1263,7 +1307,7 @@ def run_candidates(args, cve_data, refs_by_cve, commits_by_cve, model, client):
     ]
     if before != len(candidates):
         print(f"Skipping {before - len(candidates):,} already-processed pairs")
-    print(f"Loaded {len(candidates):,} candidate pairs from T4")
+    print(f"{len(candidates):,} pairs to verify")
 
     if args.limit:
         candidates = candidates[:args.limit]
@@ -1345,7 +1389,7 @@ def run_candidates(args, cve_data, refs_by_cve, commits_by_cve, model, client):
                 pbar.update(1)
 
     _write_outputs(all_new_edges, all_corroborating, all_classifications,
-                   cached_count, api_count, model, "candidate", total_usage)
+                   cached_count, api_count, model, "verify", total_usage)
 
     merge_into_dataset(ds_edges, ds_corr, all_new_edges, all_corroborating)
     ds_pairs.update(
@@ -1354,7 +1398,7 @@ def run_candidates(args, cve_data, refs_by_cve, commits_by_cve, model, client):
     save_dataset(ds_edges, ds_corr, ds_cves, ds_pairs, model)
 
     if not args.no_export_classifications:
-        append_classifications(all_classifications, "candidate")
+        append_classifications(all_classifications, "verify")
 
 
 # --- Output ---
@@ -1452,9 +1496,11 @@ def main():
     parser.add_argument("--limit", type=int, default=100,
                         help="Process first N CVEs/pairs (default: 100, 0 = all)")
     parser.add_argument("--cve", type=str, default="",
-                        help="Comma-separated CVE IDs to classify")
-    parser.add_argument("--candidates", action="store_true",
-                        help="Candidate pair mode (T4 pairs) instead of per-CVE")
+                        help="Comma-separated CVE IDs to classify (discovery mode)")
+    parser.add_argument("--verify", action="store_true",
+                        help="Verify edges from other tiers instead of discovery")
+    parser.add_argument("--tiers", type=str, default=None,
+                        help="Tiers to verify (default: all available). Only used with --verify")
     parser.add_argument("--dry-run", action="store_true", help="Count items, no API/fetch calls")
     parser.add_argument("--no-export-classifications", action="store_true",
                         help="Skip exporting full classifications to datasets/ (saves space)")
@@ -1481,8 +1527,8 @@ def main():
         from openai import OpenAI
         client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=api_key)
 
-    if args.candidates:
-        run_candidates(args, cve_data, refs_by_cve, commits_by_cve, args.model, client)
+    if args.verify:
+        run_verify(args, cve_data, refs_by_cve, commits_by_cve, args.model, client)
     else:
         run_per_cve(args, cve_data, refs_by_cve, commits_by_cve, args.model, client)
 

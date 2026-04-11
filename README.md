@@ -12,14 +12,30 @@ IDs, LLM classification via OpenRouter, and targeted heuristic signal-phrase ext
 
 ## Table of contents
 
+- [How it works](#how-it-works)
 - [Setup](#setup)
-- [Usage](#usage) — T1 through T6 pipeline, validation, analysis tools
-- [Output](#output) — generated artifacts and datasets
-- [Tests and linting](#tests-and-linting)
-- [How it works](#how-it-works) — tier architecture and key findings
-- [Evidence coverage](#evidence-coverage)
-- [T5 cost and yield projections](#t5-cost-and-yield-projections)
+- [Usage](#usage)
+- [Output](#output)
 - [Future work](#future-work)
+
+## How it works
+
+Each tier scans progressively deeper fields in the CVE JSON records:
+
+| Tier | Source | Fields |
+|---|---|---|
+| T1 | Description | `containers.cna.descriptions` |
+| T2 | All fields | Reference names/URLs, titles, ADP descriptions, legacy records |
+| T3 | Git commits | GitHub commit messages fetched via API |
+| T4 | Shared bug IDs | CVE pairs sharing Bugzilla/GitHub issue/PR (weak signal) |
+| T5 | LLM classification | Discovery (per-CVE) or verification (existing edges) via OpenRouter |
+| T6 | Variant phrases | Signal-phrase regex: "insufficient fix", "bypass", "regression", "in conjunction with", etc. |
+
+Every edge is tagged with its source (`t1_description`, `t2_ref_name`, `t3_commit`, etc.) and multiple tiers finding the same edge produces multiple evidence entries.
+
+`build_chains.py` outputs both tree-structured chains (`variant_chains.json`) and a raw flat edge graph (`edge_graph.json`) for auditing.
+
+See [REPORT.md](REPORT.md) for full results and statistics.
 
 ## Setup
 
@@ -115,71 +131,24 @@ uv run python build_chains.py --tiers 1,2 --min-size 3
 
 ## Output
 
-Generated pipeline artifacts go to `output/`. Frozen release snapshots go to `datasets/releases/`. Other exported datasets stay in `datasets/`:
+Published release snapshot in `datasets/releases/2026-04-11/`:
 
-- `datasets/releases/2026-04-11/variant_chains.json` -- frozen published snapshot of the tree-structured chains (T1+T2+T3+T5+T6)
-- `datasets/releases/2026-04-11/edge_graph.json` -- frozen published snapshot of the flat edge graph
-- `datasets/releases/2026-04-11/manifest.json` -- release metadata, provenance, file hashes, and summary counts
-- `output/variant_chains.json` -- live tree-structured chains with per-edge evidence lists
-- `output/edge_graph.json` -- live raw flat edge list with all evidence (for auditing)
-- `output/parsed_cves.json` -- full parsed corpus for all published CVEs
-- `output/edges_t1_description.json` -- T1 edges
-- `output/edges_t2_allfields.json` -- T2 edges (new + corroborating, deduplicated against T1)
-- `output/edges_t3_commits.json` -- T3 edges from GitHub commit messages
-- `output/edges_t4_shared_ids.json` -- T4 edges from shared bug tracker IDs (weak signal)
-- `output/edges_t6_variant_phrases.json` -- T6 edges with signal-phrase categories and matched patterns
-- `output/t5_classifications.json` -- per-run T5 audit artifact (all classifications with traces)
-- `datasets/edges_t5_llm.json` -- cumulative T5 edges + processed CVE/pair tracking (git-tracked)
-- `datasets/t5_classifications.jsonl` -- cumulative T5 classifications with full reasoning (git-tracked)
-- `datasets/github_commits.jsonl` -- researcher-friendly dataset linking CVEs to commit messages
-- `datasets/edge_taxonomy_report.md` -- 140-sample edge taxonomy: why CVEs reference each other
-- `datasets/edge_classifications.json` -- all 140 per-edge classifications with reasoning
-- `datasets/edge_samples.json` -- the 140 sampled edges used in the taxonomy study
-- `output/cve_references.json` -- graph-only subset used for reference-graph inspection
-- `output/reference_index.json` -- structured index of all 1.1M reference URLs
-- `output/reference_analysis.json` -- domain/tag distribution analysis
-- `output/evidence_coverage.json` -- corpus coverage split (direct / candidate / discovery)
-- `output/stats.json` -- parsing statistics
-- `output/validation_results.json` -- ground truth comparison
+- `variant_chains.json` -- tree-structured chains with per-edge evidence lists
+- `edge_graph.json` -- flat edge list with all evidence (for auditing)
+- `manifest.json` -- release metadata, file hashes, and summary counts
 
-## Tests and linting
+Key datasets in `datasets/`:
 
-```bash
-uv run pytest -v
-uv run ruff check .
-uv run mypy *.py
-```
+- `github_commits.jsonl` -- CVE-to-commit-message mapping (21,765 records)
+- `edge_taxonomy_report.md` -- 140-sample study: why CVEs reference each other
+- `edges_t5_llm.json` -- cumulative T5 LLM edges and processed tracking
 
-## How it works
+Live pipeline outputs go to `output/` (one edges file per tier, plus chain/graph rebuilds). See `CLAUDE.md` for the full file list.
 
-Each tier scans progressively deeper fields in the CVE JSON records:
-
-| Tier | Source | Fields |
-|---|---|---|
-| T1 | Description | `containers.cna.descriptions` |
-| T2 | All fields | Reference names/URLs, titles, ADP descriptions, legacy records |
-| T3 | Git commits | GitHub commit messages fetched via API |
-| T4 | Shared bug IDs | CVE pairs sharing Bugzilla/GitHub issue/PR (weak signal) |
-| T5 | LLM classification | Per-CVE URL fetching + LLM, or T4 candidate pairs via OpenRouter |
-| T6 | Variant phrases | Signal-phrase regex: "insufficient fix", "bypass", "regression", "in conjunction with", etc. |
-
-Every edge is tagged with its source (`t1_description`, `t2_ref_name`, `t3_commit`, etc.) and multiple tiers finding the same edge produces multiple evidence entries.
-
-`build_chains.py` outputs both tree-structured chains (`variant_chains.json`) and a raw flat edge graph (`edge_graph.json`) for auditing.
-
-### Key finding
-
-Vendor advisory pages (Red Hat, Debian, Cisco) largely mirror the same CNA description that T1 already scans — structured advisory extraction does not find new edges. GitHub commit messages are the most promising untapped source: developers write "fix for CVE-X" in commits but this text doesn't make it into CVE descriptions.
-
-See [REPORT.md](REPORT.md) for full results and statistics.
-
-## Evidence coverage
-
-Of 323,709 published CVEs, 5.24% have direct regex evidence (T1/T2), 13.66% are in the default T4 candidate pool, and 66.25% have no cross-references. See [REPORT.md](REPORT.md) for full coverage breakdown and T5 cost projections.
 
 ## Future work
 
-1. **Scale T5** — classify more CVEs (531/323k done), target ground truth gaps
+1. **Scale T5** — classify and verify more CVE variants (531/323k done)
 2. **Expand precision evaluation** — 140-sample taxonomy done (see `datasets/edge_taxonomy_report.md`), scale to 1,000+ samples
 3. **Expand ground truth** with additional curated variant chains
 4. **Visualizations** — interactive chain explorer, timeline views, and tier contribution diagrams
