@@ -283,6 +283,24 @@ class TestBuildTree:
         assert child["evidence"][1]["found_in"] == "t4_advisory_redhat"
 
 
+class TestStableOrdering:
+
+    def test_select_component_roots_breaks_equal_date_ties_by_cve_id(self):
+        cve_data = {
+            "CVE-2015-8057": {"published": "2015-10-01T00:00:00.000Z", "description": ""},
+            "CVE-2015-8423": {"published": "2015-10-01T00:00:00.000Z", "description": ""},
+        }
+        component = {"CVE-2015-8423", "CVE-2015-8057"}
+        parents = {
+            "CVE-2015-8057": {"CVE-2015-8423"},
+            "CVE-2015-8423": {"CVE-2015-8057"},
+        }
+
+        roots = build_chains.select_component_roots(component, parents, cve_data)
+
+        assert roots == ["CVE-2015-8057"]
+
+
 class TestMetadataAndValidationHelpers:
 
     def test_load_cve_metadata_prefers_full_parsed_corpus(self, tmp_path, monkeypatch):
@@ -384,6 +402,93 @@ class TestMetadataAndValidationHelpers:
 
         edges, _ = validate.extract_detected_edges(chains_data, tmp_path)
         assert ("CVE-2021-44228", "CVE-2021-45046") in edges
+
+
+class TestVariantPhrasesT6:
+
+    def test_related_issue_keeps_full_cve_ids_and_list_targets(self):
+        import find_variant_phrases_t6 as t6
+
+        data = {
+            "containers": {
+                "cna": {
+                    "descriptions": [
+                        {
+                            "lang": "en",
+                            "value": (
+                                "This is a related issue to CVE-2017-9800, CVE-2017-12836, "
+                                "CVE-2017-12976, and CVE-2017-1000116."
+                            ),
+                        }
+                    ]
+                }
+            }
+        }
+
+        edges = t6.find_variant_phrases("CVE-2017-14176", data)
+
+        assert {
+            (edge["target"], edge["category"])
+            for edge in edges
+        } == {
+            ("CVE-2017-9800", "related_issue"),
+            ("CVE-2017-12836", "related_issue"),
+            ("CVE-2017-12976", "related_issue"),
+            ("CVE-2017-1000116", "related_issue"),
+        }
+
+    def test_variant_of_does_not_capture_unrelated_later_cve(self):
+        import find_variant_phrases_t6 as t6
+
+        data = {
+            "containers": {
+                "cna": {
+                    "descriptions": [
+                        {
+                            "lang": "en",
+                            "value": (
+                                "This issue is a variant of CVE-2005-0688 and a reoccurrence "
+                                "of the Land vulnerability (CVE-1999-0016)."
+                            ),
+                        }
+                    ]
+                }
+            }
+        }
+
+        edges = t6.find_variant_phrases("CVE-2005-1649", data)
+
+        assert [(edge["target"], edge["category"]) for edge in edges] == [
+            ("CVE-2005-0688", "related_issue")
+        ]
+
+    def test_incomplete_fix_fallback_finds_target_outside_match_span(self):
+        import find_variant_phrases_t6 as t6
+
+        data = {
+            "containers": {
+                "cna": {
+                    "descriptions": [
+                        {
+                            "lang": "en",
+                            "value": (
+                                "This vulnerability exists because of an incomplete fix "
+                                "for CVE-2017-14152."
+                            ),
+                        }
+                    ]
+                }
+            }
+        }
+
+        edges = t6.find_variant_phrases("CVE-2017-14176", data)
+
+        assert {
+            (edge["target"], edge["category"])
+            for edge in edges
+        } == {
+            ("CVE-2017-14152", "incomplete_fix")
+        }
 
 
 class TestT3RetryBound:

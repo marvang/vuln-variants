@@ -1,0 +1,1268 @@
+{
+  "t1": [
+    {
+      "idx": 1,
+      "source": "CVE-2014-1289",
+      "target": "CVE-2014-1291",
+      "found_in": "t1_description",
+      "context": "...erent vulnerability than CVE-2014-1290, CVE-2014-1291, CVE-2014-1292, CVE-2014-1293, and CVE-...",
+      "source_description": "WebKit, as used in Apple iOS before 7.1 and Apple TV before 6.1, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than CVE-2014-1290, CVE-2014-1291, CVE-2014-1292, CVE-2014-1293, and CVE-2014-1294.",
+      "target_description": "WebKit, as used in Apple iOS before 7.1 and Apple TV before 6.1, allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than CVE-2014-1289, CVE-2014-1290, CVE-2014-1292, CVE-2014-1293, and CVE-2014-1294."
+    },
+    {
+      "idx": 2,
+      "source": "CVE-2007-5757",
+      "target": "CVE-2008-0697",
+      "found_in": "t1_description",
+      "context": "...  NOTE: this might be the same issue as CVE-2008-0697.",
+      "source_description": "Untrusted search path vulnerability in db2pd in IBM DB2 Universal Database (UDB) 8 before FixPak 16 and 9 before Fix Pack 4 allows local users to gain root privileges via a modified DB2INSTANCE environment variable that points to a malicious library.  NOTE: this might be the same issue as CVE-2008-0697.",
+      "target_description": "Unspecified vulnerability in DB2PD in IBM DB2 UDB before 8.2 Fixpak 16 allows local users to gain root privileges via unspecified vectors."
+    },
+    {
+      "idx": 3,
+      "source": "CVE-2016-0965",
+      "target": "CVE-2016-0978",
+      "found_in": "t1_description",
+      "context": "...016-0972, CVE-2016-0976, CVE-2016-0977, CVE-2016-0978, CVE-2016-0979, CVE-2016-0980, and CVE-...",
+      "source_description": "Adobe Flash Player before 18.0.0.329 and 19.x and 20.x before 20.0.0.306 on Windows and OS X and before 11.2.202.569 on Linux, Adobe AIR before 20.0.0.260, Adobe AIR SDK before 20.0.0.260, and Adobe AIR SDK & Compiler before 20.0.0.260 allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-0964, CVE-2016-0966, CVE-2016-0967, CVE-2016-0968, CVE-2016-0969, CVE-2016-0970, CVE-2016-0972, CVE-2016-0976, CVE-2016-0977, CVE-2016-0978, CVE-2016-0979, CVE-2016-0980, and CVE-2016-0981.",
+      "target_description": "Adobe Flash Player before 18.0.0.329 and 19.x and 20.x before 20.0.0.306 on Windows and OS X and before 11.2.202.569 on Linux, Adobe AIR before 20.0.0.260, Adobe AIR SDK before 20.0.0.260, and Adobe AIR SDK & Compiler before 20.0.0.260 allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-0964, CVE-2016-0965, CVE-2016-0966, CVE-2016-0967, CVE-2016-0968, CVE-2016-0969, CVE-2016-0970, CVE-2016-0972, CVE-2016-0976, CVE-2016-0977, CVE-2016-0979, CVE-2016-0980, and CVE-2016-0981."
+    },
+    {
+      "idx": 4,
+      "source": "CVE-2015-8431",
+      "target": "CVE-2015-8442",
+      "found_in": "t1_description",
+      "context": "...015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in the MovieClip object implementation in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via a crafted filters property value, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 5,
+      "source": "CVE-2015-8070",
+      "target": "CVE-2015-8413",
+      "found_in": "t1_description",
+      "context": "...015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 6,
+      "source": "CVE-2015-0347",
+      "target": "CVE-2015-0355",
+      "found_in": "t1_description",
+      "context": "...015-0352, CVE-2015-0353, CVE-2015-0354, CVE-2015-0355, CVE-2015-0360, CVE-2015-3038, CVE-2015...",
+      "source_description": "Adobe Flash Player before 13.0.0.281 and 14.x through 17.x before 17.0.0.169 on Windows and OS X and before 11.2.202.457 on Linux allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2015-0350, CVE-2015-0352, CVE-2015-0353, CVE-2015-0354, CVE-2015-0355, CVE-2015-0360, CVE-2015-3038, CVE-2015-3041, CVE-2015-3042, and CVE-2015-3043.",
+      "target_description": "Adobe Flash Player before 13.0.0.281 and 14.x through 17.x before 17.0.0.169 on Windows and OS X and before 11.2.202.457 on Linux allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2015-0347, CVE-2015-0350, CVE-2015-0352, CVE-2015-0353, CVE-2015-0354, CVE-2015-0360, CVE-2015-3038, CVE-2015-3041, CVE-2015-3042, and CVE-2015-3043."
+    },
+    {
+      "idx": 7,
+      "source": "CVE-2013-3818",
+      "target": "CVE-2013-2404",
+      "found_in": "t1_description",
+      "context": "... Portal, a different vulnerability than CVE-2013-2404.",
+      "source_description": "Unspecified vulnerability in the PeopleSoft Enterprise PeopleTools component in Oracle PeopleSoft Products 8.51, 8.52, and 8.53 allows remote attackers to affect integrity via unknown vectors related to Portal, a different vulnerability than CVE-2013-2404.",
+      "target_description": "Unspecified vulnerability in the PeopleSoft Enterprise PeopleTools component in Oracle PeopleSoft Products 8.51, 8.52, and 8.53 allows remote attackers to affect integrity via unknown vectors related to Portal, a different vulnerability than CVE-2013-3818."
+    },
+    {
+      "idx": 8,
+      "source": "CVE-2020-0667",
+      "target": "CVE-2020-0666",
+      "found_in": "t1_description",
+      "context": "...nerability'. This CVE ID is unique from CVE-2020-0666, CVE-2020-0735, CVE-2020-0752.",
+      "source_description": "An elevation of privilege vulnerability exists in the way that the Windows Search Indexer handles objects in memory, aka 'Windows Search Indexer Elevation of Privilege Vulnerability'. This CVE ID is unique from CVE-2020-0666, CVE-2020-0735, CVE-2020-0752.",
+      "target_description": "An elevation of privilege vulnerability exists in the way that the Windows Search Indexer handles objects in memory, aka 'Windows Search Indexer Elevation of Privilege Vulnerability'. This CVE ID is unique from CVE-2020-0667, CVE-2020-0735, CVE-2020-0752."
+    },
+    {
+      "idx": 9,
+      "source": "CVE-2013-0608",
+      "target": "CVE-2013-0614",
+      "found_in": "t1_description",
+      "context": "...lity than CVE-2013-0607, CVE-2013-0611, CVE-2013-0614, and CVE-2013-0618.",
+      "source_description": "Adobe Reader and Acrobat 9.x before 9.5.3, 10.x before 10.1.5, and 11.x before 11.0.1 allow attackers to execute arbitrary code via unspecified vectors, related to a \"logic error,\" a different vulnerability than CVE-2013-0607, CVE-2013-0611, CVE-2013-0614, and CVE-2013-0618.",
+      "target_description": "Adobe Reader and Acrobat 9.x before 9.5.3, 10.x before 10.1.5, and 11.x before 11.0.1 allow attackers to execute arbitrary code via unspecified vectors, related to a \"logic error,\" a different vulnerability than CVE-2013-0607, CVE-2013-0608, CVE-2013-0611, and CVE-2013-0618."
+    },
+    {
+      "idx": 10,
+      "source": "CVE-2024-0248",
+      "target": "CVE-2023-6029",
+      "found_in": "t1_description",
+      "context": "...Press plugin before 2.4.0 re-introduced CVE-2023-6029 (https://wpscan.com/vulnerability/7a0aa...",
+      "source_description": "The EazyDocs WordPress plugin before 2.4.0 re-introduced CVE-2023-6029 (https://wpscan.com/vulnerability/7a0aaf85-8130-4fd7-8f09-f8edc929597e/) in 2.3.8, allowing any authenticated users, such as subscriber to delete arbitrary posts, as well as add and delete documents/sections. The issue was partially fixed in 2.3.9.",
+      "target_description": "The EazyDocs WordPress plugin before 2.3.6 does not have authorization and CSRF checks when handling documents and does not ensure that they are documents from the plugin, allowing unauthenticated users to delete arbitrary posts, as well as add and delete documents/sections."
+    },
+    {
+      "idx": 11,
+      "source": "CVE-2016-8666",
+      "target": "CVE-2016-7039",
+      "found_in": "t1_description",
+      "context": "...ers and GRE headers, a related issue to CVE-2016-7039.",
+      "source_description": "The IP stack in the Linux kernel before 4.6 allows remote attackers to cause a denial of service (stack consumption and panic) or possibly have unspecified other impact by triggering use of the GRO path for packets with tunnel stacking, as demonstrated by interleaved IPv4 headers and GRE headers, a related issue to CVE-2016-7039.",
+      "target_description": "The IP stack in the Linux kernel through 4.8.2 allows remote attackers to cause a denial of service (stack consumption and panic) or possibly have unspecified other impact by triggering use of the GRO path for large crafted packets, as demonstrated by packets that contain only VLAN headers, a related issue to CVE-2016-8666."
+    },
+    {
+      "idx": 12,
+      "source": "CVE-2008-3173",
+      "target": "CVE-2004-0866",
+      "found_in": "t1_description",
+      "context": "...xist because of an insufficient fix for CVE-2004-0866.",
+      "source_description": "Microsoft Internet Explorer allows web sites to set cookies for domains that have a public suffix with more than one dot character, which could allow remote attackers to perform a session fixation attack and hijack a user's HTTP session, aka \"Cross-Site Cooking.\" NOTE: this issue may exist because of an insufficient fix for CVE-2004-0866.",
+      "target_description": "Internet Explorer 6.0 allows web sites to set cookies for country-specific top-level domains, such as .ltd.uk, .plc.uk, and .sch.uk, which could allow remote attackers to perform a session fixation attack and hijack a user's HTTP session."
+    },
+    {
+      "idx": 13,
+      "source": "CVE-2008-2375",
+      "target": "CVE-2007-5962",
+      "found_in": "t1_description",
+      "context": "...session, a different vulnerability than CVE-2007-5962.",
+      "source_description": "Memory leak in a certain Red Hat deployment of vsftpd before 2.0.5 on Red Hat Enterprise Linux (RHEL) 3 and 4, when PAM is used, allows remote attackers to cause a denial of service (memory consumption) via a large number of invalid authentication attempts within the same session, a different vulnerability than CVE-2007-5962.",
+      "target_description": "Memory leak in a certain Red Hat patch, applied to vsftpd 2.0.5 on Red Hat Enterprise Linux (RHEL) 5 and Fedora 6 through 8, and on Foresight Linux and rPath appliances, allows remote attackers to cause a denial of service (memory consumption) via a large number of CWD commands, as demonstrated by an attack on a daemon with the deny_file configuration option."
+    },
+    {
+      "idx": 14,
+      "source": "CVE-2013-2722",
+      "target": "CVE-2013-3341",
+      "found_in": "t1_description",
+      "context": "...3338, CVE-2013-3339, CVE-2013-3340, and CVE-2013-3341.",
+      "source_description": "Adobe Reader and Acrobat 9.x before 9.5.5, 10.x before 10.1.7, and 11.x before 11.0.03 allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2013-2718, CVE-2013-2719, CVE-2013-2720, CVE-2013-2721, CVE-2013-2723, CVE-2013-2725, CVE-2013-2726, CVE-2013-2731, CVE-2013-2732, CVE-2013-2734, CVE-2013-2735, CVE-2013-2736, CVE-2013-3337, CVE-2013-3338, CVE-2013-3339, CVE-2013-3340, and CVE-2013-3341.",
+      "target_description": "Adobe Reader and Acrobat 9.x before 9.5.5, 10.x before 10.1.7, and 11.x before 11.0.03 allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2013-2718, CVE-2013-2719, CVE-2013-2720, CVE-2013-2721, CVE-2013-2722, CVE-2013-2723, CVE-2013-2725, CVE-2013-2726, CVE-2013-2731, CVE-2013-2732, CVE-2013-2734, CVE-2013-2735, CVE-2013-2736, CVE-2013-3337, CVE-2013-3338, CVE-2013-3339, and CVE-2013-3340."
+    },
+    {
+      "idx": 15,
+      "source": "CVE-2015-8065",
+      "target": "CVE-2015-8050",
+      "found_in": "t1_description",
+      "context": "...lity than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in the MovieClip object implementation in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via a crafted beginGradientFill call, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 16,
+      "source": "CVE-2015-8413",
+      "target": "CVE-2015-8057",
+      "found_in": "t1_description",
+      "context": "...015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 17,
+      "source": "CVE-2018-8301",
+      "target": "CVE-2018-8274",
+      "found_in": "t1_description",
+      "context": "...ique from CVE-2018-8125, CVE-2018-8262, CVE-2018-8274, CVE-2018-8275, CVE-2018-8279.",
+      "source_description": "A remote code execution vulnerability exists when Microsoft Edge improperly accesses objects in memory, aka \"Microsoft Edge Memory Corruption Vulnerability.\" This affects Microsoft Edge. This CVE ID is unique from CVE-2018-8125, CVE-2018-8262, CVE-2018-8274, CVE-2018-8275, CVE-2018-8279.",
+      "target_description": "A remote code execution vulnerability exists when Microsoft Edge improperly accesses objects in memory, aka \"Microsoft Edge Memory Corruption Vulnerability.\" This affects Microsoft Edge. This CVE ID is unique from CVE-2018-8125, CVE-2018-8262, CVE-2018-8275, CVE-2018-8279, CVE-2018-8301."
+    },
+    {
+      "idx": 18,
+      "source": "CVE-2007-6667",
+      "target": "CVE-2005-0413",
+      "found_in": "t1_description",
+      "context": "...member.php vector is already covered by CVE-2005-0413.",
+      "source_description": "SQL injection vulnerability in faq.php in MyPHP Forum 3.0 and earlier allows remote attackers to execute arbitrary SQL commands via the id parameter.  NOTE: the member.php vector is already covered by CVE-2005-0413.",
+      "target_description": "Multiple SQL injection vulnerabilities in MyPHP Forum 1.0 allow remote attackers to execute arbitrary SQL commands via (1) the fid in forum.php, (2) the member parameter in member.php, (3) the email parameter in forgot.php, or (4) the nbuser or nbpass parameters in include.php.  NOTE: it was later reported that vector 2 exists in 3.0 and earlier."
+    },
+    {
+      "idx": 19,
+      "source": "CVE-2020-1042",
+      "target": "CVE-2020-1043",
+      "found_in": "t1_description",
+      "context": "...020-1036, CVE-2020-1040, CVE-2020-1041, CVE-2020-1043.",
+      "source_description": "A remote code execution vulnerability exists when Hyper-V RemoteFX vGPU on a host server fails to properly validate input from an authenticated user on a guest operating system, aka 'Hyper-V RemoteFX vGPU Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2020-1032, CVE-2020-1036, CVE-2020-1040, CVE-2020-1041, CVE-2020-1043.",
+      "target_description": "A remote code execution vulnerability exists when Hyper-V RemoteFX vGPU on a host server fails to properly validate input from an authenticated user on a guest operating system, aka 'Hyper-V RemoteFX vGPU Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2020-1032, CVE-2020-1036, CVE-2020-1040, CVE-2020-1041, CVE-2020-1042."
+    },
+    {
+      "idx": 20,
+      "source": "CVE-2015-7103",
+      "target": "CVE-2015-7101",
+      "found_in": "t1_description",
+      "context": "...015-7098, CVE-2015-7099, CVE-2015-7100, CVE-2015-7101, and CVE-2015-7102.",
+      "source_description": "WebKit in Apple iOS before 9.2, Safari before 9.0.2, and tvOS before 9.1 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than CVE-2015-7048, CVE-2015-7095, CVE-2015-7096, CVE-2015-7097, CVE-2015-7098, CVE-2015-7099, CVE-2015-7100, CVE-2015-7101, and CVE-2015-7102.",
+      "target_description": "WebKit in Apple iOS before 9.2, Safari before 9.0.2, and tvOS before 9.1 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted web site, a different vulnerability than CVE-2015-7048, CVE-2015-7095, CVE-2015-7096, CVE-2015-7097, CVE-2015-7098, CVE-2015-7099, CVE-2015-7100, CVE-2015-7102, and CVE-2015-7103."
+    },
+    {
+      "idx": 21,
+      "source": "CVE-2020-0632",
+      "target": "CVE-2020-0631",
+      "found_in": "t1_description",
+      "context": "...020-0628, CVE-2020-0629, CVE-2020-0630, CVE-2020-0631, CVE-2020-0633.",
+      "source_description": "An elevation of privilege vulnerability exists in the way that the Windows Search Indexer handles objects in memory, aka 'Windows Search Indexer Elevation of Privilege Vulnerability'. This CVE ID is unique from CVE-2020-0613, CVE-2020-0614, CVE-2020-0623, CVE-2020-0625, CVE-2020-0626, CVE-2020-0627, CVE-2020-0628, CVE-2020-0629, CVE-2020-0630, CVE-2020-0631, CVE-2020-0633.",
+      "target_description": "An elevation of privilege vulnerability exists in the way that the Windows Search Indexer handles objects in memory, aka 'Windows Search Indexer Elevation of Privilege Vulnerability'. This CVE ID is unique from CVE-2020-0613, CVE-2020-0614, CVE-2020-0623, CVE-2020-0625, CVE-2020-0626, CVE-2020-0627, CVE-2020-0628, CVE-2020-0629, CVE-2020-0630, CVE-2020-0632, CVE-2020-0633."
+    },
+    {
+      "idx": 22,
+      "source": "CVE-2016-7431",
+      "target": "CVE-2015-8138",
+      "found_in": "t1_description",
+      "context": "... this vulnerability exists because of a CVE-2015-8138 regression.",
+      "source_description": "NTP before 4.2.8p9 allows remote attackers to bypass the origin timestamp protection mechanism via an origin timestamp of zero.  NOTE: this vulnerability exists because of a CVE-2015-8138 regression.",
+      "target_description": "NTP before 4.2.8p6 and 4.3.x before 4.3.90 allows remote attackers to bypass the origin timestamp validation via a packet with an origin timestamp set to zero."
+    },
+    {
+      "idx": 23,
+      "source": "CVE-2015-8067",
+      "target": "CVE-2015-8063",
+      "found_in": "t1_description",
+      "context": "...015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 24,
+      "source": "CVE-2017-11836",
+      "target": "CVE-2017-11870",
+      "found_in": "t1_description",
+      "context": "...-11862, CVE-2017-11866, CVE-2017-11869, CVE-2017-11870, CVE-2017-11871, and CVE-2017-11873.",
+      "source_description": "ChakraCore, and Microsoft Edge in Microsoft Windows 10 Gold, 1511, 1607, 1703, 1709, Windows Server 2016 and Windows Server, version 1709 allows an attacker to take control of an affected system, due to how the scripting engine handles objects in memory, aka \"Scripting Engine Memory Corruption Vulnerability\". This CVE ID is unique from CVE-2017-11837, CVE-2017-11838, CVE-2017-11839, CVE-2017-11840, CVE-2017-11841, CVE-2017-11843, CVE-2017-11846, CVE-2017-11858, CVE-2017-11859, CVE-2017-11861, CVE-2017-11862, CVE-2017-11866, CVE-2017-11869, CVE-2017-11870, CVE-2017-11871, and CVE-2017-11873.",
+      "target_description": "ChakraCore and Microsoft Edge in Windows 10 1703, 1709, and Windows Server, version 1709 allows an attacker to gain the same user rights as the current user, due to how the scripting engine handles objects in memory, aka \"Scripting Engine Memory Corruption Vulnerability\". This CVE ID is unique from CVE-2017-11836, CVE-2017-11837, CVE-2017-11838, CVE-2017-11839, CVE-2017-11840, CVE-2017-11841, CVE-2017-11843, CVE-2017-11846, CVE-2017-11858, CVE-2017-11859, CVE-2017-11861, CVE-2017-11862, CVE-2017-11866, CVE-2017-11869, CVE-2017-11871, and CVE-2017-11873."
+    },
+    {
+      "idx": 25,
+      "source": "CVE-2023-44467",
+      "target": "CVE-2023-36258",
+      "found_in": "t1_description",
+      "context": "....0.306 allows an attacker to bypass the CVE-2023-36258 fix and execute arbitrary code via __im...",
+      "source_description": "langchain_experimental (aka LangChain Experimental) in LangChain before 0.0.306 allows an attacker to bypass the CVE-2023-36258 fix and execute arbitrary code via __import__ in Python code, which is not prohibited by pal_chain/base.py.",
+      "target_description": "An issue in LangChain before 0.0.236 allows an attacker to execute arbitrary code because Python code with os.system, exec, or eval can be used."
+    },
+    {
+      "idx": 26,
+      "source": "CVE-2016-0988",
+      "target": "CVE-2016-0987",
+      "found_in": "t1_description",
+      "context": "...vectors, a different vulnerability than CVE-2016-0987, CVE-2016-0990, CVE-2016-0991, CVE-2016...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.333 and 19.x through 21.x before 21.0.0.182 on Windows and OS X and before 11.2.202.577 on Linux, Adobe AIR before 21.0.0.176, Adobe AIR SDK before 21.0.0.176, and Adobe AIR SDK & Compiler before 21.0.0.176 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2016-0987, CVE-2016-0990, CVE-2016-0991, CVE-2016-0994, CVE-2016-0995, CVE-2016-0996, CVE-2016-0997, CVE-2016-0998, CVE-2016-0999, and CVE-2016-1000.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.333 and 19.x through 21.x before 21.0.0.182 on Windows and OS X and before 11.2.202.577 on Linux, Adobe AIR before 21.0.0.176, Adobe AIR SDK before 21.0.0.176, and Adobe AIR SDK & Compiler before 21.0.0.176 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2016-0988, CVE-2016-0990, CVE-2016-0991, CVE-2016-0994, CVE-2016-0995, CVE-2016-0996, CVE-2016-0997, CVE-2016-0998, CVE-2016-0999, and CVE-2016-1000."
+    },
+    {
+      "idx": 27,
+      "source": "CVE-2005-4560",
+      "target": "CVE-2005-2124",
+      "found_in": "t1_description",
+      "context": "...nt vulnerability than CVE-2005-2123 and CVE-2005-2124, and as originally discovered in the wi...",
+      "source_description": "The Windows Graphical Device Interface library (GDI32.DLL) in Microsoft Windows allows remote attackers to execute arbitrary code via a Windows Metafile (WMF) format image with a crafted SETABORTPROC GDI Escape function call, related to the Windows Picture and Fax Viewer (SHIMGVW.DLL), a different vulnerability than CVE-2005-2123 and CVE-2005-2124, and as originally discovered in the wild on unionseek.com.",
+      "target_description": "Unspecified vulnerability in the Graphics Rendering Engine (GDI32.DLL) in Windows 2000 SP4, XP SP1 and SP2, and Server 2003 SP1, related to \"An unchecked buffer\" and possibly buffer overflows, allows remote attackers to execute arbitrary code via a crafted Windows Metafile (WMF) format image, aka \"Windows Metafile Vulnerability.\""
+    },
+    {
+      "idx": 28,
+      "source": "CVE-2015-3131",
+      "target": "CVE-2015-4430",
+      "found_in": "t1_description",
+      "context": "...015-3136, CVE-2015-3137, CVE-2015-4428, CVE-2015-4430, and CVE-2015-5117.",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 13.0.0.302 and 14.x through 18.x before 18.0.0.203 on Windows and OS X and before 11.2.202.481 on Linux, Adobe AIR before 18.0.0.180, Adobe AIR SDK before 18.0.0.180, and Adobe AIR SDK & Compiler before 18.0.0.180 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-3118, CVE-2015-3124, CVE-2015-3127, CVE-2015-3128, CVE-2015-3129, CVE-2015-3132, CVE-2015-3136, CVE-2015-3137, CVE-2015-4428, CVE-2015-4430, and CVE-2015-5117.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 13.0.0.302 and 14.x through 18.x before 18.0.0.203 on Windows and OS X and before 11.2.202.481 on Linux, Adobe AIR before 18.0.0.180, Adobe AIR SDK before 18.0.0.180, and Adobe AIR SDK & Compiler before 18.0.0.180 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-3118, CVE-2015-3124, CVE-2015-3127, CVE-2015-3128, CVE-2015-3129, CVE-2015-3131, CVE-2015-3132, CVE-2015-3136, CVE-2015-3137, CVE-2015-4428, and CVE-2015-5117."
+    },
+    {
+      "idx": 29,
+      "source": "CVE-2016-9033",
+      "target": "CVE-2016-9035",
+      "found_in": "t1_description",
+      "context": "...on. This vulnerability is distinct from CVE-2016-9035.",
+      "source_description": "An exploitable buffer overflow exists in the Joyent SmartOS 20161110T013148Z Hyprlofs file system. The vulnerability is present in the Ioctl system call with the command HYPRLOFS_ADD_ENTRIES when dealing with native file systems. An attacker can craft an input that can cause a buffer overflow in the path variable leading to an out of bounds memory access and could result in potential privilege escalation. This vulnerability is distinct from CVE-2016-9035.",
+      "target_description": "An exploitable buffer overflow exists in the Joyent SmartOS 20161110T013148Z Hyprlofs file system. The vulnerability is present in the Ioctl system call with the command HYPRLOFS_ADD_ENTRIES when dealing with native file systems. An attacker can craft an input that can cause a buffer overflow in the path variable leading to an out of bounds memory access and could result in potential privilege escalation. This vulnerability is distinct from CVE-2016-9033."
+    },
+    {
+      "idx": 30,
+      "source": "CVE-2016-4160",
+      "target": "CVE-2016-4162",
+      "found_in": "t1_description",
+      "context": "...016-4115, CVE-2016-4120, CVE-2016-4161, CVE-2016-4162, and CVE-2016-4163.",
+      "source_description": "Adobe Flash Player before 18.0.0.352 and 19.x through 21.x before 21.0.0.242 on Windows and OS X and before 11.2.202.621 on Linux allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-1096, CVE-2016-1098, CVE-2016-1099, CVE-2016-1100, CVE-2016-1102, CVE-2016-1104, CVE-2016-4109, CVE-2016-4111, CVE-2016-4112, CVE-2016-4113, CVE-2016-4114, CVE-2016-4115, CVE-2016-4120, CVE-2016-4161, CVE-2016-4162, and CVE-2016-4163.",
+      "target_description": "Adobe Flash Player before 18.0.0.352 and 19.x through 21.x before 21.0.0.242 on Windows and OS X and before 11.2.202.621 on Linux allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-1096, CVE-2016-1098, CVE-2016-1099, CVE-2016-1100, CVE-2016-1102, CVE-2016-1104, CVE-2016-4109, CVE-2016-4111, CVE-2016-4112, CVE-2016-4113, CVE-2016-4114, CVE-2016-4115, CVE-2016-4120, CVE-2016-4160, CVE-2016-4161, and CVE-2016-4163."
+    },
+    {
+      "idx": 31,
+      "source": "CVE-2016-0984",
+      "target": "CVE-2016-0974",
+      "found_in": "t1_description",
+      "context": "...erent vulnerability than CVE-2016-0973, CVE-2016-0974, CVE-2016-0975, CVE-2016-0982, and CVE-...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.329 and 19.x and 20.x before 20.0.0.306 on Windows and OS X and before 11.2.202.569 on Linux, Adobe AIR before 20.0.0.260, Adobe AIR SDK before 20.0.0.260, and Adobe AIR SDK & Compiler before 20.0.0.260 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2016-0973, CVE-2016-0974, CVE-2016-0975, CVE-2016-0982, and CVE-2016-0983.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.329 and 19.x and 20.x before 20.0.0.306 on Windows and OS X and before 11.2.202.569 on Linux, Adobe AIR before 20.0.0.260, Adobe AIR SDK before 20.0.0.260, and Adobe AIR SDK & Compiler before 20.0.0.260 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2016-0973, CVE-2016-0975, CVE-2016-0982, CVE-2016-0983, and CVE-2016-0984."
+    },
+    {
+      "idx": 32,
+      "source": "CVE-2015-3066",
+      "target": "CVE-2015-3067",
+      "found_in": "t1_description",
+      "context": "...015-3063, CVE-2015-3064, CVE-2015-3065, CVE-2015-3067, CVE-2015-3068, CVE-2015-3069, CVE-2015...",
+      "source_description": "Adobe Reader and Acrobat 10.x before 10.1.14 and 11.x before 11.0.11 on Windows and OS X allow attackers to bypass intended restrictions on JavaScript API execution via unspecified vectors, a different vulnerability than CVE-2015-3060, CVE-2015-3061, CVE-2015-3062, CVE-2015-3063, CVE-2015-3064, CVE-2015-3065, CVE-2015-3067, CVE-2015-3068, CVE-2015-3069, CVE-2015-3071, CVE-2015-3072, CVE-2015-3073, and CVE-2015-3074.",
+      "target_description": "Adobe Reader and Acrobat 10.x before 10.1.14 and 11.x before 11.0.11 on Windows and OS X allow attackers to bypass intended restrictions on JavaScript API execution via unspecified vectors, a different vulnerability than CVE-2015-3060, CVE-2015-3061, CVE-2015-3062, CVE-2015-3063, CVE-2015-3064, CVE-2015-3065, CVE-2015-3066, CVE-2015-3068, CVE-2015-3069, CVE-2015-3071, CVE-2015-3072, CVE-2015-3073, and CVE-2015-3074."
+    },
+    {
+      "idx": 33,
+      "source": "CVE-2015-8061",
+      "target": "CVE-2015-8056",
+      "found_in": "t1_description",
+      "context": "...015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 34,
+      "source": "CVE-2016-4103",
+      "target": "CVE-2016-1080",
+      "found_in": "t1_description",
+      "context": "...016-1076, CVE-2016-1077, CVE-2016-1078, CVE-2016-1080, CVE-2016-1081, CVE-2016-1082, CVE-2016...",
+      "source_description": "Adobe Reader and Acrobat before 11.0.16, Acrobat and Acrobat Reader DC Classic before 15.006.30172, and Acrobat and Acrobat Reader DC Continuous before 15.016.20039 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-1037, CVE-2016-1063, CVE-2016-1064, CVE-2016-1071, CVE-2016-1072, CVE-2016-1073, CVE-2016-1074, CVE-2016-1076, CVE-2016-1077, CVE-2016-1078, CVE-2016-1080, CVE-2016-1081, CVE-2016-1082, CVE-2016-1083, CVE-2016-1084, CVE-2016-1085, CVE-2016-1086, CVE-2016-1088, CVE-2016-1093, CVE-2016-1095, CVE-2016-1116, CVE-2016-1118, CVE-2016-1119, CVE-2016-1120, CVE-2016-1123, CVE-2016-1124, CVE-2016-1125, CVE-2016-1126, CVE-2016-1127, CVE-2016-1128, CVE-2016-1129, CVE-2016-1130, CVE-2016-4088, CVE-2016-4089, CVE-2016-4090, CVE-2016-4093, CVE-2016-4094, CVE-2016-4096, CVE-2016-4097, CVE-2016-4098, CVE-2016-4099, CVE-2016-4100, CVE-2016-4101, CVE-2016-4104, and CVE-2016-4105.",
+      "target_description": "Adobe Reader and Acrobat before 11.0.16, Acrobat and Acrobat Reader DC Classic before 15.006.30172, and Acrobat and Acrobat Reader DC Continuous before 15.016.20039 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-1037, CVE-2016-1063, CVE-2016-1064, CVE-2016-1071, CVE-2016-1072, CVE-2016-1073, CVE-2016-1074, CVE-2016-1076, CVE-2016-1077, CVE-2016-1078, CVE-2016-1081, CVE-2016-1082, CVE-2016-1083, CVE-2016-1084, CVE-2016-1085, CVE-2016-1086, CVE-2016-1088, CVE-2016-1093, CVE-2016-1095, CVE-2016-1116, CVE-2016-1118, CVE-2016-1119, CVE-2016-1120, CVE-2016-1123, CVE-2016-1124, CVE-2016-1125, CVE-2016-1126, CVE-2016-1127, CVE-2016-1128, CVE-2016-1129, CVE-2016-1130, CVE-2016-4088, CVE-2016-4089, CVE-2016-4090, CVE-2016-4093, CVE-2016-4094, CVE-2016-4096, CVE-2016-4097, CVE-2016-4098, CVE-2016-4099, CVE-2016-4100, CVE-2016-4101, CVE-2016-4103, CVE-2016-4104, and CVE-2016-4105."
+    },
+    {
+      "idx": 35,
+      "source": "CVE-2013-3634",
+      "target": "CVE-2013-3633",
+      "found_in": "t1_description",
+      "context": "...US NET variants) (Versions < V5.0.0 for CVE-2013-3633 and versions < V4.5.0 for CVE-2013-3634...",
+      "source_description": "A vulnerability has been identified in SCALANCE X-200 switch family (incl. SIPLUS NET variants) (Versions < V5.0.0 for CVE-2013-3633 and versions < V4.5.0 for CVE-2013-3634), SCALANCE X-200IRT switch family (incl. SIPLUS NET variants) (All versions < V5.1.0). The implementation of SNMPv3 does not check the user credentials sufficiently. Therefore, an attacker is able to execute SNMP commands without correct credentials.",
+      "target_description": "A vulnerability has been identified in SCALANCE X-200 switch family (incl. SIPLUS NET variants) (Versions < V5.0.0 for CVE-2013-3633 and versions < V4.5.0 for CVE-2013-3634), SCALANCE X-200IRT switch family (incl. SIPLUS NET variants) (All versions < V5.1.0). The user privileges for the web interface are only enforced on client side and not properly verified on server side. Therefore, an attacker is able to execute privileged commands using an unprivileged account."
+    },
+    {
+      "idx": 36,
+      "source": "CVE-2013-2719",
+      "target": "CVE-2013-2725",
+      "found_in": "t1_description",
+      "context": "...013-2721, CVE-2013-2722, CVE-2013-2723, CVE-2013-2725, CVE-2013-2726, CVE-2013-2731, CVE-2013...",
+      "source_description": "Adobe Reader and Acrobat 9.x before 9.5.5, 10.x before 10.1.7, and 11.x before 11.0.03 allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2013-2718, CVE-2013-2720, CVE-2013-2721, CVE-2013-2722, CVE-2013-2723, CVE-2013-2725, CVE-2013-2726, CVE-2013-2731, CVE-2013-2732, CVE-2013-2734, CVE-2013-2735, CVE-2013-2736, CVE-2013-3337, CVE-2013-3338, CVE-2013-3339, CVE-2013-3340, and CVE-2013-3341.",
+      "target_description": "Adobe Reader and Acrobat 9.x before 9.5.5, 10.x before 10.1.7, and 11.x before 11.0.03 allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2013-2718, CVE-2013-2719, CVE-2013-2720, CVE-2013-2721, CVE-2013-2722, CVE-2013-2723, CVE-2013-2726, CVE-2013-2731, CVE-2013-2732, CVE-2013-2734, CVE-2013-2735, CVE-2013-2736, CVE-2013-3337, CVE-2013-3338, CVE-2013-3339, CVE-2013-3340, and CVE-2013-3341."
+    },
+    {
+      "idx": 37,
+      "source": "CVE-2016-6937",
+      "target": "CVE-2016-4207",
+      "found_in": "t1_description",
+      "context": "...016-4204, CVE-2016-4205, CVE-2016-4206, CVE-2016-4207, CVE-2016-4208, CVE-2016-4211, CVE-2016...",
+      "source_description": "Adobe Reader and Acrobat before 11.0.17, Acrobat and Acrobat Reader DC Classic before 15.006.30198, and Acrobat and Acrobat Reader DC Continuous before 15.017.20050 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4191, CVE-2016-4192, CVE-2016-4193, CVE-2016-4194, CVE-2016-4195, CVE-2016-4196, CVE-2016-4197, CVE-2016-4198, CVE-2016-4199, CVE-2016-4200, CVE-2016-4201, CVE-2016-4202, CVE-2016-4203, CVE-2016-4204, CVE-2016-4205, CVE-2016-4206, CVE-2016-4207, CVE-2016-4208, CVE-2016-4211, CVE-2016-4212, CVE-2016-4213, CVE-2016-4214, CVE-2016-4250, CVE-2016-4251, CVE-2016-4252, CVE-2016-4254, CVE-2016-4265, CVE-2016-4266, CVE-2016-4267, CVE-2016-4268, CVE-2016-4269, and CVE-2016-4270.",
+      "target_description": "Adobe Reader and Acrobat before 11.0.17, Acrobat and Acrobat Reader DC Classic before 15.006.30198, and Acrobat and Acrobat Reader DC Continuous before 15.017.20050 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4191, CVE-2016-4192, CVE-2016-4193, CVE-2016-4194, CVE-2016-4195, CVE-2016-4196, CVE-2016-4197, CVE-2016-4198, CVE-2016-4199, CVE-2016-4200, CVE-2016-4201, CVE-2016-4202, CVE-2016-4203, CVE-2016-4204, CVE-2016-4205, CVE-2016-4206, CVE-2016-4208, CVE-2016-4211, CVE-2016-4212, CVE-2016-4213, CVE-2016-4214, CVE-2016-4250, CVE-2016-4251, CVE-2016-4252, and CVE-2016-4254."
+    },
+    {
+      "idx": 38,
+      "source": "CVE-2013-3113",
+      "target": "CVE-2013-3112",
+      "found_in": "t1_description",
+      "context": "...bility,\" a different vulnerability than CVE-2013-3112, CVE-2013-3121, CVE-2013-3139, and CVE-...",
+      "source_description": "Microsoft Internet Explorer 6 through 10 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption) via a crafted web site, aka \"Internet Explorer Memory Corruption Vulnerability,\" a different vulnerability than CVE-2013-3112, CVE-2013-3121, CVE-2013-3139, and CVE-2013-3142.",
+      "target_description": "Microsoft Internet Explorer 6 through 10 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption) via a crafted web site, aka \"Internet Explorer Memory Corruption Vulnerability,\" a different vulnerability than CVE-2013-3113, CVE-2013-3121, CVE-2013-3139, and CVE-2013-3142."
+    },
+    {
+      "idx": 39,
+      "source": "CVE-2016-4222",
+      "target": "CVE-2016-4173",
+      "found_in": "t1_description",
+      "context": "...vectors, a different vulnerability than CVE-2016-4173, CVE-2016-4174, CVE-2016-4226, CVE-2016...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.366 and 19.x through 22.x before 22.0.0.209 on Windows and OS X and before 11.2.202.632 on Linux allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2016-4173, CVE-2016-4174, CVE-2016-4226, CVE-2016-4227, CVE-2016-4228, CVE-2016-4229, CVE-2016-4230, CVE-2016-4231, and CVE-2016-4248.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.366 and 19.x through 22.x before 22.0.0.209 on Windows and OS X and before 11.2.202.632 on Linux allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2016-4174, CVE-2016-4222, CVE-2016-4226, CVE-2016-4227, CVE-2016-4228, CVE-2016-4229, CVE-2016-4230, CVE-2016-4231, and CVE-2016-4248."
+    },
+    {
+      "idx": 40,
+      "source": "CVE-2016-4182",
+      "target": "CVE-2016-4217",
+      "found_in": "t1_description",
+      "context": "...016-4188, CVE-2016-4189, CVE-2016-4190, CVE-2016-4217, CVE-2016-4218, CVE-2016-4219, CVE-2016...",
+      "source_description": "Adobe Flash Player before 18.0.0.366 and 19.x through 22.x before 22.0.0.209 on Windows and OS X and before 11.2.202.632 on Linux allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4172, CVE-2016-4175, CVE-2016-4179, CVE-2016-4180, CVE-2016-4181, CVE-2016-4183, CVE-2016-4184, CVE-2016-4185, CVE-2016-4186, CVE-2016-4187, CVE-2016-4188, CVE-2016-4189, CVE-2016-4190, CVE-2016-4217, CVE-2016-4218, CVE-2016-4219, CVE-2016-4220, CVE-2016-4221, CVE-2016-4233, CVE-2016-4234, CVE-2016-4235, CVE-2016-4236, CVE-2016-4237, CVE-2016-4238, CVE-2016-4239, CVE-2016-4240, CVE-2016-4241, CVE-2016-4242, CVE-2016-4243, CVE-2016-4244, CVE-2016-4245, and CVE-2016-4246.",
+      "target_description": "Adobe Flash Player before 18.0.0.366 and 19.x through 22.x before 22.0.0.209 on Windows and OS X and before 11.2.202.632 on Linux allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4172, CVE-2016-4175, CVE-2016-4179, CVE-2016-4180, CVE-2016-4181, CVE-2016-4182, CVE-2016-4183, CVE-2016-4184, CVE-2016-4185, CVE-2016-4186, CVE-2016-4187, CVE-2016-4188, CVE-2016-4189, CVE-2016-4190, CVE-2016-4218, CVE-2016-4219, CVE-2016-4220, CVE-2016-4221, CVE-2016-4233, CVE-2016-4234, CVE-2016-4235, CVE-2016-4236, CVE-2016-4237, CVE-2016-4238, CVE-2016-4239, CVE-2016-4240, CVE-2016-4241, CVE-2016-4242, CVE-2016-4243, CVE-2016-4244, CVE-2016-4245, and CVE-2016-4246."
+    },
+    {
+      "idx": 41,
+      "source": "CVE-2015-8821",
+      "target": "CVE-2015-8066",
+      "found_in": "t1_description",
+      "context": "...015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via crafted MPEG-4 data, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, CVE-2015-8454, CVE-2015-8653, CVE-2015-8655, and CVE-2015-8822.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 42,
+      "source": "CVE-2009-3567",
+      "target": "CVE-2007-1145",
+      "found_in": "t1_description",
+      "context": "... control panel, a different vector than CVE-2007-1145.",
+      "source_description": "Cross-site scripting (XSS) vulnerability in modules/tickets/functions_ticketsui.php in Kayako SupportSuite and eSupport 3.60.04 and earlier allows remote attackers to inject arbitrary web script or HTML via unspecified vectors in the staff control panel, a different vector than CVE-2007-1145.",
+      "target_description": "Multiple cross-site scripting (XSS) vulnerabilities in Kayako SupportSuite - ESupport 3.00.13 and 3.04.10 allow remote attackers to inject arbitrary web script or HTML via unspecified vectors related to a (1) lostpassword or (2) register action in index.php, (3) unspecified vectors in the Submit form in a submit action in index.php, and (4) the user's name in index.php; and (5) allow remote authenticated users to inject arbitrary web script or HTML via unspecified vectors related to the Admin and Staff Control Panel. NOTE: this might issue overlap CVE-2004-1412, CVE-2005-0487, or CVE-2005-0842."
+    },
+    {
+      "idx": 43,
+      "source": "CVE-2017-14705",
+      "target": "CVE-2017-14706",
+      "found_in": "t1_description",
+      "context": "...uired but can be obtained by exploiting CVE-2017-14706. This affects DenyAll i-Suite LTS 5.5.0...",
+      "source_description": "DenyAll WAF before 6.4.1 allows unauthenticated remote command execution via TCP port 3001 because shell metacharacters can be inserted into the type parameter to the tailDateFile function in /webservices/stream/tail.php. An iToken authentication parameter is required but can be obtained by exploiting CVE-2017-14706. This affects DenyAll i-Suite LTS 5.5.0 through 5.5.12, i-Suite 5.6, Web Application Firewall 5.7, and Web Application Firewall 6.x before 6.4.1, with On Premises or AWS/Azure cloud deployments.",
+      "target_description": "DenyAll WAF before 6.4.1 allows unauthenticated remote attackers to obtain authentication information by making a typeOf=debug request to /webservices/download/index.php, and then reading the iToken field in the reply. This affects DenyAll i-Suite LTS 5.5.0 through 5.5.12, i-Suite 5.6, Web Application Firewall 5.7, and Web Application Firewall 6.x before 6.4.1, with On Premises or AWS/Azure cloud deployments."
+    },
+    {
+      "idx": 44,
+      "source": "CVE-2019-1120",
+      "target": "CVE-2019-1128",
+      "found_in": "t1_description",
+      "context": "...019-1123, CVE-2019-1124, CVE-2019-1127, CVE-2019-1128.",
+      "source_description": "A remote code execution vulnerability exists in the way that DirectWrite handles objects in memory, aka 'DirectWrite Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2019-1117, CVE-2019-1118, CVE-2019-1119, CVE-2019-1121, CVE-2019-1122, CVE-2019-1123, CVE-2019-1124, CVE-2019-1127, CVE-2019-1128.",
+      "target_description": "A remote code execution vulnerability exists in the way that DirectWrite handles objects in memory, aka 'DirectWrite Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2019-1117, CVE-2019-1118, CVE-2019-1119, CVE-2019-1120, CVE-2019-1121, CVE-2019-1122, CVE-2019-1123, CVE-2019-1124, CVE-2019-1127."
+    },
+    {
+      "idx": 45,
+      "source": "CVE-2014-4100",
+      "target": "CVE-2014-4105",
+      "found_in": "t1_description",
+      "context": "...014-4097, CVE-2014-4103, CVE-2014-4104, CVE-2014-4105, CVE-2014-4106, CVE-2014-4107, CVE-2014...",
+      "source_description": "Microsoft Internet Explorer 6 through 11 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption) via a crafted web site, aka \"Internet Explorer Memory Corruption Vulnerability,\" a different vulnerability than CVE-2014-2799, CVE-2014-4059, CVE-2014-4065, CVE-2014-4079, CVE-2014-4081, CVE-2014-4083, CVE-2014-4085, CVE-2014-4088, CVE-2014-4090, CVE-2014-4094, CVE-2014-4097, CVE-2014-4103, CVE-2014-4104, CVE-2014-4105, CVE-2014-4106, CVE-2014-4107, CVE-2014-4108, CVE-2014-4109, CVE-2014-4110, and CVE-2014-4111.",
+      "target_description": "Microsoft Internet Explorer 6 through 11 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption) via a crafted web site, aka \"Internet Explorer Memory Corruption Vulnerability,\" a different vulnerability than CVE-2014-2799, CVE-2014-4059, CVE-2014-4065, CVE-2014-4079, CVE-2014-4081, CVE-2014-4083, CVE-2014-4085, CVE-2014-4088, CVE-2014-4090, CVE-2014-4094, CVE-2014-4097, CVE-2014-4100, CVE-2014-4103, CVE-2014-4104, CVE-2014-4106, CVE-2014-4107, CVE-2014-4108, CVE-2014-4109, CVE-2014-4110, and CVE-2014-4111."
+    },
+    {
+      "idx": 46,
+      "source": "CVE-2016-6924",
+      "target": "CVE-2016-4282",
+      "found_in": "t1_description",
+      "context": "...016-4276, CVE-2016-4280, CVE-2016-4281, CVE-2016-4282, CVE-2016-4283, CVE-2016-4284, CVE-2016...",
+      "source_description": "Adobe Flash Player before 18.0.0.375 and 19.x through 23.x before 23.0.0.162 on Windows and OS X and before 11.2.202.635 on Linux allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4274, CVE-2016-4275, CVE-2016-4276, CVE-2016-4280, CVE-2016-4281, CVE-2016-4282, CVE-2016-4283, CVE-2016-4284, CVE-2016-4285, and CVE-2016-6922.",
+      "target_description": "Adobe Flash Player before 18.0.0.375 and 19.x through 23.x before 23.0.0.162 on Windows and OS X and before 11.2.202.635 on Linux allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4274, CVE-2016-4275, CVE-2016-4276, CVE-2016-4280, CVE-2016-4281, CVE-2016-4283, CVE-2016-4284, CVE-2016-4285, CVE-2016-6922, and CVE-2016-6924."
+    },
+    {
+      "idx": 47,
+      "source": "CVE-2012-3107",
+      "target": "CVE-2012-3110",
+      "found_in": "t1_description",
+      "context": "...1773, CVE-2012-3106, CVE-2012-3108, and CVE-2012-3110.",
+      "source_description": "Unspecified vulnerability in the Oracle Outside In Technology component in Oracle Fusion Middleware 8.3.5 and 8.3.7 allows context-dependent attackers to affect availability via unknown vectors related to Outside In Filters, a different vulnerability than CVE-2012-1766, CVE-2012-1767, CVE-2012-1769, CVE-2012-1770, CVE-2012-1771, CVE-2012-1772, CVE-2012-1773, CVE-2012-3106, CVE-2012-3108, and CVE-2012-3110.",
+      "target_description": "Unspecified vulnerability in the Oracle Outside In Technology component in Oracle Fusion Middleware 8.3.5 and 8.3.7 allows context-dependent attackers to affect availability via unknown vectors related to Outside In Filters, a different vulnerability than CVE-2012-1766, CVE-2012-1767, CVE-2012-1769, CVE-2012-1770, CVE-2012-1771, CVE-2012-1772, CVE-2012-1773, CVE-2012-3106, CVE-2012-3107, and CVE-2012-3108."
+    },
+    {
+      "idx": 48,
+      "source": "CVE-2020-0832",
+      "target": "CVE-2020-0828",
+      "found_in": "t1_description",
+      "context": "...020-0825, CVE-2020-0826, CVE-2020-0827, CVE-2020-0828, CVE-2020-0829, CVE-2020-0830, CVE-2020...",
+      "source_description": "A remote code execution vulnerability exists in the way that the scripting engine handles objects in memory in Internet Explorer, aka 'Scripting Engine Memory Corruption Vulnerability'. This CVE ID is unique from CVE-2020-0768, CVE-2020-0823, CVE-2020-0825, CVE-2020-0826, CVE-2020-0827, CVE-2020-0828, CVE-2020-0829, CVE-2020-0830, CVE-2020-0831, CVE-2020-0833, CVE-2020-0848.",
+      "target_description": "A remote code execution vulnerability exists in the way that the ChakraCore scripting engine handles objects in memory, aka 'Scripting Engine Memory Corruption Vulnerability'. This CVE ID is unique from CVE-2020-0768, CVE-2020-0823, CVE-2020-0825, CVE-2020-0826, CVE-2020-0827, CVE-2020-0829, CVE-2020-0830, CVE-2020-0831, CVE-2020-0832, CVE-2020-0833, CVE-2020-0848."
+    },
+    {
+      "idx": 49,
+      "source": "CVE-2016-1064",
+      "target": "CVE-2016-4094",
+      "found_in": "t1_description",
+      "context": "...016-4089, CVE-2016-4090, CVE-2016-4093, CVE-2016-4094, CVE-2016-4096, CVE-2016-4097, CVE-2016...",
+      "source_description": "Adobe Reader and Acrobat before 11.0.16, Acrobat and Acrobat Reader DC Classic before 15.006.30172, and Acrobat and Acrobat Reader DC Continuous before 15.016.20039 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-1037, CVE-2016-1063, CVE-2016-1071, CVE-2016-1072, CVE-2016-1073, CVE-2016-1074, CVE-2016-1076, CVE-2016-1077, CVE-2016-1078, CVE-2016-1080, CVE-2016-1081, CVE-2016-1082, CVE-2016-1083, CVE-2016-1084, CVE-2016-1085, CVE-2016-1086, CVE-2016-1088, CVE-2016-1093, CVE-2016-1095, CVE-2016-1116, CVE-2016-1118, CVE-2016-1119, CVE-2016-1120, CVE-2016-1123, CVE-2016-1124, CVE-2016-1125, CVE-2016-1126, CVE-2016-1127, CVE-2016-1128, CVE-2016-1129, CVE-2016-1130, CVE-2016-4088, CVE-2016-4089, CVE-2016-4090, CVE-2016-4093, CVE-2016-4094, CVE-2016-4096, CVE-2016-4097, CVE-2016-4098, CVE-2016-4099, CVE-2016-4100, CVE-2016-4101, CVE-2016-4103, CVE-2016-4104, and CVE-2016-4105.",
+      "target_description": "Adobe Reader and Acrobat before 11.0.16, Acrobat and Acrobat Reader DC Classic before 15.006.30172, and Acrobat and Acrobat Reader DC Continuous before 15.016.20039 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-1037, CVE-2016-1063, CVE-2016-1064, CVE-2016-1071, CVE-2016-1072, CVE-2016-1073, CVE-2016-1074, CVE-2016-1076, CVE-2016-1077, CVE-2016-1078, CVE-2016-1080, CVE-2016-1081, CVE-2016-1082, CVE-2016-1083, CVE-2016-1084, CVE-2016-1085, CVE-2016-1086, CVE-2016-1088, CVE-2016-1093, CVE-2016-1095, CVE-2016-1116, CVE-2016-1118, CVE-2016-1119, CVE-2016-1120, CVE-2016-1123, CVE-2016-1124, CVE-2016-1125, CVE-2016-1126, CVE-2016-1127, CVE-2016-1128, CVE-2016-1129, CVE-2016-1130, CVE-2016-4088, CVE-2016-4089, CVE-2016-4090, CVE-2016-4093, CVE-2016-4096, CVE-2016-4097, CVE-2016-4098, CVE-2016-4099, CVE-2016-4100, CVE-2016-4101, CVE-2016-4103, CVE-2016-4104, and CVE-2016-4105."
+    },
+    {
+      "idx": 50,
+      "source": "CVE-2016-4236",
+      "target": "CVE-2016-4186",
+      "found_in": "t1_description",
+      "context": "...016-4183, CVE-2016-4184, CVE-2016-4185, CVE-2016-4186, CVE-2016-4187, CVE-2016-4188, CVE-2016...",
+      "source_description": "Adobe Flash Player before 18.0.0.366 and 19.x through 22.x before 22.0.0.209 on Windows and OS X and before 11.2.202.632 on Linux allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4172, CVE-2016-4175, CVE-2016-4179, CVE-2016-4180, CVE-2016-4181, CVE-2016-4182, CVE-2016-4183, CVE-2016-4184, CVE-2016-4185, CVE-2016-4186, CVE-2016-4187, CVE-2016-4188, CVE-2016-4189, CVE-2016-4190, CVE-2016-4217, CVE-2016-4218, CVE-2016-4219, CVE-2016-4220, CVE-2016-4221, CVE-2016-4233, CVE-2016-4234, CVE-2016-4235, CVE-2016-4237, CVE-2016-4238, CVE-2016-4239, CVE-2016-4240, CVE-2016-4241, CVE-2016-4242, CVE-2016-4243, CVE-2016-4244, CVE-2016-4245, and CVE-2016-4246.",
+      "target_description": "Adobe Flash Player before 18.0.0.366 and 19.x through 22.x before 22.0.0.209 on Windows and OS X and before 11.2.202.632 on Linux allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4172, CVE-2016-4175, CVE-2016-4179, CVE-2016-4180, CVE-2016-4181, CVE-2016-4182, CVE-2016-4183, CVE-2016-4184, CVE-2016-4185, CVE-2016-4187, CVE-2016-4188, CVE-2016-4189, CVE-2016-4190, CVE-2016-4217, CVE-2016-4218, CVE-2016-4219, CVE-2016-4220, CVE-2016-4221, CVE-2016-4233, CVE-2016-4234, CVE-2016-4235, CVE-2016-4236, CVE-2016-4237, CVE-2016-4238, CVE-2016-4239, CVE-2016-4240, CVE-2016-4241, CVE-2016-4242, CVE-2016-4243, CVE-2016-4244, CVE-2016-4245, and CVE-2016-4246."
+    },
+    {
+      "idx": 51,
+      "source": "CVE-2021-22746",
+      "target": "CVE-2021-22745",
+      "found_in": "t1_description",
+      "context": "...ue from CVE-2021-22742, CVE-2021-22744, CVE-2021-22745, and CVE-2021-22747.",
+      "source_description": "Improper Check for Unusual or Exceptional Conditions vulnerability exists in Triconex Model 3009 MP installed on Tricon V11.3.x systems that could cause module reset when TCM receives malformed TriStation packets while the write-protect keyswitch is in the program position. This CVE ID is unique from CVE-2021-22742, CVE-2021-22744, CVE-2021-22745, and CVE-2021-22747.",
+      "target_description": "Improper Check for Unusual or Exceptional Conditions vulnerability exists in Triconex Model 3009 MP installed on Tricon V11.3.x systems that could cause module reset when TCM receives malformed TriStation packets while the write-protect keyswitch is in the program position. This CVE ID is unique from CVE-2021-22742, CVE-2021-22744, CVE-2021-22746, and CVE-2021-22747."
+    },
+    {
+      "idx": 52,
+      "source": "CVE-2015-6720",
+      "target": "CVE-2015-6708",
+      "found_in": "t1_description",
+      "context": "...erent vulnerability than CVE-2015-6707, CVE-2015-6708, CVE-2015-6709, CVE-2015-6710, CVE-2015...",
+      "source_description": "The ANRunSharedReviewEmailStep method in Adobe Reader and Acrobat 10.x before 10.1.16 and 11.x before 11.0.13, Acrobat and Acrobat Reader DC Classic before 2015.006.30094, and Acrobat and Acrobat Reader DC Continuous before 2015.009.20069 on Windows and OS X allows attackers to bypass JavaScript API execution restrictions via unspecified vectors, a different vulnerability than CVE-2015-6707, CVE-2015-6708, CVE-2015-6709, CVE-2015-6710, CVE-2015-6711, CVE-2015-6712, CVE-2015-6713, CVE-2015-6714, CVE-2015-6715, CVE-2015-6716, CVE-2015-6717, CVE-2015-6718, CVE-2015-6719, CVE-2015-6721, CVE-2015-6722, CVE-2015-6723, CVE-2015-6724, CVE-2015-6725, CVE-2015-7614, CVE-2015-7616, CVE-2015-7618, CVE-2015-7619, CVE-2015-7620, and CVE-2015-7623.",
+      "target_description": "The ANStartApproval method in Adobe Reader and Acrobat 10.x before 10.1.16 and 11.x before 11.0.13, Acrobat and Acrobat Reader DC Classic before 2015.006.30094, and Acrobat and Acrobat Reader DC Continuous before 2015.009.20069 on Windows and OS X allows attackers to bypass JavaScript API execution restrictions via unspecified vectors, a different vulnerability than CVE-2015-6707, CVE-2015-6709, CVE-2015-6710, CVE-2015-6711, CVE-2015-6712, CVE-2015-6713, CVE-2015-6714, CVE-2015-6715, CVE-2015-6716, CVE-2015-6717, CVE-2015-6718, CVE-2015-6719, CVE-2015-6720, CVE-2015-6721, CVE-2015-6722, CVE-2015-6723, CVE-2015-6724, CVE-2015-6725, CVE-2015-7614, CVE-2015-7616, CVE-2015-7618, CVE-2015-7619, CVE-2015-7620, and CVE-2015-7623."
+    },
+    {
+      "idx": 53,
+      "source": "CVE-2011-4212",
+      "target": "CVE-2011-1364",
+      "found_in": "t1_description",
+      "context": "...execute, a different vulnerability than CVE-2011-1364.",
+      "source_description": "The sandbox environment in the Google App Engine Python SDK before 1.5.4 does not properly prevent os.popen calls, which allows local users to bypass intended access restrictions and execute arbitrary commands via a dev_appserver.RestrictedPathFunction._original_os reference within the code parameter to _ah/admin/interactive/execute, a different vulnerability than CVE-2011-1364.",
+      "target_description": "Cross-site request forgery (CSRF) vulnerability in _ah/admin/interactive/execute (aka the Interactive Console) in the SDK Console (aka Admin Console) in the Google App Engine Python SDK before 1.5.4 allows remote attackers to hijack the authentication of administrators for requests that execute arbitrary Python code via the code parameter."
+    },
+    {
+      "idx": 54,
+      "source": "CVE-2010-0199",
+      "target": "CVE-2010-0202",
+      "found_in": "t1_description",
+      "context": "...erent vulnerability than CVE-2010-0198, CVE-2010-0202, and CVE-2010-0203.",
+      "source_description": "Buffer overflow in Adobe Reader and Acrobat 9.x before 9.3.2, and 8.x before 8.2.2 on Windows and Mac OS X, allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2010-0198, CVE-2010-0202, and CVE-2010-0203.",
+      "target_description": "Buffer overflow in Adobe Reader and Acrobat 9.x before 9.3.2, and 8.x before 8.2.2 on Windows and Mac OS X, allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2010-0198, CVE-2010-0199, and CVE-2010-0203."
+    },
+    {
+      "idx": 55,
+      "source": "CVE-2015-8404",
+      "target": "CVE-2015-8428",
+      "found_in": "t1_description",
+      "context": "...015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 56,
+      "source": "CVE-2016-1056",
+      "target": "CVE-2016-1052",
+      "found_in": "t1_description",
+      "context": "...016-1049, CVE-2016-1050, CVE-2016-1051, CVE-2016-1052, CVE-2016-1053, CVE-2016-1054, CVE-2016...",
+      "source_description": "Use-after-free vulnerability in Adobe Reader and Acrobat before 11.0.16, Acrobat and Acrobat Reader DC Classic before 15.006.30172, and Acrobat and Acrobat Reader DC Continuous before 15.016.20039 on Windows and OS X allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2016-1045, CVE-2016-1046, CVE-2016-1047, CVE-2016-1048, CVE-2016-1049, CVE-2016-1050, CVE-2016-1051, CVE-2016-1052, CVE-2016-1053, CVE-2016-1054, CVE-2016-1055, CVE-2016-1057, CVE-2016-1058, CVE-2016-1059, CVE-2016-1060, CVE-2016-1061, CVE-2016-1065, CVE-2016-1066, CVE-2016-1067, CVE-2016-1068, CVE-2016-1069, CVE-2016-1070, CVE-2016-1075, CVE-2016-1094, CVE-2016-1121, CVE-2016-1122, CVE-2016-4102, and CVE-2016-4107.",
+      "target_description": "Use-after-free vulnerability in Adobe Reader and Acrobat before 11.0.16, Acrobat and Acrobat Reader DC Classic before 15.006.30172, and Acrobat and Acrobat Reader DC Continuous before 15.016.20039 on Windows and OS X allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2016-1045, CVE-2016-1046, CVE-2016-1047, CVE-2016-1048, CVE-2016-1049, CVE-2016-1050, CVE-2016-1051, CVE-2016-1053, CVE-2016-1054, CVE-2016-1055, CVE-2016-1056, CVE-2016-1057, CVE-2016-1058, CVE-2016-1059, CVE-2016-1060, CVE-2016-1061, CVE-2016-1065, CVE-2016-1066, CVE-2016-1067, CVE-2016-1068, CVE-2016-1069, CVE-2016-1070, CVE-2016-1075, CVE-2016-1094, CVE-2016-1121, CVE-2016-1122, CVE-2016-4102, and CVE-2016-4107."
+    },
+    {
+      "idx": 57,
+      "source": "CVE-2012-3859",
+      "target": "CVE-2012-2446",
+      "found_in": "t1_description",
+      "context": "...vectors, a different vulnerability than CVE-2012-2446 and CVE-2012-2447.",
+      "source_description": "Unspecified vulnerability in the WebAdmin Portal in Netsweeper has unknown impact and attack vectors, a different vulnerability than CVE-2012-2446 and CVE-2012-2447.",
+      "target_description": "Cross-site scripting (XSS) vulnerability in tools/local_lookup.php in the WebAdmin Portal in Netsweeper allows remote attackers to inject arbitrary web script or HTML via the group parameter in a lookup action."
+    },
+    {
+      "idx": 58,
+      "source": "CVE-2015-8413",
+      "target": "CVE-2015-8067",
+      "found_in": "t1_description",
+      "context": "...015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 59,
+      "source": "CVE-2013-3339",
+      "target": "CVE-2013-3341",
+      "found_in": "t1_description",
+      "context": "...3337, CVE-2013-3338, CVE-2013-3340, and CVE-2013-3341.",
+      "source_description": "Adobe Reader and Acrobat 9.x before 9.5.5, 10.x before 10.1.7, and 11.x before 11.0.03 allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2013-2718, CVE-2013-2719, CVE-2013-2720, CVE-2013-2721, CVE-2013-2722, CVE-2013-2723, CVE-2013-2725, CVE-2013-2726, CVE-2013-2731, CVE-2013-2732, CVE-2013-2734, CVE-2013-2735, CVE-2013-2736, CVE-2013-3337, CVE-2013-3338, CVE-2013-3340, and CVE-2013-3341.",
+      "target_description": "Adobe Reader and Acrobat 9.x before 9.5.5, 10.x before 10.1.7, and 11.x before 11.0.03 allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2013-2718, CVE-2013-2719, CVE-2013-2720, CVE-2013-2721, CVE-2013-2722, CVE-2013-2723, CVE-2013-2725, CVE-2013-2726, CVE-2013-2731, CVE-2013-2732, CVE-2013-2734, CVE-2013-2735, CVE-2013-2736, CVE-2013-3337, CVE-2013-3338, CVE-2013-3339, and CVE-2013-3340."
+    },
+    {
+      "idx": 60,
+      "source": "CVE-2016-6937",
+      "target": "CVE-2016-4268",
+      "found_in": "t1_description",
+      "context": "...016-4265, CVE-2016-4266, CVE-2016-4267, CVE-2016-4268, CVE-2016-4269, and CVE-2016-4270.",
+      "source_description": "Adobe Reader and Acrobat before 11.0.17, Acrobat and Acrobat Reader DC Classic before 15.006.30198, and Acrobat and Acrobat Reader DC Continuous before 15.017.20050 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4191, CVE-2016-4192, CVE-2016-4193, CVE-2016-4194, CVE-2016-4195, CVE-2016-4196, CVE-2016-4197, CVE-2016-4198, CVE-2016-4199, CVE-2016-4200, CVE-2016-4201, CVE-2016-4202, CVE-2016-4203, CVE-2016-4204, CVE-2016-4205, CVE-2016-4206, CVE-2016-4207, CVE-2016-4208, CVE-2016-4211, CVE-2016-4212, CVE-2016-4213, CVE-2016-4214, CVE-2016-4250, CVE-2016-4251, CVE-2016-4252, CVE-2016-4254, CVE-2016-4265, CVE-2016-4266, CVE-2016-4267, CVE-2016-4268, CVE-2016-4269, and CVE-2016-4270.",
+      "target_description": "Adobe Reader and Acrobat before 11.0.17, Acrobat and Acrobat Reader DC Classic before 15.006.30198, and Acrobat and Acrobat Reader DC Continuous before 15.017.20050 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4191, CVE-2016-4192, CVE-2016-4193, CVE-2016-4194, CVE-2016-4195, CVE-2016-4196, CVE-2016-4197, CVE-2016-4198, CVE-2016-4199, CVE-2016-4200, CVE-2016-4201, CVE-2016-4202, CVE-2016-4203, CVE-2016-4204, CVE-2016-4205, CVE-2016-4206, CVE-2016-4207, CVE-2016-4208, CVE-2016-4211, CVE-2016-4212, CVE-2016-4213, CVE-2016-4214, CVE-2016-4250, CVE-2016-4251, CVE-2016-4252, CVE-2016-4254, CVE-2016-4265, CVE-2016-4266, CVE-2016-4267, CVE-2016-4269, and CVE-2016-4270."
+    },
+    {
+      "idx": 61,
+      "source": "CVE-2016-0986",
+      "target": "CVE-2016-0989",
+      "found_in": "t1_description",
+      "context": "...016-0960, CVE-2016-0961, CVE-2016-0962, CVE-2016-0989, CVE-2016-0992, CVE-2016-1002, and CVE-...",
+      "source_description": "Adobe Flash Player before 18.0.0.333 and 19.x through 21.x before 21.0.0.182 on Windows and OS X and before 11.2.202.577 on Linux, Adobe AIR before 21.0.0.176, Adobe AIR SDK before 21.0.0.176, and Adobe AIR SDK & Compiler before 21.0.0.176 allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-0960, CVE-2016-0961, CVE-2016-0962, CVE-2016-0989, CVE-2016-0992, CVE-2016-1002, and CVE-2016-1005.",
+      "target_description": "Adobe Flash Player before 18.0.0.333 and 19.x through 21.x before 21.0.0.182 on Windows and OS X and before 11.2.202.577 on Linux, Adobe AIR before 21.0.0.176, Adobe AIR SDK before 21.0.0.176, and Adobe AIR SDK & Compiler before 21.0.0.176 allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-0960, CVE-2016-0961, CVE-2016-0962, CVE-2016-0986, CVE-2016-0992, CVE-2016-1002, and CVE-2016-1005."
+    },
+    {
+      "idx": 62,
+      "source": "CVE-2017-11889",
+      "target": "CVE-2017-11890",
+      "found_in": "t1_description",
+      "context": "...s CVE ID is unique from CVE-2017-11886, CVE-2017-11890, CVE-2017-11893, CVE-2017-11894, CVE-20...",
+      "source_description": "ChakraCore and Microsoft Edge in Windows 10 Gold, 1511, 1607, 1703, 1709, and Windows Server 2016 allows an attacker to execute arbitrary code in the context of the current user, due to how the scripting engine handles objects in memory, aka \"Scripting Engine Memory Corruption Vulnerability\". This CVE ID is unique from CVE-2017-11886, CVE-2017-11890, CVE-2017-11893, CVE-2017-11894, CVE-2017-11895, CVE-2017-11901, CVE-2017-11903, CVE-2017-11905, CVE-2017-11907, CVE-2017-11908, CVE-2017-11909, CVE-2017-11910, CVE-2017-11911, CVE-2017-11912, CVE-2017-11913, CVE-2017-11914, CVE-2017-11916, CVE-2017-11918, and CVE-2017-11930.",
+      "target_description": "Microsoft Windows 7 SP1, Windows Server 2008 and R2 SP1, Windows 8.1 and Windows RT 8.1, Windows Server 2012 and R2, Windows 10 Gold, 1511, 1607, 1703, 1709, and Windows Server 2016 allow an attacker to execute arbitrary code in the context of the current user, due to how Internet Explorer handles objects in memory, aka \"Scripting Engine Memory Corruption Vulnerability\". This CVE ID is unique from CVE-2017-11886, CVE-2017-11889, CVE-2017-11893, CVE-2017-11894, CVE-2017-11895, CVE-2017-11901, CVE-2017-11903, CVE-2017-11905, CVE-2017-11907, CVE-2017-11908, CVE-2017-11909, CVE-2017-11910, CVE-2017-11911, CVE-2017-11912, CVE-2017-11913, CVE-2017-11914, CVE-2017-11916, CVE-2017-11918, and CVE-2017-11930."
+    },
+    {
+      "idx": 63,
+      "source": "CVE-2016-4242",
+      "target": "CVE-2016-4240",
+      "found_in": "t1_description",
+      "context": "...016-4237, CVE-2016-4238, CVE-2016-4239, CVE-2016-4240, CVE-2016-4241, CVE-2016-4243, CVE-2016...",
+      "source_description": "Adobe Flash Player before 18.0.0.366 and 19.x through 22.x before 22.0.0.209 on Windows and OS X and before 11.2.202.632 on Linux allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4172, CVE-2016-4175, CVE-2016-4179, CVE-2016-4180, CVE-2016-4181, CVE-2016-4182, CVE-2016-4183, CVE-2016-4184, CVE-2016-4185, CVE-2016-4186, CVE-2016-4187, CVE-2016-4188, CVE-2016-4189, CVE-2016-4190, CVE-2016-4217, CVE-2016-4218, CVE-2016-4219, CVE-2016-4220, CVE-2016-4221, CVE-2016-4233, CVE-2016-4234, CVE-2016-4235, CVE-2016-4236, CVE-2016-4237, CVE-2016-4238, CVE-2016-4239, CVE-2016-4240, CVE-2016-4241, CVE-2016-4243, CVE-2016-4244, CVE-2016-4245, and CVE-2016-4246.",
+      "target_description": "Adobe Flash Player before 18.0.0.366 and 19.x through 22.x before 22.0.0.209 on Windows and OS X and before 11.2.202.632 on Linux allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4172, CVE-2016-4175, CVE-2016-4179, CVE-2016-4180, CVE-2016-4181, CVE-2016-4182, CVE-2016-4183, CVE-2016-4184, CVE-2016-4185, CVE-2016-4186, CVE-2016-4187, CVE-2016-4188, CVE-2016-4189, CVE-2016-4190, CVE-2016-4217, CVE-2016-4218, CVE-2016-4219, CVE-2016-4220, CVE-2016-4221, CVE-2016-4233, CVE-2016-4234, CVE-2016-4235, CVE-2016-4236, CVE-2016-4237, CVE-2016-4238, CVE-2016-4239, CVE-2016-4241, CVE-2016-4242, CVE-2016-4243, CVE-2016-4244, CVE-2016-4245, and CVE-2016-4246."
+    },
+    {
+      "idx": 64,
+      "source": "CVE-2015-3771",
+      "target": "CVE-2015-3769",
+      "found_in": "t1_description",
+      "context": "...vectors, a different vulnerability than CVE-2015-3769 and CVE-2015-3772.",
+      "source_description": "IOFireWireFamily in Apple OS X before 10.10.5 allows local users to gain privileges or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2015-3769 and CVE-2015-3772.",
+      "target_description": "IOFireWireFamily in Apple OS X before 10.10.5 allows local users to gain privileges or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2015-3771 and CVE-2015-3772."
+    },
+    {
+      "idx": 65,
+      "source": "CVE-2016-4267",
+      "target": "CVE-2016-4195",
+      "found_in": "t1_description",
+      "context": "...016-4192, CVE-2016-4193, CVE-2016-4194, CVE-2016-4195, CVE-2016-4196, CVE-2016-4197, CVE-2016...",
+      "source_description": "Adobe Reader and Acrobat before 11.0.17, Acrobat and Acrobat Reader DC Classic before 15.006.30198, and Acrobat and Acrobat Reader DC Continuous before 15.017.20050 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4191, CVE-2016-4192, CVE-2016-4193, CVE-2016-4194, CVE-2016-4195, CVE-2016-4196, CVE-2016-4197, CVE-2016-4198, CVE-2016-4199, CVE-2016-4200, CVE-2016-4201, CVE-2016-4202, CVE-2016-4203, CVE-2016-4204, CVE-2016-4205, CVE-2016-4206, CVE-2016-4207, CVE-2016-4208, CVE-2016-4211, CVE-2016-4212, CVE-2016-4213, CVE-2016-4214, CVE-2016-4250, CVE-2016-4251, CVE-2016-4252, CVE-2016-4254, CVE-2016-4265, CVE-2016-4266, CVE-2016-4268, CVE-2016-4269, and CVE-2016-4270.",
+      "target_description": "Adobe Reader and Acrobat before 11.0.17, Acrobat and Acrobat Reader DC Classic before 15.006.30198, and Acrobat and Acrobat Reader DC Continuous before 15.017.20050 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4191, CVE-2016-4192, CVE-2016-4193, CVE-2016-4194, CVE-2016-4196, CVE-2016-4197, CVE-2016-4198, CVE-2016-4199, CVE-2016-4200, CVE-2016-4201, CVE-2016-4202, CVE-2016-4203, CVE-2016-4204, CVE-2016-4205, CVE-2016-4206, CVE-2016-4207, CVE-2016-4208, CVE-2016-4211, CVE-2016-4212, CVE-2016-4213, CVE-2016-4214, CVE-2016-4250, CVE-2016-4251, CVE-2016-4252, and CVE-2016-4254."
+    },
+    {
+      "idx": 66,
+      "source": "CVE-2016-4211",
+      "target": "CVE-2016-4208",
+      "found_in": "t1_description",
+      "context": "...016-4205, CVE-2016-4206, CVE-2016-4207, CVE-2016-4208, CVE-2016-4212, CVE-2016-4213, CVE-2016...",
+      "source_description": "Adobe Reader and Acrobat before 11.0.17, Acrobat and Acrobat Reader DC Classic before 15.006.30198, and Acrobat and Acrobat Reader DC Continuous before 15.017.20050 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4191, CVE-2016-4192, CVE-2016-4193, CVE-2016-4194, CVE-2016-4195, CVE-2016-4196, CVE-2016-4197, CVE-2016-4198, CVE-2016-4199, CVE-2016-4200, CVE-2016-4201, CVE-2016-4202, CVE-2016-4203, CVE-2016-4204, CVE-2016-4205, CVE-2016-4206, CVE-2016-4207, CVE-2016-4208, CVE-2016-4212, CVE-2016-4213, CVE-2016-4214, CVE-2016-4250, CVE-2016-4251, CVE-2016-4252, and CVE-2016-4254.",
+      "target_description": "Adobe Reader and Acrobat before 11.0.17, Acrobat and Acrobat Reader DC Classic before 15.006.30198, and Acrobat and Acrobat Reader DC Continuous before 15.017.20050 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4191, CVE-2016-4192, CVE-2016-4193, CVE-2016-4194, CVE-2016-4195, CVE-2016-4196, CVE-2016-4197, CVE-2016-4198, CVE-2016-4199, CVE-2016-4200, CVE-2016-4201, CVE-2016-4202, CVE-2016-4203, CVE-2016-4204, CVE-2016-4205, CVE-2016-4206, CVE-2016-4207, CVE-2016-4211, CVE-2016-4212, CVE-2016-4213, CVE-2016-4214, CVE-2016-4250, CVE-2016-4251, CVE-2016-4252, and CVE-2016-4254."
+    },
+    {
+      "idx": 67,
+      "source": "CVE-2015-8049",
+      "target": "CVE-2015-8405",
+      "found_in": "t1_description",
+      "context": "...015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in the TextField object implementation in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via a crafted autoSize property value, a different vulnerability than CVE-2015-8048, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 68,
+      "source": "CVE-2015-8823",
+      "target": "CVE-2015-8653",
+      "found_in": "t1_description",
+      "context": "...015-8450, CVE-2015-8452, CVE-2015-8454, CVE-2015-8653, CVE-2015-8655, CVE-2015-8821, and CVE-...",
+      "source_description": "Use-after-free vulnerability in the TextField object implementation in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via crafted text property, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, CVE-2015-8454, CVE-2015-8653, CVE-2015-8655, CVE-2015-8821, and CVE-2015-8822.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via crafted MPEG-4 data, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, CVE-2015-8454, CVE-2015-8655, CVE-2015-8821, and CVE-2015-8822."
+    },
+    {
+      "idx": 69,
+      "source": "CVE-2012-0119",
+      "target": "CVE-2012-0492",
+      "found_in": "t1_description",
+      "context": "...0115, CVE-2012-0120, CVE-2012-0485, and CVE-2012-0492.",
+      "source_description": "Unspecified vulnerability in the MySQL Server component in Oracle MySQL 5.1.x and 5.5.x allows remote authenticated users to affect availability via unknown vectors, a different vulnerability than CVE-2012-0112, CVE-2012-0115, CVE-2012-0120, CVE-2012-0485, and CVE-2012-0492.",
+      "target_description": "Unspecified vulnerability in the MySQL Server component in Oracle MySQL 5.1.x and 5.5.x allows remote authenticated users to affect availability via unknown vectors, a different vulnerability than CVE-2012-0112, CVE-2012-0115, CVE-2012-0119, CVE-2012-0120, and CVE-2012-0485."
+    },
+    {
+      "idx": 70,
+      "source": "CVE-2015-4790",
+      "target": "CVE-2015-2624",
+      "found_in": "t1_description",
+      "context": "...erent vulnerability than CVE-2015-2583, CVE-2015-2624, CVE-2015-2626, CVE-2015-2640, CVE-2015...",
+      "source_description": "Unspecified vulnerability in the Data Store component in Oracle Berkeley DB 11.2.5.1.29, 11.2.5.2.42, 11.2.5.3.28, and 12.1.6.0.35 allows local users to affect confidentiality, integrity, and availability via unknown vectors, a different vulnerability than CVE-2015-2583, CVE-2015-2624, CVE-2015-2626, CVE-2015-2640, CVE-2015-2654, CVE-2015-2656, CVE-2015-4754, CVE-2015-4764, CVE-2015-4775, CVE-2015-4776, CVE-2015-4777, CVE-2015-4778, CVE-2015-4780, CVE-2015-4781, CVE-2015-4782, CVE-2015-4783, CVE-2015-4784, CVE-2015-4785, CVE-2015-4786, CVE-2015-4787, and CVE-2015-4789.",
+      "target_description": "Unspecified vulnerability in the Data Store component in Oracle Berkeley DB 11.2.5.1.29, 11.2.5.2.42, 11.2.5.3.28, and 12.1.6.0.35 allows local users to affect confidentiality, integrity, and availability via unknown vectors, a different vulnerability than CVE-2015-2583, CVE-2015-2626, CVE-2015-2640, CVE-2015-2654, CVE-2015-2656, CVE-2015-4754, CVE-2015-4764, CVE-2015-4775, CVE-2015-4776, CVE-2015-4777, CVE-2015-4778, CVE-2015-4780, CVE-2015-4781, CVE-2015-4782, CVE-2015-4783, CVE-2015-4784, CVE-2015-4785, CVE-2015-4786, CVE-2015-4787, CVE-2015-4789, and CVE-2015-4790."
+    },
+    {
+      "idx": 71,
+      "source": "CVE-2019-19459",
+      "target": "CVE-2019-19458",
+      "found_in": "t1_description",
+      "context": "... to arbitrary files, as demonstrated by CVE-2019-19458 files under the web root, or .bat files...",
+      "source_description": "An issue was discovered in SALTO ProAccess SPACE 5.4.3.0. An attacker can write arbitrary content to arbitrary files, as demonstrated by CVE-2019-19458 files under the web root, or .bat files that will be used with auto start. This allows an attacker to execute arbitrary commands on the server.",
+      "target_description": "SALTO ProAccess SPACE 5.4.3.0 allows Directory Traversal in the Data Export feature."
+    },
+    {
+      "idx": 72,
+      "source": "CVE-2015-8431",
+      "target": "CVE-2015-8433",
+      "found_in": "t1_description",
+      "context": "...015-8429, CVE-2015-8430, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 73,
+      "source": "CVE-2015-3792",
+      "target": "CVE-2015-3765",
+      "found_in": "t1_description",
+      "context": "...ed file, a different vulnerability than CVE-2015-3765, CVE-2015-3779, CVE-2015-3788, CVE-2015...",
+      "source_description": "QuickTime 7 in Apple OS X before 10.10.5 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted file, a different vulnerability than CVE-2015-3765, CVE-2015-3779, CVE-2015-3788, CVE-2015-3789, CVE-2015-3790, CVE-2015-3791, CVE-2015-5751, CVE-2015-5753, and CVE-2015-5779.",
+      "target_description": "QuickTime 7 in Apple OS X before 10.10.5 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption and application crash) via a crafted file, a different vulnerability than CVE-2015-3779, CVE-2015-3788, CVE-2015-3789, CVE-2015-3790, CVE-2015-3791, CVE-2015-3792, CVE-2015-5751, CVE-2015-5753, and CVE-2015-5779."
+    },
+    {
+      "idx": 74,
+      "source": "CVE-2017-8469",
+      "target": "CVE-2017-8485",
+      "found_in": "t1_description",
+      "context": "...017-8490, CVE-2017-8489, CVE-2017-8488, CVE-2017-8485, CVE-2017-8483, CVE-2017-8482, CVE-2017...",
+      "source_description": "The kernel in Microsoft Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT 8.1, Windows 10 Gold, 1511, 1607, and Windows Server 2016 allows an authenticated attacker to obtain information via a specially crafted application. aka \"Windows Kernel Information Disclosure Vulnerability,\" a different vulnerability than CVE-2017-8491, CVE-2017-8490, CVE-2017-8489, CVE-2017-8488, CVE-2017-8485, CVE-2017-8483, CVE-2017-8482, CVE-2017-8481, CVE-2017-8480, CVE-2017-8478, CVE-2017-8479, CVE-2017-8476, CVE-2017-8474, CVE-2017-8462, CVE-2017-0300, CVE-2017-0299, and CVE-2017-0297.",
+      "target_description": "The kernel in Microsoft Windows Server 2008 SP2 and R2 SP1, Windows 7 SP1, Windows 8.1, Windows Server 2012 Gold and R2, Windows RT 8.1, Windows 10 Gold, 1511, 1607, 1703, and Windows Server 2016 allows an authenticated attacker to obtain information via a specially crafted application. aka \"Windows Kernel Information Disclosure Vulnerability,\" a different vulnerability than CVE-2017-8492, CVE-2017-8491, CVE-2017-8490, CVE-2017-8489, CVE-2017-8488, CVE-2017-8483, CVE-2017-8482, CVE-2017-8480, CVE-2017-8479, CVE-2017-8478, CVE-2017-8476, CVE-2017-8474, CVE-2017-8469, CVE-2017-8462, CVE-2017-0300, CVE-2017-0299, and CVE-2017-0297."
+    },
+    {
+      "idx": 75,
+      "source": "CVE-2016-6931",
+      "target": "CVE-2016-6926",
+      "found_in": "t1_description",
+      "context": "...016-6921, CVE-2016-6923, CVE-2016-6925, CVE-2016-6926, CVE-2016-6927, CVE-2016-6929, CVE-2016...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.375 and 19.x through 23.x before 23.0.0.162 on Windows and OS X and before 11.2.202.635 on Linux allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2016-4272, CVE-2016-4279, CVE-2016-6921, CVE-2016-6923, CVE-2016-6925, CVE-2016-6926, CVE-2016-6927, CVE-2016-6929, CVE-2016-6930, and CVE-2016-6932.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.375 and 19.x through 23.x before 23.0.0.162 on Windows and OS X and before 11.2.202.635 on Linux allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2016-4272, CVE-2016-4279, CVE-2016-6921, CVE-2016-6923, CVE-2016-6925, CVE-2016-6927, CVE-2016-6929, CVE-2016-6930, CVE-2016-6931, and CVE-2016-6932."
+    },
+    {
+      "idx": 76,
+      "source": "CVE-2016-0278",
+      "target": "CVE-2016-0279",
+      "found_in": "t1_description",
+      "context": "...erent vulnerability than CVE-2016-0277, CVE-2016-0279, and CVE-2016-0301.",
+      "source_description": "Heap-based buffer overflow in the KeyView PDF filter in IBM Domino 8.5.x before 8.5.3 FP6 IF13 and 9.x before 9.0.1 FP6 allows remote attackers to execute arbitrary code via a crafted PDF document, a different vulnerability than CVE-2016-0277, CVE-2016-0279, and CVE-2016-0301.",
+      "target_description": "Heap-based buffer overflow in the KeyView PDF filter in IBM Domino 8.5.x before 8.5.3 FP6 IF13 and 9.x before 9.0.1 FP6 allows remote attackers to execute arbitrary code via a crafted PDF document, a different vulnerability than CVE-2016-0277, CVE-2016-0278, and CVE-2016-0301."
+    },
+    {
+      "idx": 77,
+      "source": "CVE-2020-0971",
+      "target": "CVE-2020-0932",
+      "found_in": "t1_description",
+      "context": "...020-0920, CVE-2020-0929, CVE-2020-0931, CVE-2020-0932, CVE-2020-0974.",
+      "source_description": "A remote code execution vulnerability exists in Microsoft SharePoint when the software fails to check the source markup of an application package, aka 'Microsoft SharePoint Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2020-0920, CVE-2020-0929, CVE-2020-0931, CVE-2020-0932, CVE-2020-0974.",
+      "target_description": "A remote code execution vulnerability exists in Microsoft SharePoint when the software fails to check the source markup of an application package, aka 'Microsoft SharePoint Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2020-0920, CVE-2020-0929, CVE-2020-0931, CVE-2020-0971, CVE-2020-0974."
+    },
+    {
+      "idx": 78,
+      "source": "CVE-2015-8066",
+      "target": "CVE-2015-8064",
+      "found_in": "t1_description",
+      "context": "...015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8067, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 79,
+      "source": "CVE-2016-3574",
+      "target": "CVE-2016-3582",
+      "found_in": "t1_description",
+      "context": "...016-3579, CVE-2016-3580, CVE-2016-3581, CVE-2016-3582, CVE-2016-3583, CVE-2016-3590, CVE-2016...",
+      "source_description": "Unspecified vulnerability in the Outside In Technology component in Oracle Fusion Middleware 8.5.0, 8.5.1, and 8.5.2 allows remote attackers to affect confidentiality, integrity, and availability via vectors related to Outside In Filters, a different vulnerability than CVE-2016-3575, CVE-2016-3576, CVE-2016-3577, CVE-2016-3578, CVE-2016-3579, CVE-2016-3580, CVE-2016-3581, CVE-2016-3582, CVE-2016-3583, CVE-2016-3590, CVE-2016-3591, CVE-2016-3592, CVE-2016-3593, CVE-2016-3594, CVE-2016-3595, and CVE-2016-3596.",
+      "target_description": "Unspecified vulnerability in the Outside In Technology component in Oracle Fusion Middleware 8.5.0, 8.5.1, and 8.5.2 allows remote attackers to affect confidentiality, integrity, and availability via vectors related to Outside In Filters, a different vulnerability than CVE-2016-3574, CVE-2016-3575, CVE-2016-3576, CVE-2016-3577, CVE-2016-3578, CVE-2016-3579, CVE-2016-3580, CVE-2016-3581, CVE-2016-3583, CVE-2016-3590, CVE-2016-3591, CVE-2016-3592, CVE-2016-3593, CVE-2016-3594, CVE-2016-3595, and CVE-2016-3596."
+    },
+    {
+      "idx": 80,
+      "source": "CVE-2010-3648",
+      "target": "CVE-2010-3642",
+      "found_in": "t1_description",
+      "context": "...lity than CVE-2010-3640, CVE-2010-3641, CVE-2010-3642, CVE-2010-3643, CVE-2010-3644, CVE-2010...",
+      "source_description": "Unspecified vulnerability in Adobe Flash Player before 9.0.289.0 and 10.x before 10.1.102.64 on Windows, Mac OS X, Linux, and Solaris, and 10.1.95.1 on Android, allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unknown vectors, a different vulnerability than CVE-2010-3640, CVE-2010-3641, CVE-2010-3642, CVE-2010-3643, CVE-2010-3644, CVE-2010-3645, CVE-2010-3646, CVE-2010-3647, CVE-2010-3649, CVE-2010-3650, and CVE-2010-3652.",
+      "target_description": "Unspecified vulnerability in Adobe Flash Player before 9.0.289.0 and 10.x before 10.1.102.64 on Windows, Mac OS X, Linux, and Solaris, and 10.1.95.1 on Android, allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unknown vectors, a different vulnerability than CVE-2010-3640, CVE-2010-3641, CVE-2010-3643, CVE-2010-3644, CVE-2010-3645, CVE-2010-3646, CVE-2010-3647, CVE-2010-3648, CVE-2010-3649, CVE-2010-3650, and CVE-2010-3652."
+    },
+    {
+      "idx": 81,
+      "source": "CVE-2015-8406",
+      "target": "CVE-2015-8050",
+      "found_in": "t1_description",
+      "context": "...lity than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in the MovieClip object implementation in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via a crafted beginGradientFill call, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 82,
+      "source": "CVE-2008-3417",
+      "target": "CVE-2007-2561",
+      "found_in": "t1_description",
+      "context": "...different vector than CVE-2006-6115 and CVE-2007-2561.",
+      "source_description": "SQL injection vulnerability in home/index.asp in fipsCMS light 2.1 and earlier allows remote attackers to execute arbitrary SQL commands via the r parameter, a different vector than CVE-2006-6115 and CVE-2007-2561.",
+      "target_description": "SQL injection vulnerability in index.asp in fipsCMS 2.1 allows remote attackers to execute arbitrary SQL commands via the pid parameter, a different vector than CVE-2006-6115."
+    },
+    {
+      "idx": 83,
+      "source": "CVE-2016-1126",
+      "target": "CVE-2016-4099",
+      "found_in": "t1_description",
+      "context": "...016-4096, CVE-2016-4097, CVE-2016-4098, CVE-2016-4099, CVE-2016-4100, CVE-2016-4101, CVE-2016...",
+      "source_description": "Adobe Reader and Acrobat before 11.0.16, Acrobat and Acrobat Reader DC Classic before 15.006.30172, and Acrobat and Acrobat Reader DC Continuous before 15.016.20039 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-1037, CVE-2016-1063, CVE-2016-1064, CVE-2016-1071, CVE-2016-1072, CVE-2016-1073, CVE-2016-1074, CVE-2016-1076, CVE-2016-1077, CVE-2016-1078, CVE-2016-1080, CVE-2016-1081, CVE-2016-1082, CVE-2016-1083, CVE-2016-1084, CVE-2016-1085, CVE-2016-1086, CVE-2016-1088, CVE-2016-1093, CVE-2016-1095, CVE-2016-1116, CVE-2016-1118, CVE-2016-1119, CVE-2016-1120, CVE-2016-1123, CVE-2016-1124, CVE-2016-1125, CVE-2016-1127, CVE-2016-1128, CVE-2016-1129, CVE-2016-1130, CVE-2016-4088, CVE-2016-4089, CVE-2016-4090, CVE-2016-4093, CVE-2016-4094, CVE-2016-4096, CVE-2016-4097, CVE-2016-4098, CVE-2016-4099, CVE-2016-4100, CVE-2016-4101, CVE-2016-4103, CVE-2016-4104, and CVE-2016-4105.",
+      "target_description": "Adobe Reader and Acrobat before 11.0.16, Acrobat and Acrobat Reader DC Classic before 15.006.30172, and Acrobat and Acrobat Reader DC Continuous before 15.016.20039 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-1037, CVE-2016-1063, CVE-2016-1064, CVE-2016-1071, CVE-2016-1072, CVE-2016-1073, CVE-2016-1074, CVE-2016-1076, CVE-2016-1077, CVE-2016-1078, CVE-2016-1080, CVE-2016-1081, CVE-2016-1082, CVE-2016-1083, CVE-2016-1084, CVE-2016-1085, CVE-2016-1086, CVE-2016-1088, CVE-2016-1093, CVE-2016-1095, CVE-2016-1116, CVE-2016-1118, CVE-2016-1119, CVE-2016-1120, CVE-2016-1123, CVE-2016-1124, CVE-2016-1125, CVE-2016-1126, CVE-2016-1127, CVE-2016-1128, CVE-2016-1129, CVE-2016-1130, CVE-2016-4088, CVE-2016-4089, CVE-2016-4090, CVE-2016-4093, CVE-2016-4094, CVE-2016-4096, CVE-2016-4097, CVE-2016-4098, CVE-2016-4100, CVE-2016-4101, CVE-2016-4103, CVE-2016-4104, and CVE-2016-4105."
+    },
+    {
+      "idx": 84,
+      "source": "CVE-2016-6993",
+      "target": "CVE-2016-6962",
+      "found_in": "t1_description",
+      "context": "...016-6952, CVE-2016-6953, CVE-2016-6961, CVE-2016-6962, CVE-2016-6963, CVE-2016-6964, CVE-2016...",
+      "source_description": "Use-after-free vulnerability in Adobe Reader and Acrobat before 11.0.18, Acrobat and Acrobat Reader DC Classic before 15.006.30243, and Acrobat and Acrobat Reader DC Continuous before 15.020.20039 on Windows and OS X allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2016-1089, CVE-2016-1091, CVE-2016-6944, CVE-2016-6945, CVE-2016-6946, CVE-2016-6949, CVE-2016-6952, CVE-2016-6953, CVE-2016-6961, CVE-2016-6962, CVE-2016-6963, CVE-2016-6964, CVE-2016-6965, CVE-2016-6967, CVE-2016-6968, CVE-2016-6969, CVE-2016-6971, CVE-2016-6979, and CVE-2016-6988.",
+      "target_description": "Use-after-free vulnerability in Adobe Reader and Acrobat before 11.0.18, Acrobat and Acrobat Reader DC Classic before 15.006.30243, and Acrobat and Acrobat Reader DC Continuous before 15.020.20039 on Windows and OS X allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2016-1089, CVE-2016-1091, CVE-2016-6944, CVE-2016-6945, CVE-2016-6946, CVE-2016-6949, CVE-2016-6952, CVE-2016-6953, CVE-2016-6961, CVE-2016-6963, CVE-2016-6964, CVE-2016-6965, CVE-2016-6967, CVE-2016-6968, CVE-2016-6969, CVE-2016-6971, CVE-2016-6979, CVE-2016-6988, and CVE-2016-6993."
+    },
+    {
+      "idx": 85,
+      "source": "CVE-2016-0072",
+      "target": "CVE-2016-0060",
+      "found_in": "t1_description",
+      "context": "...bility,\" a different vulnerability than CVE-2016-0060, CVE-2016-0061, CVE-2016-0063, and CVE-...",
+      "source_description": "Microsoft Internet Explorer 9 through 11 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption) via a crafted web site, aka \"Internet Explorer Memory Corruption Vulnerability,\" a different vulnerability than CVE-2016-0060, CVE-2016-0061, CVE-2016-0063, and CVE-2016-0067.",
+      "target_description": "Microsoft Internet Explorer 9 through 11 and Microsoft Edge allow remote attackers to execute arbitrary code or cause a denial of service (memory corruption) via a crafted web site, aka \"Microsoft Browser Memory Corruption Vulnerability,\" a different vulnerability than CVE-2016-0061, CVE-2016-0063, CVE-2016-0067, and CVE-2016-0072."
+    },
+    {
+      "idx": 86,
+      "source": "CVE-2011-2135",
+      "target": "CVE-2011-2140",
+      "found_in": "t1_description",
+      "context": "...vectors, a different vulnerability than CVE-2011-2140, CVE-2011-2417, and CVE-2011-2425.",
+      "source_description": "Adobe Flash Player before 10.3.183.5 on Windows, Mac OS X, Linux, and Solaris and before 10.3.186.3 on Android, and Adobe AIR before 2.7.1 on Windows and Mac OS X and before 2.7.1.1961 on Android, allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2011-2140, CVE-2011-2417, and CVE-2011-2425.",
+      "target_description": "Adobe Flash Player before 10.3.183.5 on Windows, Mac OS X, Linux, and Solaris and before 10.3.186.3 on Android, and Adobe AIR before 2.7.1 on Windows and Mac OS X and before 2.7.1.1961 on Android, allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2011-2135, CVE-2011-2417, and CVE-2011-2425."
+    },
+    {
+      "idx": 87,
+      "source": "CVE-2015-8055",
+      "target": "CVE-2015-8059",
+      "found_in": "t1_description",
+      "context": "...015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 88,
+      "source": "CVE-2020-1213",
+      "target": "CVE-2020-1216",
+      "found_in": "t1_description",
+      "context": "...ique from CVE-2020-1214, CVE-2020-1215, CVE-2020-1216, CVE-2020-1230, CVE-2020-1260.",
+      "source_description": "A remote code execution vulnerability exists in the way that the VBScript engine handles objects in memory, aka 'VBScript Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2020-1214, CVE-2020-1215, CVE-2020-1216, CVE-2020-1230, CVE-2020-1260.",
+      "target_description": "A remote code execution vulnerability exists in the way that the VBScript engine handles objects in memory, aka 'VBScript Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2020-1213, CVE-2020-1214, CVE-2020-1215, CVE-2020-1230, CVE-2020-1260."
+    },
+    {
+      "idx": 89,
+      "source": "CVE-2016-1125",
+      "target": "CVE-2016-4090",
+      "found_in": "t1_description",
+      "context": "...016-1130, CVE-2016-4088, CVE-2016-4089, CVE-2016-4090, CVE-2016-4093, CVE-2016-4094, CVE-2016...",
+      "source_description": "Adobe Reader and Acrobat before 11.0.16, Acrobat and Acrobat Reader DC Classic before 15.006.30172, and Acrobat and Acrobat Reader DC Continuous before 15.016.20039 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-1037, CVE-2016-1063, CVE-2016-1064, CVE-2016-1071, CVE-2016-1072, CVE-2016-1073, CVE-2016-1074, CVE-2016-1076, CVE-2016-1077, CVE-2016-1078, CVE-2016-1080, CVE-2016-1081, CVE-2016-1082, CVE-2016-1083, CVE-2016-1084, CVE-2016-1085, CVE-2016-1086, CVE-2016-1088, CVE-2016-1093, CVE-2016-1095, CVE-2016-1116, CVE-2016-1118, CVE-2016-1119, CVE-2016-1120, CVE-2016-1123, CVE-2016-1124, CVE-2016-1126, CVE-2016-1127, CVE-2016-1128, CVE-2016-1129, CVE-2016-1130, CVE-2016-4088, CVE-2016-4089, CVE-2016-4090, CVE-2016-4093, CVE-2016-4094, CVE-2016-4096, CVE-2016-4097, CVE-2016-4098, CVE-2016-4099, CVE-2016-4100, CVE-2016-4101, CVE-2016-4103, CVE-2016-4104, and CVE-2016-4105.",
+      "target_description": "Adobe Reader and Acrobat before 11.0.16, Acrobat and Acrobat Reader DC Classic before 15.006.30172, and Acrobat and Acrobat Reader DC Continuous before 15.016.20039 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-1037, CVE-2016-1063, CVE-2016-1064, CVE-2016-1071, CVE-2016-1072, CVE-2016-1073, CVE-2016-1074, CVE-2016-1076, CVE-2016-1077, CVE-2016-1078, CVE-2016-1080, CVE-2016-1081, CVE-2016-1082, CVE-2016-1083, CVE-2016-1084, CVE-2016-1085, CVE-2016-1086, CVE-2016-1088, CVE-2016-1093, CVE-2016-1095, CVE-2016-1116, CVE-2016-1118, CVE-2016-1119, CVE-2016-1120, CVE-2016-1123, CVE-2016-1124, CVE-2016-1125, CVE-2016-1126, CVE-2016-1127, CVE-2016-1128, CVE-2016-1129, CVE-2016-1130, CVE-2016-4088, CVE-2016-4089, CVE-2016-4093, CVE-2016-4094, CVE-2016-4096, CVE-2016-4097, CVE-2016-4098, CVE-2016-4099, CVE-2016-4100, CVE-2016-4101, CVE-2016-4103, CVE-2016-4104, and CVE-2016-4105."
+    },
+    {
+      "idx": 90,
+      "source": "CVE-2015-8057",
+      "target": "CVE-2015-8056",
+      "found_in": "t1_description",
+      "context": "...015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8058, CVE-2015-8059, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 91,
+      "source": "CVE-2018-1022",
+      "target": "CVE-2018-8139",
+      "found_in": "t1_description",
+      "context": "...018-8122, CVE-2018-8128, CVE-2018-8137, CVE-2018-8139.",
+      "source_description": "A remote code execution vulnerability exists in the way the scripting engine handles objects in memory in Microsoft browsers, aka \"Scripting Engine Memory Corruption Vulnerability.\" This affects ChakraCore, Internet Explorer 11, Microsoft Edge. This CVE ID is unique from CVE-2018-0945, CVE-2018-0946, CVE-2018-0951, CVE-2018-0953, CVE-2018-0954, CVE-2018-0955, CVE-2018-8114, CVE-2018-8122, CVE-2018-8128, CVE-2018-8137, CVE-2018-8139.",
+      "target_description": "A remote code execution vulnerability exists in the way that the scripting engine handles objects in memory in Microsoft Edge, aka \"Scripting Engine Memory Corruption Vulnerability.\" This affects Microsoft Edge, ChakraCore. This CVE ID is unique from CVE-2018-0945, CVE-2018-0946, CVE-2018-0951, CVE-2018-0953, CVE-2018-0954, CVE-2018-0955, CVE-2018-1022, CVE-2018-8114, CVE-2018-8122, CVE-2018-8128, CVE-2018-8137."
+    },
+    {
+      "idx": 92,
+      "source": "CVE-2016-6973",
+      "target": "CVE-2016-6951",
+      "found_in": "t1_description",
+      "context": "...016-6947, CVE-2016-6948, CVE-2016-6950, CVE-2016-6951, CVE-2016-6954, CVE-2016-6955, CVE-2016...",
+      "source_description": "Adobe Reader and Acrobat before 11.0.18, Acrobat and Acrobat Reader DC Classic before 15.006.30243, and Acrobat and Acrobat Reader DC Continuous before 15.020.20039 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-6940, CVE-2016-6941, CVE-2016-6942, CVE-2016-6943, CVE-2016-6947, CVE-2016-6948, CVE-2016-6950, CVE-2016-6951, CVE-2016-6954, CVE-2016-6955, CVE-2016-6956, CVE-2016-6959, CVE-2016-6960, CVE-2016-6966, CVE-2016-6970, CVE-2016-6972, CVE-2016-6974, CVE-2016-6975, CVE-2016-6976, CVE-2016-6977, CVE-2016-6978, CVE-2016-6995, CVE-2016-6996, CVE-2016-6997, CVE-2016-6998, CVE-2016-7000, CVE-2016-7001, CVE-2016-7002, CVE-2016-7003, CVE-2016-7004, CVE-2016-7005, CVE-2016-7006, CVE-2016-7007, CVE-2016-7008, CVE-2016-7009, CVE-2016-7010, CVE-2016-7011, CVE-2016-7012, CVE-2016-7013, CVE-2016-7014, CVE-2016-7015, CVE-2016-7016, CVE-2016-7017, CVE-2016-7018, and CVE-2016-7019.",
+      "target_description": "Adobe Reader and Acrobat before 11.0.18, Acrobat and Acrobat Reader DC Classic before 15.006.30243, and Acrobat and Acrobat Reader DC Continuous before 15.020.20039 on Windows and OS X allow attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-6940, CVE-2016-6941, CVE-2016-6942, CVE-2016-6943, CVE-2016-6947, CVE-2016-6948, CVE-2016-6950, CVE-2016-6954, CVE-2016-6955, CVE-2016-6956, CVE-2016-6959, CVE-2016-6960, CVE-2016-6966, CVE-2016-6970, CVE-2016-6972, CVE-2016-6973, CVE-2016-6974, CVE-2016-6975, CVE-2016-6976, CVE-2016-6977, CVE-2016-6978, CVE-2016-6995, CVE-2016-6996, CVE-2016-6997, CVE-2016-6998, CVE-2016-7000, CVE-2016-7001, CVE-2016-7002, CVE-2016-7003, CVE-2016-7004, CVE-2016-7005, CVE-2016-7006, CVE-2016-7007, CVE-2016-7008, CVE-2016-7009, CVE-2016-7010, CVE-2016-7011, CVE-2016-7012, CVE-2016-7013, CVE-2016-7014, CVE-2016-7015, CVE-2016-7016, CVE-2016-7017, CVE-2016-7018, and CVE-2016-7019."
+    },
+    {
+      "idx": 93,
+      "source": "CVE-2017-11930",
+      "target": "CVE-2017-11910",
+      "found_in": "t1_description",
+      "context": "...-11907, CVE-2017-11908, CVE-2017-11909, CVE-2017-11910, CVE-2017-11911, CVE-2017-11912, CVE-20...",
+      "source_description": "ChakraCore, and Internet Explorer in Microsoft Windows 7 SP1, Windows Server 2008 R2 SP1, Windows 8.1 and Windows RT 8.1, Windows Server 2012 R2, Windows 10 Gold, 1511, 1607, 1703, 1709, and Windows Server 2016 allows an attacker to execute arbitrary code in the context of the current user, due to how the scripting engine handles objects in memory, aka \"Scripting Engine Memory Corruption Vulnerability\". This CVE ID is unique from CVE-2017-11886, CVE-2017-11889, CVE-2017-11890, CVE-2017-11893, CVE-2017-11894, CVE-2017-11895, CVE-2017-11901, CVE-2017-11903, CVE-2017-11905, CVE-2017-11905, CVE-2017-11907, CVE-2017-11908, CVE-2017-11909, CVE-2017-11910, CVE-2017-11911, CVE-2017-11912, CVE-2017-11913, CVE-2017-11914, and CVE-2017-11916.",
+      "target_description": "ChakraCore and Windows 10 Gold, 1511, 1607, 1703, 1709, and Windows Server 2016 allows an attacker to execute arbitrary code in the context of the current user, due to how the scripting engine handles objects in memory, aka \"Scripting Engine Memory Corruption Vulnerability\". This CVE ID is unique from CVE-2017-11886, CVE-2017-11889, CVE-2017-11890, CVE-2017-11893, CVE-2017-11894, CVE-2017-11895, CVE-2017-11901, CVE-2017-11903, CVE-2017-11905, CVE-2017-11905, CVE-2017-11907, CVE-2017-11908, CVE-2017-11909, CVE-2017-11911, CVE-2017-11912, CVE-2017-11913, CVE-2017-11914, CVE-2017-11916, CVE-2017-11918, and CVE-2017-11930."
+    },
+    {
+      "idx": 94,
+      "source": "CVE-2015-1666",
+      "target": "CVE-2015-1652",
+      "found_in": "t1_description",
+      "context": "...bility,\" a different vulnerability than CVE-2015-1652.",
+      "source_description": "Microsoft Internet Explorer 6 through 11 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption) via a crafted web site, aka \"Internet Explorer Memory Corruption Vulnerability,\" a different vulnerability than CVE-2015-1652.",
+      "target_description": "Microsoft Internet Explorer 6 through 11 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption) via a crafted web site, aka \"Internet Explorer Memory Corruption Vulnerability,\" a different vulnerability than CVE-2015-1666."
+    },
+    {
+      "idx": 95,
+      "source": "CVE-2015-8821",
+      "target": "CVE-2015-8427",
+      "found_in": "t1_description",
+      "context": "...015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via crafted MPEG-4 data, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, CVE-2015-8454, CVE-2015-8653, CVE-2015-8655, and CVE-2015-8822.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 96,
+      "source": "CVE-2015-0349",
+      "target": "CVE-2015-0351",
+      "found_in": "t1_description",
+      "context": "...vectors, a different vulnerability than CVE-2015-0351, CVE-2015-0358, and CVE-2015-3039.",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 13.0.0.281 and 14.x through 17.x before 17.0.0.169 on Windows and OS X and before 11.2.202.457 on Linux allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-0351, CVE-2015-0358, and CVE-2015-3039.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 13.0.0.281 and 14.x through 17.x before 17.0.0.169 on Windows and OS X and before 11.2.202.457 on Linux allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-0349, CVE-2015-0358, and CVE-2015-3039."
+    },
+    {
+      "idx": 97,
+      "source": "CVE-2015-8433",
+      "target": "CVE-2015-8449",
+      "found_in": "t1_description",
+      "context": "...015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454.",
+      "target_description": "Use-after-free vulnerability in the MovieClip object implementation in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via a crafted lineTo method call, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    },
+    {
+      "idx": 98,
+      "source": "CVE-2020-1050",
+      "target": "CVE-2020-1049",
+      "found_in": "t1_description",
+      "context": "...nerability'. This CVE ID is unique from CVE-2020-1049.",
+      "source_description": "A cross site scripting vulnerability exists when Microsoft Dynamics 365 (on-premises) does not properly sanitize a specially crafted web request to an affected Dynamics server, aka 'Microsoft Dynamics 365 (On-Premise) Cross Site Scripting Vulnerability'. This CVE ID is unique from CVE-2020-1049.",
+      "target_description": "A cross site scripting vulnerability exists when Microsoft Dynamics 365 (on-premises) does not properly sanitize a specially crafted web request to an affected Dynamics server, aka 'Microsoft Dynamics 365 (On-Premise) Cross Site Scripting Vulnerability'. This CVE ID is unique from CVE-2020-1050."
+    },
+    {
+      "idx": 99,
+      "source": "CVE-2019-1296",
+      "target": "CVE-2019-1257",
+      "found_in": "t1_description",
+      "context": "...nerability'. This CVE ID is unique from CVE-2019-1257, CVE-2019-1295.",
+      "source_description": "A remote code execution vulnerability exists in Microsoft SharePoint where APIs aren't properly protected from unsafe data input, aka 'Microsoft SharePoint Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2019-1257, CVE-2019-1295.",
+      "target_description": "A remote code execution vulnerability exists in Microsoft SharePoint when the software fails to check the source markup of an application package, aka 'Microsoft SharePoint Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2019-1295, CVE-2019-1296."
+    },
+    {
+      "idx": 100,
+      "source": "CVE-2015-8655",
+      "target": "CVE-2015-8424",
+      "found_in": "t1_description",
+      "context": "...015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015...",
+      "source_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via crafted MPEG-4 data, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8424, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, CVE-2015-8454, CVE-2015-8653, CVE-2015-8821, and CVE-2015-8822.",
+      "target_description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.268 and 19.x and 20.x before 20.0.0.228 on Windows and OS X and before 11.2.202.554 on Linux, Adobe AIR before 20.0.0.204, Adobe AIR SDK before 20.0.0.204, and Adobe AIR SDK & Compiler before 20.0.0.204 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064, CVE-2015-8065, CVE-2015-8066, CVE-2015-8067, CVE-2015-8068, CVE-2015-8069, CVE-2015-8070, CVE-2015-8071, CVE-2015-8401, CVE-2015-8402, CVE-2015-8403, CVE-2015-8404, CVE-2015-8405, CVE-2015-8406, CVE-2015-8410, CVE-2015-8411, CVE-2015-8412, CVE-2015-8413, CVE-2015-8414, CVE-2015-8420, CVE-2015-8421, CVE-2015-8422, CVE-2015-8423, CVE-2015-8425, CVE-2015-8426, CVE-2015-8427, CVE-2015-8428, CVE-2015-8429, CVE-2015-8430, CVE-2015-8431, CVE-2015-8432, CVE-2015-8433, CVE-2015-8434, CVE-2015-8435, CVE-2015-8436, CVE-2015-8437, CVE-2015-8441, CVE-2015-8442, CVE-2015-8447, CVE-2015-8448, CVE-2015-8449, CVE-2015-8450, CVE-2015-8452, and CVE-2015-8454."
+    }
+  ],
+  "t2_novel": [
+    {
+      "idx": 1,
+      "source": "CVE-2024-49709",
+      "target": "CVE-2024-10087",
+      "found_in": "t2_ref_url",
+      "context": "https://cert.pl/en/posts/2025/04/CVE-2024-10087",
+      "source_description": "Internet Starter, one of SoftCOM iKSORIS system modules,\u00a0allows for setting an arbitrary session cookie value. An attacker with an access to user's browser might set such a cookie, wait until the user logs in and then use the same cookie to take over the account. \nMoreover, the system does not destroy the old sessions when creating new ones, what expands the time frame in which an attack might be performed.\u00a0\nThis vulnerability has been patched in version 79.0",
+      "target_description": "Internet Starter, one of SoftCOM iKSORIS system modules, is vulnerable to Reflected XSS (Cross-site Scripting) attacks. An attacker might craft a link containing a malicious script, which then gets directly embedded in references to other resources, what causes the script to run in user's context multiple times.\u00a0\nThis vulnerability has been patched in version 79.0"
+    },
+    {
+      "idx": 2,
+      "source": "CVE-2020-35452",
+      "target": "CVE-2020-13938",
+      "found_in": "t2_ref_name",
+      "context": "...tent/security/json: CVE-2019-17567.json CVE-2020-13938.json CVE-2020-13950.json CVE-2020-35452...",
+      "source_description": "Apache HTTP Server versions 2.4.0 to 2.4.46 A specially crafted Digest nonce can cause a stack overflow in mod_auth_digest. There is no report of this overflow being exploitable, nor the Apache HTTP Server team could create one, though some particular compiler and/or compilation option might make it possible, with limited consequences anyway due to the size (a single byte) and the value (zero byte) of the overflow",
+      "target_description": "Apache HTTP Server versions 2.4.0 to 2.4.46 Unprivileged local users can stop httpd on Windows"
+    },
+    {
+      "idx": 3,
+      "source": "CVE-2024-49705",
+      "target": "CVE-2024-10087",
+      "found_in": "t2_ref_url",
+      "context": "https://cert.pl/en/posts/2025/04/CVE-2024-10087",
+      "source_description": "Internet Starter, one of SoftCOM iKSORIS system modules, is vulnerable to client-side Denial of Servise (DoS) attacks. An attacker might trick a user into using an URL with a d parameter set to an unhandled value. All the subsequent requests will not be accepted as the server returns an error message. Since this parameter is sent as part of a session cookie, the issue persists until the session expires or the user deletes cookies manually.\u00a0\nSimilar effect might be achieved when\u00a0a user tries to change platform language to an unimplemented one.\nThis vulnerability has been patched in version 79.0",
+      "target_description": "Internet Starter, one of SoftCOM iKSORIS system modules, is vulnerable to Reflected XSS (Cross-site Scripting) attacks. An attacker might craft a link containing a malicious script, which then gets directly embedded in references to other resources, what causes the script to run in user's context multiple times.\u00a0\nThis vulnerability has been patched in version 79.0"
+    },
+    {
+      "idx": 4,
+      "source": "CVE-2020-12690",
+      "target": "CVE-2021-27568",
+      "found_in": "t2_ref_name",
+      "context": "...[druid] branch master updated: Suppress CVE-2021-27568 from json-smart 2.3 dependency (#11438)",
+      "source_description": "An issue was discovered in OpenStack Keystone before 15.0.1, and 16.0.0. The list of roles provided for an OAuth1 access token is silently ignored. Thus, when an access token is used to request a keystone token, the keystone token contains every role assignment the creator had for the project. This results in the provided keystone token having more role assignments than the creator intended, possibly giving unintended escalated access.",
+      "target_description": "An issue was discovered in netplex json-smart-v1 through 2015-10-23 and json-smart-v2 through 2.4. An exception is thrown from a function, but it is not caught, as demonstrated by NumberFormatException. When it is not caught, it may cause programs using the library to crash or expose sensitive information."
+    },
+    {
+      "idx": 5,
+      "source": "CVE-2019-16127",
+      "target": "CVE-2019-16128",
+      "found_in": "t2_ref_name",
+      "context": "[oss-security] 20201022 CVE-2019-16127, CVE-2019-16128 and CVE-2019-16129 for Microchip code",
+      "source_description": "Atmel Advanced Software Framework (ASF) 4 has an Integer Overflow.",
+      "target_description": "Microchip CryptoAuthentication Library CryptoAuthLib prior to 20191122 has a Buffer Overflow (issue 1 of 2)."
+    },
+    {
+      "idx": 6,
+      "source": "CVE-2017-12174",
+      "target": "CVE-2021-26118",
+      "found_in": "t2_ref_name",
+      "context": "...website] branch master updated: Publish CVE-2021-26118",
+      "source_description": "It was found that when Artemis and HornetQ before 2.4.0 are configured with UDP discovery and JGroups discovery a huge byte array is created when receiving an unexpected multicast message. This may result in a heap memory exhaustion, full GC, or OutOfMemoryError.",
+      "target_description": "While investigating ARTEMIS-2964 it was found that the creation of advisory messages in the OpenWire protocol head of Apache ActiveMQ Artemis 2.15.0 bypassed policy based access control for the entire session. Production of advisory messages was not subject to access control in error."
+    },
+    {
+      "idx": 7,
+      "source": "CVE-2014-2212",
+      "target": "CVE-2014-2211",
+      "found_in": "t2_ref_url",
+      "context": "http://www.sysdream.com/CVE-2014-2211_2214",
+      "source_description": "The remember me feature in portal/scr_authentif.php in POSH (aka Posh portal or Portaneo) 3.0, 3.2.1, 3.3.0, and earlier stores the username and MD5 digest of the password in cleartext in a cookie, which allows attackers to obtain sensitive information by reading this cookie.",
+      "target_description": "SQL injection vulnerability in portal/addtoapplication.php in POSH (aka Posh portal or Portaneo) 3.0 before 3.3.0 allows remote attackers to execute arbitrary SQL commands via the rssurl parameter."
+    },
+    {
+      "idx": 8,
+      "source": "CVE-2022-35462",
+      "target": "CVE-2022-33047",
+      "found_in": "t2_ref_url",
+      "context": "https://cvjark.github.io/2022/07/06/CVE-2022-33047/",
+      "source_description": "OTFCC v0.10.4 was discovered to contain a heap-buffer overflow via /release-x64/otfccdump+0x6c0bc3.",
+      "target_description": "OTFCC v0.10.4 was discovered to contain a heap buffer overflow after free via otfccbuild.c."
+    },
+    {
+      "idx": 9,
+      "source": "CVE-2022-26359",
+      "target": "CVE-2022-26358",
+      "found_in": "t2_ref_name",
+      "context": "... 20220405 Xen Security Advisory 400 v2 (CVE-2022-26358,CVE-2022-26359,CVE-2022-26360,CVE-2022-...",
+      "source_description": "IOMMU: RMRR (VT-d) and unity map (AMD-Vi) handling issues T[his CNA information record relates to multiple CVEs; the text explains which aspects/vulnerabilities correspond to which CVE.] Certain PCI devices in a system might be assigned Reserved Memory Regions (specified via Reserved Memory Region Reporting, \"RMRR\") for Intel VT-d or Unity Mapping ranges for AMD-Vi. These are typically used for platform tasks such as legacy USB emulation. Since the precise purpose of these regions is unknown, once a device associated with such a region is active, the mappings of these regions need to remain continuouly accessible by the device. This requirement has been violated. Subsequent DMA or interrupts from the device may have unpredictable behaviour, ranging from IOMMU faults to memory corruption.",
+      "target_description": "IOMMU: RMRR (VT-d) and unity map (AMD-Vi) handling issues T[his CNA information record relates to multiple CVEs; the text explains which aspects/vulnerabilities correspond to which CVE.] Certain PCI devices in a system might be assigned Reserved Memory Regions (specified via Reserved Memory Region Reporting, \"RMRR\") for Intel VT-d or Unity Mapping ranges for AMD-Vi. These are typically used for platform tasks such as legacy USB emulation. Since the precise purpose of these regions is unknown, once a device associated with such a region is active, the mappings of these regions need to remain continuouly accessible by the device. This requirement has been violated. Subsequent DMA or interrupts from the device may have unpredictable behaviour, ranging from IOMMU faults to memory corruption."
+    },
+    {
+      "idx": 10,
+      "source": "CVE-2012-2625",
+      "target": "CVE-2012-4544",
+      "found_in": "t2_ref_name",
+      "context": "...ity] 20121026 Xen Security Advisory 25 (CVE-2012-4544) - Xen domain builder Out-of-memory due...",
+      "source_description": "The PyGrub boot loader in Xen unstable before changeset 25589:60f09d1ab1fe, 4.2.x, and 4.1.x allows local para-virtualized guest users to cause a denial of service (memory consumption) via a large (1) bzip2 or (2) lzma compressed kernel image.",
+      "target_description": "The PV domain builder in Xen 4.2 and earlier does not validate the size of the kernel or ramdisk (1) before or (2) after decompression, which allows local guest administrators to cause a denial of service (domain 0 memory consumption) via a crafted (a) kernel or (b) ramdisk."
+    },
+    {
+      "idx": 11,
+      "source": "CVE-2009-1891",
+      "target": "CVE-2021-31618",
+      "found_in": "t2_ref_name",
+      "context": "...g/httpd/trunk/content: ./ security/json/CVE-2021-31618.json security/vulnerabilities_13.html s...",
+      "source_description": "The mod_deflate module in Apache httpd 2.2.11 and earlier compresses large files until completion even after the associated network connection is closed, which allows remote attackers to cause a denial of service (CPU consumption).",
+      "target_description": "Apache HTTP Server protocol handler for the HTTP/2 protocol checks received request headers against the size limitations as configured for the server and used for the HTTP/1 protocol as well. On violation of these restrictions and HTTP response is sent to the client with a status code indicating why the request was rejected. This rejection response was not fully initialised in the HTTP/2 protocol handler if the offending header was the very first one received or appeared in a a footer. This led to a NULL pointer dereference on initialised memory, crashing reliably the child process. Since such a triggering HTTP/2 request is easy to craft and submit, this can be exploited to DoS the server. This issue affected mod_http2 1.15.17 and Apache HTTP Server version 2.4.47 only. Apache HTTP Server 2.4.47 was never released."
+    },
+    {
+      "idx": 12,
+      "source": "CVE-2013-2154",
+      "target": "CVE-2021-40690",
+      "found_in": "t2_ref_name",
+      "context": "...e index.html javaindex.html secadv.data/CVE-2021-40690.txt.asc secadv.html",
+      "source_description": "Stack-based buffer overflow in the XML Signature Reference functionality (xsec/dsig/DSIGReference.cpp) in Apache Santuario XML Security for C++ (aka xml-security-c) before 1.7.1 allows context-dependent attackers to cause a denial of service (crash) and possibly execute arbitrary code via malformed XPointer expressions, probably related to the DSIGReference::getURIBaseTXFM function.",
+      "target_description": "All versions of Apache Santuario - XML Security for Java prior to 2.2.3 and 2.1.7 are vulnerable to an issue where the \"secureValidation\" property is not passed correctly when creating a KeyInfo from a KeyInfoReference element. This allows an attacker to abuse an XPath Transform to extract any local .xml files in a RetrievalMethod element."
+    },
+    {
+      "idx": 13,
+      "source": "CVE-2014-3715",
+      "target": "CVE-2014-3714",
+      "found_in": "t2_ref_name",
+      "context": "...ity] 20140516 Xen Security Advisory 95 (CVE-2014-3714,CVE-2014-3715,CVE-2014-3716,CVE-2014-37...",
+      "source_description": "Buffer overflow in Xen 4.4.x allows local users to read system memory or cause a denial of service (crash) via a crafted 32-bit guest kernel, related to searching for an appended DTB.",
+      "target_description": "The ARM image loading functionality in Xen 4.4.x does not properly validate kernel length, which allows local users to read system memory or cause a denial of service (crash) via a crafted 32-bit ARM guest kernel in an image, which triggers a buffer overflow."
+    },
+    {
+      "idx": 14,
+      "source": "CVE-2025-62296",
+      "target": "CVE-2025-62293",
+      "found_in": "t2_ref_url",
+      "context": "https://cert.pl/en/posts/2025/11/CVE-2025-62293",
+      "source_description": "SOPlanning is vulnerable to Stored XSS in /taches\u00a0endpoint. Malicious attacker with medium privileges can inject arbitrary HTML and JS into website, which will be rendered/executed when opening editor.\n\nThis issue was fixed in version 1.55.",
+      "target_description": "SOPlanning is vulnerable to Broken Access Control in /status\u00a0endpoint. Due to lack of permission checks in Project Status functionality an authenticated attacker is able to add, edit and delete any status.\n\n\nThis issue was fixed in version 1.55."
+    },
+    {
+      "idx": 15,
+      "source": "CVE-2014-8117",
+      "target": "CVE-2014-8116",
+      "found_in": "t2_ref_name",
+      "context": "... service issues (resource consumption), CVE-2014-8116 and CVE-2014-8117",
+      "source_description": "softmagic.c in file before 5.21 does not properly limit recursion, which allows remote attackers to cause a denial of service (CPU consumption or crash) via unspecified vectors.",
+      "target_description": "The ELF parser (readelf.c) in file before 5.21 allows remote attackers to cause a denial of service (CPU consumption or crash) via a large number of (1) program or (2) section headers or (3) invalid capabilities."
+    },
+    {
+      "idx": 16,
+      "source": "CVE-2020-27643",
+      "target": "CVE-2020-27644",
+      "found_in": "t2_ref_url",
+      "context": "...%3A+CVE-2020-16268%2C+CVE-2020-27643%2C+CVE-2020-27644%2C+CVE-2020-27645",
+      "source_description": "The %PROGRAMDATA%\\1E\\Client directory in 1E Client 5.0.0.745 and 4.1.0.267 allows remote authenticated users and local users to create and modify files in protected directories (where they would not normally have access to create or modify files) via the creation of a junction point to a system directory. This leads to partial privilege escalation.",
+      "target_description": "The Inventory module of the 1E Client 5.0.0.745 doesn't handle an unquoted path when executing %PROGRAMFILES%\\1E\\Client\\Tachyon.Performance.Metrics.exe. This may allow remote authenticated users and local users to gain elevated privileges by placing a malicious cryptbase.dll file in %WINDIR%\\Temp\\."
+    },
+    {
+      "idx": 17,
+      "source": "CVE-2024-8349",
+      "target": "CVE-2024-8350",
+      "found_in": "t2_ref_url",
+      "context": "...hub.com/karlemilnikka/CVE-2024-8349-and-CVE-2024-8350",
+      "source_description": "The Uncanny Groups for LearnDash plugin for WordPress is vulnerable to privilege escalation in all versions up to, and including, 6.1.0.1. This is due to the plugin not properly restricting what users a group leader can edit. This makes it possible for authenticated attackers, with group leader-level access and above, to change admin account email addresses which can subsequently lead to admin account access.",
+      "target_description": "The Uncanny Groups for LearnDash plugin for WordPress is vulnerable to user group add due to a missing capability check on the /wp-json/ulgm_management/v1/add_user/ REST API endpoint in all versions up to, and including, 6.1.0.1. This makes it possible for authenticated attackers, with group leader-level access and above, to add users to their group which ultimately allows them to leverage CVE-2024-8349 and gain admin access to the site."
+    },
+    {
+      "idx": 18,
+      "source": "CVE-2010-2791",
+      "target": "CVE-2020-13938",
+      "found_in": "t2_ref_name",
+      "context": "...g/httpd/trunk/content: ./ security/json/CVE-2020-13938.json security/vulnerabilities_13.html s...",
+      "source_description": "mod_proxy in httpd in Apache HTTP Server 2.2.9, when running on Unix, does not close the backend connection if a timeout occurs when reading a response from a persistent connection, which allows remote attackers to obtain a potentially sensitive response intended for a different client in opportunistic circumstances via a normal HTTP request.  NOTE: this is the same issue as CVE-2010-2068, but for a different OS and set of affected versions.",
+      "target_description": "Apache HTTP Server versions 2.4.0 to 2.4.46 Unprivileged local users can stop httpd on Windows"
+    },
+    {
+      "idx": 19,
+      "source": "CVE-2019-7424",
+      "target": "CVE-2019-7425",
+      "found_in": "t2_ref_name",
+      "context": "...019-7422, CVE-2019-7423, CVE-2019-7424, CVE-2019-7425, CVE-2019-7426, CVE-2019-7427] Cross Si...",
+      "source_description": "XSS exists in Zoho ManageEngine Netflow Analyzer Professional v7.0.0.2 in the Administration zone \"/netflow/jspui/index.jsp\" file in the view GET parameter or any of these POST parameters: autorefTime, section, snapshot, viewOpt, viewAll, view, or groupSelName. The latter is related to CVE-2009-3903.",
+      "target_description": "XSS exists in Zoho ManageEngine Netflow Analyzer Professional v7.0.0.2 in the Administration zone \"/netflow/jspui/linkdownalertConfig.jsp\" file in the task parameter."
+    },
+    {
+      "idx": 20,
+      "source": "CVE-2019-7421",
+      "target": "CVE-2019-7420",
+      "found_in": "t2_ref_name",
+      "context": "20190206 [CVE-2019-7418, CVE-2019-7419, CVE-2019-7420, CVE-2019-7421] Cross Site Scripting in...",
+      "source_description": "XSS exists in SAMSUNG X7400GX SyncThru Web Service V6.A6.25 V11.01.05.25_08-21-2015 in \"/sws.login/gnb/loginView.sws\" in multiple parameters: contextpath and basedURL.",
+      "target_description": "XSS exists in SAMSUNG X7400GX SyncThru Web Service V6.A6.25 V11.01.05.25_08-21-2015 in \"/sws.application/information/networkinformationView.sws\" in the tabName parameter."
+    }
+  ],
+  "t3": [
+    {
+      "idx": 1,
+      "source": "CVE-2023-39533",
+      "target": "CVE-2023-29409",
+      "found_in": "t3_commit",
+      "context": "...porting this issue.  Fixes #61460 Fixes CVE-2023-29409  Change-Id: Ie35038515a649199a36a12fc2c...",
+      "source_description": "go-libp2p is the Go implementation of the libp2p Networking Stack. Prior to versions 0.27.8, 0.28.2, and 0.29.1 malicious peer can use large RSA keys to run a resource exhaustion attack & force a node to spend time doing signature verification of the large key. This vulnerability is present in the core/crypto module of go-libp2p and can occur during the Noise handshake and the libp2p x509 extension verification step. To prevent this attack, go-libp2p versions 0.27.8, 0.28.2, and 0.29.1 restrict RSA keys to <= 8192 bits. To protect one's application, it is necessary to update to these patch releases and to use the updated Go compiler in 1.20.7 or 1.19.12. There are no known workarounds for this issue.",
+      "target_description": "Extremely large RSA keys in certificate chains can cause a client/server to expend significant CPU time verifying signatures. With fix, the size of RSA keys transmitted during handshakes is restricted to <= 8192 bits. Based on a survey of publicly trusted RSA keys, there are currently only three certificates in circulation with keys larger than this, and all three appear to be test certificates that are not actively deployed. It is possible there are larger keys in use in private PKIs, but we target the web PKI, so causing breakage here in the interests of increasing the default safety of users of crypto/tls seems reasonable."
+    },
+    {
+      "idx": 2,
+      "source": "CVE-2023-36812",
+      "target": "CVE-2018-12972",
+      "found_in": "t3_commit",
+      "context": "...nly plain ASCII printables first. Fixes CVE-2018-12972, CVE-2020-35476",
+      "source_description": "OpenTSDB is a open source, distributed, scalable Time Series Database (TSDB). OpenTSDB is vulnerable to Remote Code Execution vulnerability by writing user-controlled input to Gnuplot configuration file and running Gnuplot with the generated configuration. This issue has been patched in  commit `07c4641471c` and further refined in commit `fa88d3e4b`. These patches are available in the `2.4.2` release. Users are advised to upgrade. User unable to upgrade may disable Gunuplot via the config option`tsd.core.enable_ui = true` and remove the shell files `mygnuplot.bat` and `mygnuplot.sh`.",
+      "target_description": "An issue was discovered in OpenTSDB 2.3.0. Many parameters to the /q URI can execute commands, including o, key, style, and yrange and y2range and their JSON input."
+    },
+    {
+      "idx": 3,
+      "source": "CVE-2023-38314",
+      "target": "CVE-2023-41102",
+      "found_in": "t3_commit",
+      "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat...",
+      "source_description": "An issue was discovered in OpenNDS Captive Portal before version 10.1.2. It has a NULL pointer dereference in preauthenticated() that can be triggered with a crafted GET HTTP request with a missing redirect query string parameter. Triggering this issue results in crashing OpenNDS (a Denial-of-Service condition). Affected OpenNDS Captive Portal before version 10.1.2 fixed infixed in OpenWrt master, OpenWrt 23.05 and OpenWrt 22.03 on28. August 2023 by updating OpenNDS to version 10.1.3.",
+      "target_description": "An issue was discovered in the captive portal in OpenNDS before version 10.1.3. It has multiple memory leaks due to not freeing up allocated memory. This may lead to a Denial-of-Service condition due to the consumption of all available memory. Affected OpenNDS before version 10.1.3 fixed in OpenWrt master and OpenWrt 23.05 on 23. November by updating OpenNDS to version 10.2.0."
+    },
+    {
+      "idx": 4,
+      "source": "CVE-2020-26217",
+      "target": "CVE-2017-9805",
+      "found_in": "t3_commit",
+      "context": "Fix for CVE-2017-9805.",
+      "source_description": "XStream before version 1.4.14 is vulnerable to Remote Code Execution.The vulnerability may allow a remote attacker to run arbitrary shell commands only by manipulating the processed input stream. Only users who rely on blocklists are affected. Anyone using XStream's Security Framework allowlist is not affected. The linked advisory provides code workarounds for users who cannot upgrade. The issue is fixed in version 1.4.14.",
+      "target_description": "The REST Plugin in Apache Struts 2.1.1 through 2.3.x before 2.3.34 and 2.5.x before 2.5.13 uses an XStreamHandler with an instance of XStream for deserialization without any type filtering, which can lead to Remote Code Execution when deserializing XML payloads."
+    },
+    {
+      "idx": 5,
+      "source": "CVE-2023-38322",
+      "target": "CVE-2023-41101",
+      "found_in": "t3_commit",
+      "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du...",
+      "source_description": "An issue was discovered in OpenNDS Captive Portal before version 10.1.2. It has a do_binauth NULL pointer dereference that be triggered with a crafted GET HTTP request with a missing User-Agent HTTP header. Triggering this issue results in crashing OpenNDS (a Denial-of-Service condition). The issue occurs when the client is about to be authenticated, and can be triggered only when the BinAuth option is set. Affected OpenNDS Captive Portal before version 10.1.2 fixed in OpenWrt master, OpenWrt 23.05 and OpenWrt 22.03 on 28. August 2023 by updating OpenNDS to version 10.1.3.",
+      "target_description": "An issue was discovered in the captive portal in OpenNDS before version 10.1.3. get_query in http_microhttpd.c does not validate the length of the query string of GET requests. This leads to a stack-based buffer overflow in versions 9.x and earlier, and to a heap-based buffer overflow in versions 10.x and later. Attackers may exploit the issue to crash OpenNDS (Denial-of-Service condition) or to inject and execute arbitrary bytecode (Remote Code Execution). Affected OpenNDS before version 10.1.3 fixed in OpenWrt master and OpenWrt 23.05 on 23. November by updating OpenNDS to version 10.2.0."
+    },
+    {
+      "idx": 6,
+      "source": "CVE-2012-2674",
+      "target": "CVE-2009-0607",
+      "found_in": "t3_commit",
+      "context": "...This patch complements commit 6f04a0f4 (CVE-2009-0607).  Change-Id: Id899bcd2bcd2ea2205e5753c...",
+      "source_description": "Multiple integer overflows in the (1) chk_malloc, (2) leak_malloc, and (3) leak_memalign functions in libc/bionic/malloc_debug_leak.c in Bionic (libc) for Android, when libc.debug.malloc is set, make it easier for context-dependent attackers to perform memory-related attacks such as buffer overflows via a large size value, which causes less memory to be allocated than expected.",
+      "target_description": "Multiple integer overflows in malloc_leak.c in Bionic in Open Handset Alliance Android 1.0 have unknown impact and attack vectors, related to the (1) chk_calloc and (2) leak_calloc functions."
+    },
+    {
+      "idx": 7,
+      "source": "CVE-2024-55894",
+      "target": "CVE-2024-55920",
+      "found_in": "t3_commit",
+      "context": "...es: CVE-2024-55894 Security-References: CVE-2024-55920 Security-References: CVE-2024-55921 Sec...",
+      "source_description": "TYPO3 is a free and open source Content Management Framework. A vulnerability has been identified in the backend user interface functionality involving deep links. Specifically, this functionality is susceptible to Cross-Site Request Forgery (CSRF). Additionally, state-changing actions in downstream components incorrectly accepted submissions via HTTP GET and did not enforce the appropriate HTTP method. Successful exploitation of this vulnerability requires the victim to have an active session on the backend user interface and to be deceived into interacting with a malicious URL targeting the backend, which can occur under the following conditions: The user opens a malicious link, such as one sent via email. The user visits a compromised or manipulated website while the following settings are misconfigured: 1. `security.backend.enforceReferrer` feature is disabled, 2. `BE/cookieSameSite` configuration is set to lax or none. The vulnerability in the affected downstream component \u201cBackend User Module\u201d allows attackers to initiate password resets for other backend users or to terminate their user sessions. Users are advised to update to TYPO3 versions 11.5.42 ELTS, 12.4.25 LTS, 13.4.3 LTS which fix the problem described.",
+      "target_description": "TYPO3 is a free and open source Content Management Framework. A vulnerability has been identified in the backend user interface functionality involving deep links. Specifically, this functionality is susceptible to Cross-Site Request Forgery (CSRF). Additionally, state-changing actions in downstream components incorrectly accepted submissions via HTTP GET and did not enforce the appropriate HTTP method. Successful exploitation of this vulnerability requires the victim to have an active session on the backend user interface and to be deceived into interacting with a malicious URL targeting the backend, which can occur under the following conditions: The user opens a malicious link, such as one sent via email. The user visits a compromised or manipulated website while the following settings are misconfigured: 1. `security.backend.enforceReferrer` feature is disabled, 2. `BE/cookieSameSite` configuration is set to lax or none. The vulnerability in the affected downstream component \u201cDashboard Module\u201d allows attackers to manipulate the victim\u2019s dashboard configuration. Users are advised to update to TYPO3 versions 11.5.42 ELTS, 12.4.25 LTS, 13.4.3 LTS which fix the problem described. There are no known workarounds for this vulnerability."
+    },
+    {
+      "idx": 8,
+      "source": "CVE-2024-55893",
+      "target": "CVE-2024-55920",
+      "found_in": "t3_commit",
+      "context": "...es: CVE-2024-55894 Security-References: CVE-2024-55920 Security-References: CVE-2024-55921 Sec...",
+      "source_description": "TYPO3 is a free and open source Content Management Framework. A vulnerability has been identified in the backend user interface functionality involving deep links. Specifically, this functionality is susceptible to Cross-Site Request Forgery (CSRF). Additionally, state-changing actions in downstream components incorrectly accepted submissions via HTTP GET and did not enforce the appropriate HTTP method. Successful exploitation of this vulnerability requires the victim to have an active session on the backend user interface and to be deceived into interacting with a malicious URL targeting the backend, which can occur under the following conditions: The user opens a malicious link, such as one sent via email. The user visits a compromised or manipulated website while the following settings are misconfigured: 1. `security.backend.enforceReferrer` feature is disabled, 2. `BE/cookieSameSite` configuration is set to lax or none. The vulnerability in the affected downstream component \u201cLog Module\u201d allows attackers to remove log entries. Users are advised to update to TYPO3 versions 11.5.42 ELTS, 12.4.25 LTS, 13.4.3 LTS which fix the problem described. There are no known workarounds for this vulnerability.",
+      "target_description": "TYPO3 is a free and open source Content Management Framework. A vulnerability has been identified in the backend user interface functionality involving deep links. Specifically, this functionality is susceptible to Cross-Site Request Forgery (CSRF). Additionally, state-changing actions in downstream components incorrectly accepted submissions via HTTP GET and did not enforce the appropriate HTTP method. Successful exploitation of this vulnerability requires the victim to have an active session on the backend user interface and to be deceived into interacting with a malicious URL targeting the backend, which can occur under the following conditions: The user opens a malicious link, such as one sent via email. The user visits a compromised or manipulated website while the following settings are misconfigured: 1. `security.backend.enforceReferrer` feature is disabled, 2. `BE/cookieSameSite` configuration is set to lax or none. The vulnerability in the affected downstream component \u201cDashboard Module\u201d allows attackers to manipulate the victim\u2019s dashboard configuration. Users are advised to update to TYPO3 versions 11.5.42 ELTS, 12.4.25 LTS, 13.4.3 LTS which fix the problem described. There are no known workarounds for this vulnerability."
+    },
+    {
+      "idx": 9,
+      "source": "CVE-2017-11664",
+      "target": "CVE-2017-11661",
+      "found_in": "t3_commit",
+      "context": "Fix bug #175:  CVE-2017-11661, CVE-2017-11662, CVE-2017-11663, CVE-20...",
+      "source_description": "The _WM_SetupMidiEvent function in internal_midi.c:2122 in WildMIDI 0.4.2 can cause a denial of service (invalid memory read and application crash) via a crafted mid file.",
+      "target_description": "The _WM_SetupMidiEvent function in internal_midi.c:2318 in WildMIDI 0.4.2 can cause a denial of service (invalid memory read and application crash) via a crafted mid file."
+    },
+    {
+      "idx": 10,
+      "source": "CVE-2023-38313",
+      "target": "CVE-2023-41101",
+      "found_in": "t3_commit",
+      "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du...",
+      "source_description": "An issue was discovered in OpenNDS Captive Portal before 10.1.2. it has a do_binauth NULL pointer dereference that can be triggered with a crafted GET HTTP request with a missing client redirect query string parameter. Triggering this issue results in crashing openNDS (a Denial-of-Service condition). The issue occurs when the client is about to be authenticated, and can be triggered only when the BinAuth option is set. Affected OpenNDS Captive Portal before version 10.1.2 fixed infixed in OpenWrt master, OpenWrt 23.05 and OpenWrt 22.03 on28. August 2023 by updating OpenNDS to version 10.1.3.",
+      "target_description": "An issue was discovered in the captive portal in OpenNDS before version 10.1.3. get_query in http_microhttpd.c does not validate the length of the query string of GET requests. This leads to a stack-based buffer overflow in versions 9.x and earlier, and to a heap-based buffer overflow in versions 10.x and later. Attackers may exploit the issue to crash OpenNDS (Denial-of-Service condition) or to inject and execute arbitrary bytecode (Remote Code Execution). Affected OpenNDS before version 10.1.3 fixed in OpenWrt master and OpenWrt 23.05 on 23. November by updating OpenNDS to version 10.2.0."
+    },
+    {
+      "idx": 11,
+      "source": "CVE-2024-5998",
+      "target": "CVE-2024-3095",
+      "found_in": "t3_commit",
+      "context": "...Force opt-in for WebResearchRetriever (CVE-2024-3095) (#24451)  This PR addresses the issue...",
+      "source_description": "A vulnerability in the FAISS.deserialize_from_bytes function of langchain-ai/langchain allows for pickle deserialization of untrusted data. This can lead to the execution of arbitrary commands via the os.system function. The issue affects the latest version of the product.",
+      "target_description": "A Server-Side Request Forgery (SSRF) vulnerability exists in the Web Research Retriever component of langchain-ai/langchain version 0.1.5. The vulnerability arises because the Web Research Retriever does not restrict requests to remote internet addresses, allowing it to reach local addresses. This flaw enables attackers to execute port scans, access local services, and in some scenarios, read instance metadata from cloud environments. The vulnerability is particularly concerning as it can be exploited to abuse the Web Explorer server as a proxy for web attacks on third parties and interact with servers in the local network, including reading their response data. This could potentially lead to arbitrary code execution, depending on the nature of the local services. The vulnerability is limited to GET requests, as POST requests are not possible, but the impact on confidentiality, integrity, and availability is significant due to the potential for stolen credentials and state-changing interactions with internal APIs."
+    },
+    {
+      "idx": 12,
+      "source": "CVE-2020-7042",
+      "target": "CVE-2020-7041",
+      "found_in": "t3_commit",
+      "context": "...either (which is a separate issue, with CVE-2020-7041, and which has been fixed by the previo...",
+      "source_description": "An issue was discovered in openfortivpn 1.11.0 when used with OpenSSL 1.0.2 or later. tunnel.c mishandles certificate validation because the hostname check operates on uninitialized memory. The outcome is that a valid certificate is never accepted (only a malformed certificate may be accepted).",
+      "target_description": "An issue was discovered in openfortivpn 1.11.0 when used with OpenSSL 1.0.2 or later. tunnel.c mishandles certificate validation because an X509_check_host negative error code is interpreted as a successful return value."
+    },
+    {
+      "idx": 13,
+      "source": "CVE-2025-26625",
+      "target": "CVE-2024-32004",
+      "found_in": "t3_commit",
+      "context": "...tion to the vulnerability identified as CVE-2024-32004, on Windows this type of implementation...",
+      "source_description": "Git LFS is a Git extension for versioning large files. In Git LFS versions 0.5.2 through 3.7.0, when populating a Git repository's working tree with the contents of Git LFS objects, certain Git LFS commands may write to files visible outside the current Git working tree if symbolic or hard links exist which collide with the paths of files tracked by Git LFS. The git lfs checkout and git lfs pull commands do not check for symbolic links before writing to files in the working tree, allowing an attacker to craft a repository containing symbolic or hard links that cause Git LFS to write to arbitrary file system locations accessible to the user running these commands. As well, when the git lfs checkout and git lfs pull commands are run in a bare repository, they could write to files visible outside the repository. The vulnerability is fixed in version 3.7.1. As a workaround, support for symlinks in Git may be disabled by setting the core.symlinks configuration option to false, after which further clones and fetches will not create symbolic links. However, any symbolic or hard links in existing repositories will still provide the opportunity for Git LFS to write to their targets.",
+      "target_description": "Git is a revision control system. Prior to versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4, an attacker can prepare a local repository in such a way that, when cloned, will execute arbitrary code during the operation. The problem has been patched in versions 2.45.1, 2.44.1, 2.43.4, 2.42.2, 2.41.1, 2.40.2, and 2.39.4. As a workaround, avoid cloning repositories from untrusted sources."
+    },
+    {
+      "idx": 14,
+      "source": "CVE-2024-34199",
+      "target": "CVE-2024-5193",
+      "found_in": "t3_commit",
+      "context": "Add detailed CVE-2024-34199 and CVE-2024-5193 technical documentation in source code...",
+      "source_description": "TinyWeb 1.94 and below allows unauthenticated remote attackers to cause a denial of service (Buffer Overflow) when sending excessively large elements in the request line.",
+      "target_description": "A security vulnerability has been detected in Ritlabs TinyWeb Server 1.94. This vulnerability affects unknown code of the component Request Handler. The manipulation with the input %0D%0A leads to crlf injection. It is possible to initiate the attack remotely. The exploit has been disclosed publicly and may be used. Upgrading to version 1.99 is able to resolve this issue. The identifier of the patch is d49c3da6a97e950975b18626878f3ee1f082358e. It is suggested to upgrade the affected component. The vendor was contacted early about this disclosure but did not respond in any way."
+    },
+    {
+      "idx": 15,
+      "source": "CVE-2021-43807",
+      "target": "CVE-2019-12423",
+      "found_in": "t3_commit",
+      "context": "...g among other things [CVE-2019-12419], [CVE-2019-12423], [CVE-2021-22696], [CVE-2019-12406], [...",
+      "source_description": "Opencast is an Open Source Lecture Capture & Video Management for Education. Opencast versions prior to 9.10 allow HTTP method spoofing, allowing to change the assumed HTTP method via URL parameter. This allows attackers to turn HTTP GET requests into PUT requests or an HTTP form to send DELETE requests. This bypasses restrictions otherwise put on these types of requests and aids in cross-site request forgery (CSRF) attacks, which would otherwise not be possible. The vulnerability allows attackers to craft links or forms which may change the server state. This issue is fixed in Opencast 9.10 and 10.0. You can mitigate the problem by setting the `SameSite=Strict` attribute for your cookies. If this is a viable option for you depends on your integrations. We strongly recommend updating in any case.",
+      "target_description": "Apache CXF ships with a OpenId Connect JWK Keys service, which allows a client to obtain the public keys in JWK format, which can then be used to verify the signature of tokens issued by the service. Typically, the service obtains the public key from a local keystore (JKS/PKCS12) by specifing the path of the keystore and the alias of the keystore entry. This case is not vulnerable. However it is also possible to obtain the keys from a JWK keystore file, by setting the configuration parameter \"rs.security.keystore.type\" to \"jwk\". For this case all keys are returned in this file \"as is\", including all private key and secret key credentials. This is an obvious security risk if the user has configured the signature keystore file with private or secret key credentials. From CXF 3.3.5 and 3.2.12, it is mandatory to specify an alias corresponding to the id of the key in the JWK file, and only this key is returned. In addition, any private key information is omitted by default. \"oct\" keys, which contain secret keys, are not returned at all."
+    },
+    {
+      "idx": 16,
+      "source": "CVE-2021-23222",
+      "target": "CVE-2021-23214",
+      "found_in": "t3_commit",
+      "context": "...be possible with a server vulnerable to CVE-2021-23214.  To fix, throw a protocol-violation er...",
+      "source_description": "A man-in-the-middle attacker can inject false responses to the client's first few queries, despite the use of SSL certificate verification and encryption.",
+      "target_description": "When the server is configured to use trust authentication with a clientcert requirement or to use cert authentication, a man-in-the-middle attacker can inject arbitrary SQL queries when a connection is first established, despite the use of SSL certificate verification and encryption."
+    },
+    {
+      "idx": 17,
+      "source": "CVE-2022-4605",
+      "target": "CVE-2022-24588",
+      "found_in": "t3_commit",
+      "context": "...hub.com/Nguyen-Trung-Kien/CVE/blob/main/CVE-2022-24588/CVE-2022-24588.pdf",
+      "source_description": "Cross-site Scripting (XSS) - Stored in GitHub repository flatpressblog/flatpress prior to 1.3.",
+      "target_description": "Flatpress v1.2.1 was discovered to contain a cross-site scripting (XSS) vulnerability in the Upload SVG File function."
+    },
+    {
+      "idx": 18,
+      "source": "CVE-2017-16642",
+      "target": "CVE-2016-1283",
+      "found_in": "t3_commit",
+      "context": "...b_meridian()   Apply upstream patch for CVE-2016-1283",
+      "source_description": "In PHP before 5.6.32, 7.x before 7.0.25, and 7.1.x before 7.1.11, an error in the date extension's timelib_meridian handling of 'front of' and 'back of' directives could be used by attackers able to supply date strings to leak information from the interpreter, related to ext/date/lib/parse_date.c out-of-bounds reads affecting the php_parse_date function. NOTE: this is a different issue than CVE-2017-11145.",
+      "target_description": "The pcre_compile2 function in pcre_compile.c in PCRE 8.38 mishandles the /((?:F?+(?:^(?(R)a+\\\"){99}-))(?J)(?'R'(?'R'<((?'RR'(?'R'\\){97)?J)?J)(?'R'(?'R'\\){99|(:(?|(?'R')(\\k'R')|((?'R')))H'R'R)(H'R))))))/ pattern and related patterns with named subgroups, which allows remote attackers to cause a denial of service (heap-based buffer overflow) or possibly have unspecified other impact via a crafted regular expression, as demonstrated by a JavaScript RegExp object encountered by Konqueror."
+    },
+    {
+      "idx": 19,
+      "source": "CVE-2023-30620",
+      "target": "CVE-2007-4559",
+      "found_in": "t3_commit",
+      "context": "Use safe extract to prevent CVE-2007-4559 bug",
+      "source_description": "mindsdb is a Machine Learning platform to help developers build AI solutions. In affected versions an unsafe extraction is being performed using `tarfile.extractall()` from a remotely retrieved tarball. Which may lead to the writing of the extracted files to an unintended location. Sometimes, the vulnerability is called a TarSlip or a ZipSlip variant. An attacker may leverage this vulnerability to overwrite any local file which the server process has access to. There is no risk of file exposure with this vulnerability. This issue has been addressed in release `23.2.1.0 `. Users are advised to upgrade. There are no known workarounds for this vulnerability.",
+      "target_description": "Directory traversal vulnerability in the (1) extract and (2) extractall functions in the tarfile module in Python allows user-assisted remote attackers to overwrite arbitrary files via a .. (dot dot) sequence in filenames in a TAR archive, a related issue to CVE-2001-1267."
+    },
+    {
+      "idx": 20,
+      "source": "CVE-2010-3844",
+      "target": "CVE-2010-3843",
+      "found_in": "t3_commit",
+      "context": "More changes to mitigate: CVE-2010-3843 CVE-2010-3844",
+      "source_description": "An unchecked sscanf() call in ettercap before 0.7.5 allows an insecure temporary settings file to overflow a static-sized buffer on the stack.",
+      "target_description": "The GTK version of ettercap uses a global settings file at /tmp/.ettercap_gtk and does not verify ownership of this file. When parsing this file for settings in gtkui_conf_read() (src/interfacesgtk/ec_gtk_conf.c), an unchecked sscanf() call allows a maliciously placed settings file to overflow a statically-sized buffer on the stack."
+    }
+  ]
+}

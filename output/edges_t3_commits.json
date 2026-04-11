@@ -10,7 +10,7 @@
   "commits_cached": 20606,
   "commits_failed": 314,
   "commits_with_cve_refs": 110,
-  "generated_at": "2026-04-03T21:45:08.085558",
+  "generated_at": "2026-04-11T05:28:59.423691",
   "edges": [
     {
       "source": "CVE-2010-3844",
@@ -409,13 +409,13 @@
       "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
     },
     {
-      "source": "CVE-2023-38314",
+      "source": "CVE-2023-38316",
       "target": "CVE-2023-41101",
       "found_in": "t3_commit",
       "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
     },
     {
-      "source": "CVE-2023-38314",
+      "source": "CVE-2023-38316",
       "target": "CVE-2023-41102",
       "found_in": "t3_commit",
       "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
@@ -457,13 +457,13 @@
       "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."
     },
     {
-      "source": "CVE-2023-38316",
+      "source": "CVE-2023-38314",
       "target": "CVE-2023-41101",
       "found_in": "t3_commit",
       "context": "...ix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]   * Fix - Memory leaks du..."
     },
     {
-      "source": "CVE-2023-38316",
+      "source": "CVE-2023-38314",
       "target": "CVE-2023-41102",
       "found_in": "t3_commit",
       "context": "...allocated buffer into safe_asprintf() - CVE-2023-41102 [bluewavenet]   * Fix - Remove deprecat..."

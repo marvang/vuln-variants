@@ -1,0 +1,1262 @@
+[
+  {
+    "source": "CVE-2005-4560",
+    "target": "CVE-2005-2124",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "CVE-2005-4560 explicitly states it is a different vulnerability than CVE-2005-2124, despite both being WMF format image handling bugs in Windows GDI32.",
+    "signal_phrase": "a different vulnerability than CVE-2005-2123 and CVE-2005-2124"
+  },
+  {
+    "source": "CVE-2007-5757",
+    "target": "CVE-2008-0697",
+    "tier": "t1",
+    "category": "same_or_duplicate",
+    "confidence": "high",
+    "reasoning": "Both CVEs affect IBM DB2 UDB db2pd with identical local root privilege escalation impact, same vendor fix reference (IZ03546), and overlapping version ranges; CVE-2007-5757 explicitly states it might be the same issue.",
+    "signal_phrase": "might be the same issue as CVE-2008-0697"
+  },
+  {
+    "source": "CVE-2007-6667",
+    "target": "CVE-2005-0413",
+    "tier": "t1",
+    "category": "same_or_duplicate",
+    "confidence": "high",
+    "reasoning": "CVE-2007-6667 explicitly states that the member.php vector already covered by CVE-2005-0413 still exists in version 3.0, confirming an overlapping vulnerability across versions.",
+    "signal_phrase": "the member.php vector is already covered by CVE-2005-0413"
+  },
+  {
+    "source": "CVE-2008-2375",
+    "target": "CVE-2007-5962",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "CVE-2008-2375 explicitly clarifies it is a distinct vulnerability from CVE-2007-5962 despite both being vsftpd memory leaks, differing in affected RHEL versions, attack vectors, and configuration triggers.",
+    "signal_phrase": "a different vulnerability than CVE-2007-5962"
+  },
+  {
+    "source": "CVE-2008-3173",
+    "target": "CVE-2004-0866",
+    "tier": "t1",
+    "category": "incomplete_fix",
+    "confidence": "high",
+    "reasoning": "CVE-2008-3173 exploits the same cookie domain validation vulnerability in IE that CVE-2004-0866 addressed, but for a broader class of public suffixes, indicating the original patch was insufficient.",
+    "signal_phrase": "this issue may exist because of an insufficient fix for CVE-2004-0866"
+  },
+  {
+    "source": "CVE-2008-3417",
+    "target": "CVE-2007-2561",
+    "tier": "t1",
+    "category": "related_issue",
+    "confidence": "high",
+    "reasoning": "Explicit statement that CVE-2008-3417 is a different vector SQL injection vulnerability than CVE-2007-2561 in the same product, affecting different parameters (r vs pid).",
+    "signal_phrase": "a different vector than CVE-2006-6115 and CVE-2007-2561"
+  },
+  {
+    "source": "CVE-2009-3567",
+    "target": "CVE-2007-1145",
+    "tier": "t1",
+    "category": "related_issue",
+    "confidence": "high",
+    "reasoning": "Same product and vulnerability type (XSS) but explicitly stated as a different vector into the control panel.",
+    "signal_phrase": "a different vector than CVE-2007-1145"
+  },
+  {
+    "source": "CVE-2010-0199",
+    "target": "CVE-2010-0202",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are distinct buffer overflows in Adobe Reader/Acrobat from the same advisory (APSB10-09), explicitly marked as different vulnerabilities.",
+    "signal_phrase": "a different vulnerability than CVE-2010-0198, CVE-2010-0202, and CVE-2010-0203"
+  },
+  {
+    "source": "CVE-2010-3648",
+    "target": "CVE-2010-3642",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs explicitly state they are 'a different vulnerability than' each other in the same batch advisory, clarifying distinct Adobe Flash Player bugs listed together.",
+    "signal_phrase": "a different vulnerability than CVE-2010-3642"
+  },
+  {
+    "source": "CVE-2011-2135",
+    "target": "CVE-2011-2140",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both vulnerabilities affect the same Adobe products disclosed in the same advisory, explicitly stated as distinct bugs.",
+    "signal_phrase": "a different vulnerability than CVE-2011-2140"
+  },
+  {
+    "source": "CVE-2011-4212",
+    "target": "CVE-2011-1364",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both vulnerabilities affect the same SDK endpoint and version but are explicitly distinguished as different vulnerability types (os.popen bypass vs CSRF).",
+    "signal_phrase": "a different vulnerability than CVE-2011-1364"
+  },
+  {
+    "source": "CVE-2012-0119",
+    "target": "CVE-2012-0492",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same product and advisory with explicit 'different vulnerability than' language between CVEs in batch disclosure.",
+    "signal_phrase": "a different vulnerability than CVE-2012-0492"
+  },
+  {
+    "source": "CVE-2012-3107",
+    "target": "CVE-2012-3110",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs describe unspecified vulnerabilities in Oracle Outside In Technology from the same advisory, explicitly stated as \"different vulnerability than\" each other in a batch disclosure.",
+    "signal_phrase": "a different vulnerability than CVE-2012-1766, CVE-2012-1767, CVE-2012-1769, CVE-2012-1770, CVE-2012-1771, CVE-2012-1772, CVE-2012-1773, CVE-2012-3106, CVE-2012-3108, and CVE-2012-3110"
+  },
+  {
+    "source": "CVE-2012-3859",
+    "target": "CVE-2012-2446",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Explicit 'different vulnerability than' language in same-product advisory listing multiple distinct bugs.",
+    "signal_phrase": "a different vulnerability than CVE-2012-2446 and CVE-2012-2447"
+  },
+  {
+    "source": "CVE-2013-0608",
+    "target": "CVE-2013-0614",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "CVE-2013-0608 explicitly states it is 'a different vulnerability than' CVE-2013-0614, part of a co-disclosed batch of 5 logic error vulnerabilities in Adobe Reader/Acrobat fixed together.",
+    "signal_phrase": "a different vulnerability than CVE-2013-0614"
+  },
+  {
+    "source": "CVE-2013-2719",
+    "target": "CVE-2013-2725",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs are distinct vulnerabilities in the same Adobe Reader/Acrobat advisory (APSB13-15), explicitly distinguished by 'different vulnerability than' language in the description.",
+    "signal_phrase": "a different vulnerability than CVE-2013-2718, CVE-2013-2720, CVE-2013-2721, CVE-2013-2722, CVE-2013-2723, CVE-2013-2725"
+  },
+  {
+    "source": "CVE-2013-2722",
+    "target": "CVE-2013-3341",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs are independent memory corruption flaws in Adobe Reader/Acrobat fixed in the same coordinated advisory, explicitly differentiated as separate vulnerabilities not variants.",
+    "signal_phrase": "a different vulnerability than CVE-2013-3341"
+  },
+  {
+    "source": "CVE-2013-3113",
+    "target": "CVE-2013-3112",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same product, same advisory, same release date, but explicitly marked as distinct vulnerabilities affecting IE 6-10.",
+    "signal_phrase": "a different vulnerability than CVE-2013-3112"
+  },
+  {
+    "source": "CVE-2013-3339",
+    "target": "CVE-2013-3341",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "CVE-2013-3339 explicitly classifies itself as a different vulnerability than CVE-2013-3341 in the same Adobe security bulletin for the same product and versions.",
+    "signal_phrase": "a different vulnerability than CVE-2013-2718, CVE-2013-2719, CVE-2013-2720, CVE-2013-2721, CVE-2013-2722, CVE-2013-2723, CVE-2013-2725, CVE-2013-2726, CVE-2013-2731, CVE-2013-2732, CVE-2013-2734, CVE-2013-2735, CVE-2013-2736, CVE-2013-3337, CVE-2013-3338, CVE-2013-3340, and CVE-2013-3341"
+  },
+  {
+    "source": "CVE-2013-3634",
+    "target": "CVE-2013-3633",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Two distinct vulnerabilities in the same Siemens advisory affecting different components (SNMPv3 vs web interface) with different version thresholds, disclosed together but addressing separate attack vectors.",
+    "signal_phrase": "Versions < V5.0.0 for CVE-2013-3633 and versions < V4.5.0 for CVE-2013-3634"
+  },
+  {
+    "source": "CVE-2013-3818",
+    "target": "CVE-2013-2404",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs explicitly state they are different vulnerabilities in the same Portal component; this is clarification to avoid confusion, not a variant relationship.",
+    "signal_phrase": "a different vulnerability than CVE-2013-2404"
+  },
+  {
+    "source": "CVE-2014-1289",
+    "target": "CVE-2014-1291",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both WebKit vulnerabilities patched together in the same Apple advisory on the same date, but explicitly marked as distinct vulnerabilities.",
+    "signal_phrase": "a different vulnerability than CVE-2014-1291"
+  },
+  {
+    "source": "CVE-2014-4100",
+    "target": "CVE-2014-4105",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are distinct Internet Explorer memory corruption bugs from the same MS14-052 bulletin, explicitly marked as different vulnerabilities.",
+    "signal_phrase": "a different vulnerability than CVE-2014-4105"
+  },
+  {
+    "source": "CVE-2015-0347",
+    "target": "CVE-2015-0355",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs explicitly state they are distinct vulnerabilities fixed in the same Adobe Flash Player advisory, not variants of each other.",
+    "signal_phrase": "a different vulnerability than CVE-2015-0355"
+  },
+  {
+    "source": "CVE-2015-0349",
+    "target": "CVE-2015-0351",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same product version range, same advisory cycle, explicitly stated as separate use-after-free bugs in co-disclosed batch.",
+    "signal_phrase": "a different vulnerability than CVE-2015-0351"
+  },
+  {
+    "source": "CVE-2015-1666",
+    "target": "CVE-2015-1652",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Two distinct IE memory corruption vulnerabilities listed together in same advisory but explicitly marked as different bugs.",
+    "signal_phrase": "a different vulnerability than CVE-2015-1652"
+  },
+  {
+    "source": "CVE-2015-3066",
+    "target": "CVE-2015-3067",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same product, same advisory, same version range, explicitly marked as different vulnerabilities in joint disclosure.",
+    "signal_phrase": "a different vulnerability than CVE-2015-3060, CVE-2015-3061, CVE-2015-3062, CVE-2015-3063, CVE-2015-3064, CVE-2015-3065, CVE-2015-3067"
+  },
+  {
+    "source": "CVE-2015-3131",
+    "target": "CVE-2015-4430",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are distinct use-after-free vulnerabilities in Adobe Flash Player listed in the same advisory, explicitly marked as different bugs.",
+    "signal_phrase": "a different vulnerability than CVE-2015-3118, CVE-2015-3124, CVE-2015-3127, CVE-2015-3128, CVE-2015-3129, CVE-2015-3132, CVE-2015-3136, CVE-2015-3137, CVE-2015-4428, CVE-2015-4430, and CVE-2015-5117"
+  },
+  {
+    "source": "CVE-2015-3771",
+    "target": "CVE-2015-3769",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same Apple advisory explicitly distinguishes two separate IOFireWireFamily vulnerabilities in OS X 10.10.5.",
+    "signal_phrase": "a different vulnerability than CVE-2015-3769"
+  },
+  {
+    "source": "CVE-2015-3792",
+    "target": "CVE-2015-3765",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs are for the same product (QuickTime 7) and same advisory batch, but explicitly declared as different vulnerabilities with distinct memory corruption issues listed together in one security advisory.",
+    "signal_phrase": "a different vulnerability than CVE-2015-3765"
+  },
+  {
+    "source": "CVE-2015-4790",
+    "target": "CVE-2015-2624",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same vendor advisory lists multiple independent Data Store vulnerabilities as distinct bugs in Oracle Berkeley DB with explicit 'different vulnerability than' language.",
+    "signal_phrase": "a different vulnerability than CVE-2015-2583, CVE-2015-2624, CVE-2015-2626, CVE-2015-2640..."
+  },
+  {
+    "source": "CVE-2015-6720",
+    "target": "CVE-2015-6708",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are JavaScript API bypass vulnerabilities in Adobe Reader/Acrobat with same advisory (APSB15-24) but explicitly labeled 'different vulnerability than' affecting different methods (ANRunSharedReviewEmailStep vs ANStartApproval).",
+    "signal_phrase": "a different vulnerability than"
+  },
+  {
+    "source": "CVE-2015-7103",
+    "target": "CVE-2015-7101",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "WebKit security advisory lists multiple distinct vulnerabilities with explicit 'different vulnerability than' language in same Apple batch advisory covering same affected versions.",
+    "signal_phrase": "a different vulnerability than CVE-2015-7048, CVE-2015-7095, CVE-2015-7096, CVE-2015-7097, CVE-2015-7098, CVE-2015-7099, CVE-2015-7100, CVE-2015-7101"
+  },
+  {
+    "source": "CVE-2015-8049",
+    "target": "CVE-2015-8405",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are distinct use-after-free vulnerabilities in Adobe Flash Player co-disclosed in the same advisory (APSB15-32), explicitly marked with 'a different vulnerability than' language to disambiguate separate bugs.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8405"
+  },
+  {
+    "source": "CVE-2015-8055",
+    "target": "CVE-2015-8059",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Adobe advisory APSB15-32 explicitly lists both CVEs as different vulnerabilities in the same batch disclosure using 'a different vulnerability than' language.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059"
+  },
+  {
+    "source": "CVE-2015-8057",
+    "target": "CVE-2015-8056",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same Adobe Flash Player advisory with explicit 'different vulnerability than' language distinguishing these as separate bugs, not variants.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8056"
+  },
+  {
+    "source": "CVE-2015-8061",
+    "target": "CVE-2015-8056",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "CVE-2015-8061 explicitly states it is a different vulnerability than CVE-2015-8056; part of Adobe Flash Player security update with 50+ CVEs released together.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058"
+  },
+  {
+    "source": "CVE-2015-8065",
+    "target": "CVE-2015-8050",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "CVE-2015-8065 explicitly states it is a different vulnerability than CVE-2015-8050 in the same Adobe advisory; both are distinct use-after-free bugs with different attack vectors fixed together.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8050"
+  },
+  {
+    "source": "CVE-2015-8066",
+    "target": "CVE-2015-8064",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are distinct Use-after-free vulnerabilities in Adobe Flash Player from the same December 2015 security bulletin (APSB15-32), explicitly labeled as 'a different vulnerability than' each other.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063, CVE-2015-8064"
+  },
+  {
+    "source": "CVE-2015-8067",
+    "target": "CVE-2015-8063",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both vulnerabilities are explicitly listed in the same Adobe Flash Player advisory as different bugs, with 40+ other CVEs listed together using the phrase 'a different vulnerability than'.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, CVE-2015-8055, CVE-2015-8056, CVE-2015-8057, CVE-2015-8058, CVE-2015-8059, CVE-2015-8061, CVE-2015-8062, CVE-2015-8063..."
+  },
+  {
+    "source": "CVE-2015-8070",
+    "target": "CVE-2015-8413",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs describe the same use-after-free vulnerability in Adobe Flash Player with identical version ranges, but the descriptions explicitly state they are different vulnerabilities co-disclosed in advisory APSB15-32.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8413"
+  },
+  {
+    "source": "CVE-2015-8404",
+    "target": "CVE-2015-8428",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Adobe Flash Player vulnerability batch from advisory APSB15-32 explicitly marked as different vulnerabilities in the same product and release.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8048, CVE-2015-8049, ... CVE-2015-8428"
+  },
+  {
+    "source": "CVE-2015-8406",
+    "target": "CVE-2015-8050",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same Adobe Flash advisory (APSB15-32) released on same date (2015-12-10), same affected versions, but explicitly marked as 'different vulnerability' with distinct attack vectors (CVE-2015-8406: unspecified vectors vs CVE-2015-8050: crafted beginGradientFill call).",
+    "signal_phrase": "a different vulnerability than CVE-2015-8050"
+  },
+  {
+    "source": "CVE-2015-8413",
+    "target": "CVE-2015-8057",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs are different use-after-free vulnerabilities in Adobe Flash Player disclosed in the same advisory (APSB15-32), explicitly marked as distinct bugs.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8057"
+  },
+  {
+    "source": "CVE-2015-8413",
+    "target": "CVE-2015-8067",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Adobe security advisory explicitly lists both CVEs as separate vulnerabilities in the same batch disclosure for Flash Player.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8067"
+  },
+  {
+    "source": "CVE-2015-8431",
+    "target": "CVE-2015-8433",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs explicitly state 'a different vulnerability than' each other in the same Adobe Flash Player advisory, distinguishing separate use-after-free bugs in a coordinated disclosure.",
+    "signal_phrase": "a different vulnerability than"
+  },
+  {
+    "source": "CVE-2015-8431",
+    "target": "CVE-2015-8442",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "CVE-2015-8431 description explicitly states it is 'a different vulnerability than' CVE-2015-8442; both are distinct use-after-free bugs in Adobe Flash Player from the same advisory batch (APSB15-32).",
+    "signal_phrase": "a different vulnerability than"
+  },
+  {
+    "source": "CVE-2015-8433",
+    "target": "CVE-2015-8449",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are distinct use-after-free vulnerabilities in Adobe Flash Player disclosed together in the same advisory, explicitly marked as different bugs.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8449"
+  },
+  {
+    "source": "CVE-2015-8655",
+    "target": "CVE-2015-8424",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs are use-after-free vulnerabilities in Adobe Flash Player and AIR disclosed in the same advisory, explicitly marked as different vulnerabilities.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8048, CVE-2015-8049... CVE-2015-8424..."
+  },
+  {
+    "source": "CVE-2015-8821",
+    "target": "CVE-2015-8066",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs explicitly state 'a different vulnerability than' the other, same Adobe Flash advisory (APSB15-32), same vulnerability class but different bugs in batch disclosure.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8066"
+  },
+  {
+    "source": "CVE-2015-8821",
+    "target": "CVE-2015-8427",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Multiple distinct Flash Player vulnerabilities patched together in APSB15-32 advisory, explicitly marked as 'different vulnerability than' in CNA description.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8048, CVE-2015-8049, CVE-2015-8050, ... CVE-2015-8427, ... CVE-2015-8822"
+  },
+  {
+    "source": "CVE-2015-8823",
+    "target": "CVE-2015-8653",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both vulnerabilities explicitly stated as 'a different vulnerability than' each other in the same Adobe Flash advisory batch (APSB15-32), disambiguating distinct bugs in a co-disclosed set.",
+    "signal_phrase": "a different vulnerability than CVE-2015-8653"
+  },
+  {
+    "source": "CVE-2016-0072",
+    "target": "CVE-2016-0060",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Multiple distinct memory corruption vulnerabilities in Microsoft IE/Edge listed together in the same advisory (MS16-009) with explicit 'different vulnerability than' language.",
+    "signal_phrase": "a different vulnerability than CVE-2016-0060"
+  },
+  {
+    "source": "CVE-2016-0278",
+    "target": "CVE-2016-0279",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are distinct heap buffer overflows in IBM Domino KeyView filter disclosed together; explicitly marked as 'different vulnerability than' each other.",
+    "signal_phrase": "a different vulnerability than CVE-2016-0277, CVE-2016-0279, and CVE-2016-0301"
+  },
+  {
+    "source": "CVE-2016-0965",
+    "target": "CVE-2016-0978",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs are distinct Adobe Flash memory corruption bugs in the same batch advisory, explicitly referenced as 'different vulnerability than' each other.",
+    "signal_phrase": "a different vulnerability than CVE-2016-0965"
+  },
+  {
+    "source": "CVE-2016-0984",
+    "target": "CVE-2016-0974",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same Adobe Flash advisory (APSB16-04) with multiple vulnerabilities explicitly distinguished as different bugs in the same update.",
+    "signal_phrase": "a different vulnerability than CVE-2016-0974"
+  },
+  {
+    "source": "CVE-2016-0986",
+    "target": "CVE-2016-0989",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Multiple distinct memory corruption vulnerabilities in same Adobe Flash/AIR release, explicitly listed as separate bugs in same advisory batch, not variants.",
+    "signal_phrase": "a different vulnerability than CVE-2016-0960, CVE-2016-0961, CVE-2016-0962, CVE-2016-0989"
+  },
+  {
+    "source": "CVE-2016-0988",
+    "target": "CVE-2016-0987",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are separate Use-after-free vulnerabilities in Adobe Flash Player released in the same advisory with explicit language distinguishing them as different bugs.",
+    "signal_phrase": "a different vulnerability than CVE-2016-0987"
+  },
+  {
+    "source": "CVE-2016-1056",
+    "target": "CVE-2016-1052",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are use-after-free vulnerabilities in Adobe products addressed in the same advisory (APSB16-14), explicitly marked as distinct bugs in a batch security update.",
+    "signal_phrase": "a different vulnerability than CVE-2016-1052"
+  },
+  {
+    "source": "CVE-2016-1064",
+    "target": "CVE-2016-4094",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Adobe security advisory APSB16-14 lists multiple distinct memory corruption vulnerabilities in Reader/Acrobat; CVE-2016-4094 is explicitly enumerated as 'a different vulnerability than' CVE-2016-1064.",
+    "signal_phrase": "a different vulnerability than CVE-2016-1037, CVE-2016-1063, ... CVE-2016-4094, ..."
+  },
+  {
+    "source": "CVE-2016-1125",
+    "target": "CVE-2016-4090",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs are co-disclosed in the same Adobe security advisory with explicit 'different vulnerability than' language distinguishing them.",
+    "signal_phrase": "a different vulnerability than"
+  },
+  {
+    "source": "CVE-2016-1126",
+    "target": "CVE-2016-4099",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs are listed in the same Adobe PSIRT advisory as separate, unrelated memory corruption vulnerabilities\u2014explicitly marked as 'different vulnerability than' each other in a batch disclosure.",
+    "signal_phrase": "a different vulnerability than CVE-2016-1037, CVE-2016-1063, ... CVE-2016-4099, ... and CVE-2016-4105"
+  },
+  {
+    "source": "CVE-2016-3574",
+    "target": "CVE-2016-3582",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Source explicitly states CVE-2016-3582 is a different vulnerability in the same Oracle Fusion Middleware advisory batch, not a variant or related issue.",
+    "signal_phrase": "a different vulnerability than CVE-2016-3582"
+  },
+  {
+    "source": "CVE-2016-4103",
+    "target": "CVE-2016-1080",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs are distinct vulnerabilities in Adobe Acrobat fixed in the same batch, explicitly stated as 'different vulnerability than' each other in a shared advisory.",
+    "signal_phrase": "a different vulnerability than CVE-2016-1080"
+  },
+  {
+    "source": "CVE-2016-4160",
+    "target": "CVE-2016-4162",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Source description explicitly states 'a different vulnerability than' target in same batch advisory of multiple distinct Adobe Flash bugs.",
+    "signal_phrase": "a different vulnerability than CVE-2016-4162"
+  },
+  {
+    "source": "CVE-2016-4182",
+    "target": "CVE-2016-4217",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "CVE-2016-4182's description explicitly lists CVE-2016-4217 as a different vulnerability in the same Adobe Flash Player security advisory, with 'a different vulnerability than' language.",
+    "signal_phrase": "a different vulnerability than CVE-2016-4172, CVE-2016-4175, CVE-2016-4179, CVE-2016-4180, CVE-2016-4181, CVE-2016-4183, CVE-2016-4184, CVE-2016-4185, CVE-2016-4186, CVE-2016-4187, CVE-2016-4188, CVE-2016-4189, CVE-2016-4190, CVE-2016-4217, CVE-2016-4218, CVE-2016-4219, CVE-2016-4220, CVE-2016-4221, CVE-2016-4233, CVE-2016-4234, CVE-2016-4235, CVE-2016-4236, CVE-2016-4237, CVE-2016-4238, CVE-2016-4239, CVE-2016-4240, CVE-2016-4241, CVE-2016-4242, CVE-2016-4243, CVE-2016-4244, CVE-2016-4245, and CVE-2016-4246"
+  },
+  {
+    "source": "CVE-2016-4211",
+    "target": "CVE-2016-4208",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs are listed in the same Adobe security advisory with explicit language stating they are different vulnerabilities affecting the same product versions.",
+    "signal_phrase": "a different vulnerability than CVE-2016-4208"
+  },
+  {
+    "source": "CVE-2016-4222",
+    "target": "CVE-2016-4173",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs describe distinct use-after-free vulnerabilities in Adobe Flash Player fixed in the same release, explicitly marked as different bugs in a batch advisory.",
+    "signal_phrase": "a different vulnerability than CVE-2016-4173"
+  },
+  {
+    "source": "CVE-2016-4236",
+    "target": "CVE-2016-4186",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Adobe Flash Player batch advisory listing multiple distinct memory corruption vulnerabilities fixed in the same release, explicitly marked as different bugs.",
+    "signal_phrase": "a different vulnerability than CVE-2016-4186"
+  },
+  {
+    "source": "CVE-2016-4242",
+    "target": "CVE-2016-4240",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "CVE-2016-4242's description explicitly states it's a different vulnerability than CVE-2016-4240; both are distinct bugs co-disclosed in the same Adobe Flash security advisory.",
+    "signal_phrase": "a different vulnerability than CVE-2016-4240"
+  },
+  {
+    "source": "CVE-2016-4267",
+    "target": "CVE-2016-4195",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same Adobe advisory (APSB16-26) with identical affected versions, but explicitly marked as different vulnerabilities in the same batch disclosure.",
+    "signal_phrase": "a different vulnerability than CVE-2016-4195"
+  },
+  {
+    "source": "CVE-2016-6924",
+    "target": "CVE-2016-4282",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same Adobe Flash Player advisory batch release, same affected versions, but explicitly marked as different vulnerabilities.",
+    "signal_phrase": "a different vulnerability than CVE-2016-4282"
+  },
+  {
+    "source": "CVE-2016-6931",
+    "target": "CVE-2016-6926",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same product, same advisory, distinct use-after-free bugs explicitly marked as different vulnerabilities.",
+    "signal_phrase": "a different vulnerability than"
+  },
+  {
+    "source": "CVE-2016-6937",
+    "target": "CVE-2016-4207",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Source description explicitly lists target as a distinct vulnerability in a batch of separate bugs fixed together in the same Adobe advisory.",
+    "signal_phrase": "a different vulnerability than CVE-2016-4207"
+  },
+  {
+    "source": "CVE-2016-6937",
+    "target": "CVE-2016-4268",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "CVE-2016-6937 description explicitly states both CVEs are in the same Adobe advisory but are distinct vulnerabilities using phrase 'a different vulnerability than'.",
+    "signal_phrase": "a different vulnerability than CVE-2016-4191, CVE-2016-4192, ... CVE-2016-4268, CVE-2016-4269, and CVE-2016-4270"
+  },
+  {
+    "source": "CVE-2016-6973",
+    "target": "CVE-2016-6951",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Multiple distinct vulnerabilities in Adobe Reader/Acrobat explicitly listed together in same advisory with 'different vulnerability than' language.",
+    "signal_phrase": "a different vulnerability than CVE-2016-6951"
+  },
+  {
+    "source": "CVE-2016-6993",
+    "target": "CVE-2016-6962",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs describe distinct use-after-free vulnerabilities in Adobe Reader/Acrobat disclosed in the same advisory (APSB16-33) with explicit 'different vulnerability than' language disambiguating multiple bugs.",
+    "signal_phrase": "a different vulnerability than CVE-2016-6962"
+  },
+  {
+    "source": "CVE-2016-7431",
+    "target": "CVE-2015-8138",
+    "tier": "t1",
+    "category": "incomplete_fix",
+    "confidence": "high",
+    "reasoning": "The CVE-2016-7431 description explicitly states it exists because of a CVE-2015-8138 regression, indicating the original fix was insufficient and the vulnerability was re-introduced.",
+    "signal_phrase": "this vulnerability exists because of a CVE-2015-8138 regression"
+  },
+  {
+    "source": "CVE-2016-8666",
+    "target": "CVE-2016-7039",
+    "tier": "t1",
+    "category": "related_issue",
+    "confidence": "high",
+    "reasoning": "Both are distinct GRO stack-based DoS vulnerabilities in Linux kernel affecting different packet types (GRE/IPv4 vs VLAN headers); CVE-2016-8666 explicitly describes CVE-2016-7039 as a 'related issue' indicating they are related but separate vulnerabilities.",
+    "signal_phrase": "a related issue to CVE-2016-7039"
+  },
+  {
+    "source": "CVE-2016-9033",
+    "target": "CVE-2016-9035",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs are buffer overflows in the same SmartOS Hyprlofs component, described explicitly as distinct bugs in related advisories.",
+    "signal_phrase": "This vulnerability is distinct from CVE-2016-9035"
+  },
+  {
+    "source": "CVE-2017-11836",
+    "target": "CVE-2017-11870",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs explicitly state they are unique from each other in the same Microsoft advisory batch, confirming they are distinct vulnerabilities despite affecting the same product and being patched together.",
+    "signal_phrase": "This CVE ID is unique from CVE-2017-11870"
+  },
+  {
+    "source": "CVE-2017-11889",
+    "target": "CVE-2017-11890",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVE descriptions explicitly state they are unique/distinct from each other, indicating separate vulnerabilities in the same advisory batch despite affecting related products (Edge vs IE).",
+    "signal_phrase": "This CVE ID is unique from CVE-2017-11886, CVE-2017-11890, CVE-2017-11893, CVE-2017-11894..."
+  },
+  {
+    "source": "CVE-2017-11930",
+    "target": "CVE-2017-11910",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs explicitly state they are unique from each other and describe separate memory corruption vulnerabilities in the same scripting engine affecting different products in a batch Microsoft advisory.",
+    "signal_phrase": "This CVE ID is unique from CVE-2017-11910"
+  },
+  {
+    "source": "CVE-2017-14705",
+    "target": "CVE-2017-14706",
+    "tier": "t1",
+    "category": "chained",
+    "confidence": "high",
+    "reasoning": "CVE-2017-14706 (iToken disclosure) enables exploitation of CVE-2017-14705 (RCE requiring iToken); one vulnerability must be exploited to enable the other in the same attack chain.",
+    "signal_phrase": "An iToken authentication parameter is required but can be obtained by exploiting CVE-2017-14706"
+  },
+  {
+    "source": "CVE-2017-8469",
+    "target": "CVE-2017-8485",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are distinct Windows kernel information disclosure vulnerabilities explicitly marked 'a different vulnerability than' each other in the same co-disclosed batch of Microsoft security updates.",
+    "signal_phrase": "a different vulnerability than CVE-2017-8485"
+  },
+  {
+    "source": "CVE-2018-1022",
+    "target": "CVE-2018-8139",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same product, same advisory with shared SECTRACK ID, same date, but CVE-2018-1022 explicitly states 'unique from' CVE-2018-8139 indicating distinct bugs.",
+    "signal_phrase": "This CVE ID is unique from CVE-2018-0945, CVE-2018-0946, CVE-2018-0951, CVE-2018-0953, CVE-2018-0954, CVE-2018-0955, CVE-2018-8114, CVE-2018-8122, CVE-2018-8128, CVE-2018-8137, CVE-2018-8139"
+  },
+  {
+    "source": "CVE-2018-8301",
+    "target": "CVE-2018-8274",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs are Microsoft Edge memory corruption vulnerabilities in the same security advisory; source explicitly states it is unique from target using 'unique from' language.",
+    "signal_phrase": "This CVE ID is unique from CVE-2018-8125, CVE-2018-8262, CVE-2018-8274, CVE-2018-8275, CVE-2018-8279."
+  },
+  {
+    "source": "CVE-2019-1120",
+    "target": "CVE-2019-1128",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs are different DirectWrite RCE vulnerabilities explicitly stated as unique from each other in the same advisory batch, not a variant relationship.",
+    "signal_phrase": "This CVE ID is unique from CVE-2019-1117, CVE-2019-1118, CVE-2019-1119, CVE-2019-1121, CVE-2019-1122, CVE-2019-1123, CVE-2019-1124, CVE-2019-1127, CVE-2019-1128."
+  },
+  {
+    "source": "CVE-2019-1296",
+    "target": "CVE-2019-1257",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Explicit 'unique from' language indicates two distinct SharePoint RCE vulnerabilities with different root causes (unsafe API input vs. missing markup validation) co-disclosed in the same advisory.",
+    "signal_phrase": "This CVE ID is unique from CVE-2019-1257, CVE-2019-1295"
+  },
+  {
+    "source": "CVE-2019-19459",
+    "target": "CVE-2019-19458",
+    "tier": "t1",
+    "category": "co_disclosed",
+    "confidence": "high",
+    "reasoning": "Both vulnerabilities are in the same product version co-disclosed in the same advisories, with CVE-2019-19459 citing CVE-2019-19458 as a demonstration of the file write attack.",
+    "signal_phrase": "as demonstrated by CVE-2019-19458"
+  },
+  {
+    "source": "CVE-2020-0632",
+    "target": "CVE-2020-0631",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are Windows Search Indexer elevation of privilege vulnerabilities in same advisory batch, but explicitly marked as unique/different bugs.",
+    "signal_phrase": "This CVE ID is unique from CVE-2020-0613, CVE-2020-0614, CVE-2020-0623, CVE-2020-0625, CVE-2020-0626, CVE-2020-0627, CVE-2020-0628, CVE-2020-0629, CVE-2020-0630, CVE-2020-0631, CVE-2020-0633."
+  },
+  {
+    "source": "CVE-2020-0667",
+    "target": "CVE-2020-0666",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "CVE-2020-0667 explicitly states it is 'unique from' CVE-2020-0666, indicating these are distinct vulnerabilities in Windows Search Indexer disclosed together, not variants.",
+    "signal_phrase": "This CVE ID is unique from CVE-2020-0666"
+  },
+  {
+    "source": "CVE-2020-0832",
+    "target": "CVE-2020-0828",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs explicitly state they are unique from each other in the same Microsoft advisory batch, covering different scripting engine vulnerabilities in Internet Explorer vs. Edge/ChakraCore.",
+    "signal_phrase": "This CVE ID is unique from CVE-2020-0828"
+  },
+  {
+    "source": "CVE-2020-0971",
+    "target": "CVE-2020-0932",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both descriptions explicitly state they are unique from each other, intentionally distinguishing separate RCE vulnerabilities in the same SharePoint product batch.",
+    "signal_phrase": "This CVE ID is unique from CVE-2020-0920, CVE-2020-0929, CVE-2020-0931, CVE-2020-0932, CVE-2020-0974."
+  },
+  {
+    "source": "CVE-2020-1042",
+    "target": "CVE-2020-1043",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "CVE-2020-1042 explicitly states it is unique from CVE-2020-1043 in its description; both are separate Hyper-V RemoteFX vGPU vulnerabilities published in same batch.",
+    "signal_phrase": "This CVE ID is unique from CVE-2020-1032, CVE-2020-1036, CVE-2020-1040, CVE-2020-1041, CVE-2020-1043"
+  },
+  {
+    "source": "CVE-2020-1050",
+    "target": "CVE-2020-1049",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are distinct XSS vulnerabilities in the same Microsoft Dynamics 365 product, explicitly marked as unique from each other in the same security advisory.",
+    "signal_phrase": "This CVE ID is unique from CVE-2020-1049."
+  },
+  {
+    "source": "CVE-2020-1213",
+    "target": "CVE-2020-1216",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are distinct VBScript RCE vulnerabilities in Internet Explorer published jointly by Microsoft, explicitly marked as unique from each other.",
+    "signal_phrase": "This CVE ID is unique from CVE-2020-1214, CVE-2020-1215, CVE-2020-1216, CVE-2020-1230, CVE-2020-1260."
+  },
+  {
+    "source": "CVE-2021-22746",
+    "target": "CVE-2021-22745",
+    "tier": "t1",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same product, same advisory, same publication date, but explicitly marked as different vulnerabilities with 'unique from' language.",
+    "signal_phrase": "This CVE ID is unique from CVE-2021-22742, CVE-2021-22744, CVE-2021-22745, and CVE-2021-22747."
+  },
+  {
+    "source": "CVE-2023-44467",
+    "target": "CVE-2023-36258",
+    "tier": "t1",
+    "category": "incomplete_fix",
+    "confidence": "high",
+    "reasoning": "CVE-2023-44467 explicitly describes bypassing the fix for CVE-2023-36258 via a different attack vector (__import__), proving the original patch was insufficient.",
+    "signal_phrase": "bypass the CVE-2023-36258 fix"
+  },
+  {
+    "source": "CVE-2024-0248",
+    "target": "CVE-2023-6029",
+    "tier": "t1",
+    "category": "incomplete_fix",
+    "confidence": "high",
+    "reasoning": "CVE-2024-0248 re-introduced the vulnerability from CVE-2023-6029 in version 2.3.8, indicating a regression where the original fix failed to remain effective.",
+    "signal_phrase": "re-introduced CVE-2023-6029"
+  },
+  {
+    "source": "CVE-2009-1891",
+    "target": "CVE-2021-31618",
+    "tier": "t2",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are Apache httpd DoS vulnerabilities (different modules: mod_deflate vs mod_http2) listed together in vulnerability bulletins and security documentation updates, but are distinct vulnerabilities with different root causes.",
+    "signal_phrase": "CVE-2021-31618 appears in Apache httpd security JSON and vulnerability HTML listings alongside other httpd CVEs"
+  },
+  {
+    "source": "CVE-2010-2791",
+    "target": "CVE-2020-13938",
+    "tier": "t2",
+    "category": "changelog",
+    "confidence": "high",
+    "reasoning": "Both vulnerabilities co-listed in Apache httpd security documentation updates (SVN commits to security/json/ directory); separate bugs in different Apache versions, not a variant relationship.",
+    "signal_phrase": "[httpd-cvs] svn commit... in /httpd/site/trunk/content/security/json/ CVE-2010-2791.json ... CVE-2020-13938.json"
+  },
+  {
+    "source": "CVE-2012-2625",
+    "target": "CVE-2012-4544",
+    "tier": "t2",
+    "category": "co_disclosed",
+    "confidence": "high",
+    "reasoning": "Both CVEs describe the same kernel/ramdisk decompression memory exhaustion issue in Xen, disclosed together in Xen Security Advisory 25 on the same date with identical fix scope.",
+    "signal_phrase": "Xen Security Advisory 25 (CVE-2012-4544) - Xen domain builder Out-of-memory due to malicious kernel/ramdisk"
+  },
+  {
+    "source": "CVE-2013-2154",
+    "target": "CVE-2021-40690",
+    "tier": "t2",
+    "category": "changelog",
+    "confidence": "high",
+    "reasoning": "Both CVEs appear in Apache Santuario website security advisory page updates, but affect different products (C++ vs Java) and different vulnerability types (buffer overflow vs bypass), indicating they are co-listed for historical/informational purposes rather than a variant relationship.",
+    "signal_phrase": "[santuario-commits] 20210917 svn commit: r1076843 - in /websites/production/santuario/content: cache/main.pageCache index.html javaindex.html secadv.data/CVE-2021-40690.txt.asc secadv.html"
+  },
+  {
+    "source": "CVE-2014-2212",
+    "target": "CVE-2014-2211",
+    "tier": "t2",
+    "category": "co_disclosed",
+    "confidence": "high",
+    "reasoning": "Multiple distinct vulnerabilities in POSH disclosed together in the same advisory (CVE assignment notification) and shared reference URLs; different bug types in different code paths with no variant/patch relationship indicated.",
+    "signal_phrase": "[oss-security] 20140227 [CVE assignment notification] Multiple vulnerabilities in POSH"
+  },
+  {
+    "source": "CVE-2014-3715",
+    "target": "CVE-2014-3714",
+    "tier": "t2",
+    "category": "co_disclosed",
+    "confidence": "high",
+    "reasoning": "Both vulnerabilities are distinct input handling bugs in Xen 4.4.x disclosed together in advisory XSA-95 covering multiple CVEs without bypass or variant language.",
+    "signal_phrase": "Xen Security Advisory 95 (CVE-2014-3714,CVE-2014-3715,CVE-2014-3716,CVE-2014-3717)"
+  },
+  {
+    "source": "CVE-2014-8117",
+    "target": "CVE-2014-8116",
+    "tier": "t2",
+    "category": "co_disclosed",
+    "confidence": "high",
+    "reasoning": "Two distinct DoS issues in the same product (file utility <5.21) jointly disclosed in the same security advisory without variant language; different vulnerable code paths (softmagic.c recursion vs ELF parser headers).",
+    "signal_phrase": "[oss-security] 20141216 file(1): multiple denial of service issues (resource consumption), CVE-2014-8116 and CVE-2014-8117"
+  },
+  {
+    "source": "CVE-2017-12174",
+    "target": "CVE-2021-26118",
+    "tier": "t2",
+    "category": "same_codebase_context",
+    "confidence": "high",
+    "reasoning": "Different vulnerabilities in the same product line (HornetQ/Artemis). The 2017 CVE's reference to a 2021 commit is incidental project documentation, not indicative of a variant relationship.",
+    "signal_phrase": "[activemq-commits] 20210127 [activemq-website] branch master updated: Publish CVE-2021-26118"
+  },
+  {
+    "source": "CVE-2019-16127",
+    "target": "CVE-2019-16128",
+    "tier": "t2",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Two distinct vulnerabilities (Integer Overflow in ASF vs Buffer Overflow in CryptoAuthLib) from the same vendor listed together in a single oss-security mailing list announcement.",
+    "signal_phrase": "[oss-security] 20201022 CVE-2019-16127, CVE-2019-16128 and CVE-2019-16129 for Microchip code"
+  },
+  {
+    "source": "CVE-2019-7421",
+    "target": "CVE-2019-7420",
+    "tier": "t2",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same product (SAMSUNG X7400GX SyncThru Web Service), same advisory date, but distinct XSS vulnerabilities at different endpoints (loginView.sws vs networkinformationView.sws) with different vulnerable parameters.",
+    "signal_phrase": "20190206 [CVE-2019-7418, CVE-2019-7419, CVE-2019-7420, CVE-2019-7421] Cross Site Scripting in SAMSUNG X7400GX Sync Thru Web Service"
+  },
+  {
+    "source": "CVE-2019-7424",
+    "target": "CVE-2019-7425",
+    "tier": "t2",
+    "category": "co_disclosed",
+    "confidence": "high",
+    "reasoning": "Multiple independent XSS vulnerabilities in the same application discovered together in a joint mailing list advisory.",
+    "signal_phrase": "[CVE-2019-7422, CVE-2019-7423, CVE-2019-7424, CVE-2019-7425, CVE-2019-7426, CVE-2019-7427] Cross Site Scripting in Zoho ManageEngine Netflow Analyzer Professional v7.0.0.2 Administration zone"
+  },
+  {
+    "source": "CVE-2020-12690",
+    "target": "CVE-2021-27568",
+    "tier": "t2",
+    "category": "co_fixed",
+    "confidence": "high",
+    "reasoning": "Both CVEs suppressed together from json-smart dependency in Druid PR #11438, but they are independent vulnerabilities in unrelated products (OpenStack Keystone vs json-smart), appearing together only as transitive dependency management.",
+    "signal_phrase": "Suppress CVE-2021-27568 from json-smart 2.3 dependency"
+  },
+  {
+    "source": "CVE-2020-27643",
+    "target": "CVE-2020-27644",
+    "tier": "t2",
+    "category": "same_product_batch",
+    "confidence": "high",
+    "reasoning": "Both CVEs are separate vulnerabilities in 1E Client disclosed in the same vendor advisory with no variant relationship indicated.",
+    "signal_phrase": "1E Security Advisory-1E Client for Windows: CVE-2020-16268, CVE-2020-27643, CVE-2020-27644, CVE-2020-27645"
+  },
+  {
+    "source": "CVE-2020-35452",
+    "target": "CVE-2020-13938",
+    "tier": "t2",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both are distinct Apache httpd vulnerabilities (stack overflow vs privilege handling) co-listed in the same Apache developer commit batch with different modules and attack vectors.",
+    "signal_phrase": "svn commit: r1890598 - in /httpd/site/trunk/content/security/json: CVE-2019-17567.json CVE-2020-13938.json CVE-2020-13950.json CVE-2020-35452.json ..."
+  },
+  {
+    "source": "CVE-2022-26359",
+    "target": "CVE-2022-26358",
+    "tier": "t2",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Both CVEs are distinct vulnerabilities in the same product (Xen) disclosed together in Xen Security Advisory 400 v2 with identical shared descriptions, not a variant relationship.",
+    "signal_phrase": "[oss-security] 20220405 Xen Security Advisory 400 v2 (CVE-2022-26358,CVE-2022-26359,CVE-2022-26360,CVE-2022-26361)"
+  },
+  {
+    "source": "CVE-2022-35462",
+    "target": "CVE-2022-33047",
+    "tier": "t2",
+    "category": "related_issue",
+    "confidence": "high",
+    "reasoning": "Both are distinct heap overflow vulnerabilities in OTFCC v0.10.4 discovered in same research effort; source references target's blog post but describes different attack vector (specific address vs. use-after-free).",
+    "signal_phrase": "https://cvjark.github.io/2022/07/06/CVE-2022-33047/"
+  },
+  {
+    "source": "CVE-2024-49705",
+    "target": "CVE-2024-10087",
+    "tier": "t2",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Two distinct vulnerabilities (DoS vs XSS) in the same product module, both fixed in version 79.0, covered together in the same CERT-PL advisory but with different attack vectors and CWEs.",
+    "signal_phrase": "https://cert.pl/en/posts/2025/04/CVE-2024-10087"
+  },
+  {
+    "source": "CVE-2024-49709",
+    "target": "CVE-2024-10087",
+    "tier": "t2",
+    "category": "co_disclosed",
+    "confidence": "high",
+    "reasoning": "Two distinct vulnerabilities (session fixation vs reflected XSS) in the same product module disclosed together in a CERT-PL advisory, not a variant relationship.",
+    "signal_phrase": "https://cert.pl/en/posts/2025/04/CVE-2024-10087"
+  },
+  {
+    "source": "CVE-2024-8350",
+    "target": "CVE-2024-8349",
+    "tier": "t2",
+    "category": "chained",
+    "confidence": "high",
+    "reasoning": "CVE-2024-8350 enables exploitation of CVE-2024-8349 in a documented attack chain to gain admin access.",
+    "signal_phrase": "leverage CVE-2024-8349 and gain admin access to the site"
+  },
+  {
+    "source": "CVE-2025-62296",
+    "target": "CVE-2025-62293",
+    "tier": "t2",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Same product and advisory with co-fixed vulnerabilities (v1.55), but different bugs in different endpoints (Stored XSS vs Broken Access Control) and different CWEs (79 vs 862).",
+    "signal_phrase": "https://cert.pl/en/posts/2025/11/CVE-2025-62293"
+  },
+  {
+    "source": "CVE-2010-3844",
+    "target": "CVE-2010-3843",
+    "tier": "t3",
+    "category": "co_fixed",
+    "confidence": "high",
+    "reasoning": "Both CVEs describe the same unchecked sscanf() buffer overflow in ettercap's settings file handling and were fixed together in a single commit.",
+    "signal_phrase": "More changes to mitigate: CVE-2010-3843 CVE-2010-3844"
+  },
+  {
+    "source": "CVE-2012-2674",
+    "target": "CVE-2009-0607",
+    "tier": "t3",
+    "category": "incomplete_fix",
+    "confidence": "high",
+    "reasoning": "Commit message states patch complements earlier CVE-2009-0607 fix, addressing remaining integer overflow issues in related malloc functions.",
+    "signal_phrase": "This patch complements commit 6f04a0f4 (CVE-2009-0607)"
+  },
+  {
+    "source": "CVE-2017-11664",
+    "target": "CVE-2017-11661",
+    "tier": "t3",
+    "category": "batch_disambiguation",
+    "confidence": "high",
+    "reasoning": "Multiple related vulnerabilities in the same function at different line numbers (2122 vs 2318) fixed together in one commit, disclosed in single advisory with 'multiple vulnerabilities' title.",
+    "signal_phrase": "Fix bug #175: CVE-2017-11661, CVE-2017-11662, CVE-2017-11663, CVE-20..."
+  },
+  {
+    "source": "CVE-2017-16642",
+    "target": "CVE-2016-1283",
+    "tier": "t3",
+    "category": "same_codebase_context",
+    "confidence": "medium",
+    "reasoning": "A commit applying a PHP date extension patch references applying an upstream PCRE patch, indicating CVE-2016-1283 context but not a variant relationship.",
+    "signal_phrase": "Apply upstream patch for CVE-2016-1283"
+  },
+  {
+    "source": "CVE-2020-26217",
+    "target": "CVE-2017-9805",
+    "tier": "t3",
+    "category": "co_fixed",
+    "confidence": "high",
+    "reasoning": "Both CVEs involve the XStream deserialization vulnerability; CVE-2020-26217 fixes the root cause underlying CVE-2017-9805's exploitation in Apache Struts.",
+    "signal_phrase": "Fix for CVE-2017-9805."
+  },
+  {
+    "source": "CVE-2020-7042",
+    "target": "CVE-2020-7041",
+    "tier": "t3",
+    "category": "co_disclosed",
+    "confidence": "high",
+    "reasoning": "Both are separate certificate validation bugs in openfortivpn 1.11.0 fixed together, explicitly marked as 'separate issue' in commit context.",
+    "signal_phrase": "which is a separate issue, with CVE-2020-7041, and which has been fixed"
+  },
+  {
+    "source": "CVE-2021-23222",
+    "target": "CVE-2021-23214",
+    "tier": "t3",
+    "category": "chained",
+    "confidence": "high",
+    "reasoning": "CVE-2021-23222 attack requires the server to be vulnerable to CVE-2021-23214 SSL certificate bypass; one vulnerability enables exploitation of the other.",
+    "signal_phrase": "be possible with a server vulnerable to CVE-2021-23214"
+  },
+  {
+    "source": "CVE-2021-43807",
+    "target": "CVE-2019-12423",
+    "tier": "t3",
+    "category": "co_disclosed",
+    "confidence": "high",
+    "reasoning": "Multiple unrelated CVEs listed together in a mailing list or commit reference with no indication of variant relationship, incomplete fix, or exploit dependency.",
+    "signal_phrase": "[CVE-2019-12419], [CVE-2019-12423], [CVE-2021-22696], [CVE-2019-12406]"
+  },
+  {
+    "source": "CVE-2022-4605",
+    "target": "CVE-2022-24588",
+    "tier": "t3",
+    "category": "same_or_duplicate",
+    "confidence": "medium",
+    "reasoning": "Both are XSS vulnerabilities in flatpressblog/flatpress; CVE-2022-24588 (v1.2.1, Feb 2022) is an earlier specific disclosure of the same SVG upload XSS issue later described generically in CVE-2022-4605 (v<1.3, Dec 2022).",
+    "signal_phrase": "GitHub repository Nguyen-Trung-Kien/CVE/blob/main/CVE-2022-24588/CVE-2022-24588.pdf"
+  },
+  {
+    "source": "CVE-2023-30620",
+    "target": "CVE-2007-4559",
+    "tier": "t3",
+    "category": "related_issue",
+    "confidence": "high",
+    "reasoning": "CVE-2023-30620 (mindsdb tarfile extraction) references the same vulnerability class as CVE-2007-4559 (Python tarfile directory traversal). Both are CWE-22 path traversal via unsafe tarfile extraction. The commit message indicates developers fixed the well-known Python tarfile vulnerability in their own product.",
+    "signal_phrase": "Use safe extract to prevent CVE-2007-4559 bug"
+  },
+  {
+    "source": "CVE-2023-36812",
+    "target": "CVE-2018-12972",
+    "tier": "t3",
+    "category": "co_fixed",
+    "confidence": "high",
+    "reasoning": "Both CVEs in OpenTSDB were fixed in the same commit, indicating they were addressed together as related issues in the codebase.",
+    "signal_phrase": "Fixes CVE-2018-12972, CVE-2020-35476"
+  },
+  {
+    "source": "CVE-2023-38313",
+    "target": "CVE-2023-41101",
+    "tier": "t3",
+    "category": "co_fixed",
+    "confidence": "high",
+    "reasoning": "Both CVEs in OpenNDS were fixed together in the same commit and version (10.1.3), found in commit message context listing both as separate vulnerabilities fixed simultaneously.",
+    "signal_phrase": "Fix - Buffer overflow causing segfault - CVE-2023-41101 [bluewavenet]"
+  },
+  {
+    "source": "CVE-2023-38314",
+    "target": "CVE-2023-41102",
+    "tier": "t3",
+    "category": "co_disclosed",
+    "confidence": "high",
+    "reasoning": "Two distinct OpenNDS vulnerabilities (NULL pointer dereference vs memory leaks) disclosed together in the same security bulletin and commit context.",
+    "signal_phrase": "allocated buffer into safe_asprintf() - CVE-2023-41102"
+  },
+  {
+    "source": "CVE-2023-38322",
+    "target": "CVE-2023-41101",
+    "tier": "t3",
+    "category": "co_fixed",
+    "confidence": "high",
+    "reasoning": "Both OpenNDS vulnerabilities were fixed together in OpenWrt 23.05 and OpenNDS version updates; distinct bugs (NULL pointer dereference vs buffer overflow) in same product patched in same release.",
+    "signal_phrase": "Buffer overflow causing segfault - CVE-2023-41101"
+  },
+  {
+    "source": "CVE-2023-39533",
+    "target": "CVE-2023-29409",
+    "tier": "t3",
+    "category": "same_or_duplicate",
+    "confidence": "high",
+    "reasoning": "Both CVEs address the identical vulnerability (large RSA keys causing CPU exhaustion) with the same fix (restrict keys to 8192 bits); CVE-2023-29409 in Go stdlib was fixed first, and CVE-2023-39533 in go-libp2p required the same fix applied to its x509 extension verification.",
+    "signal_phrase": "Fixes CVE-2023-29409"
+  },
+  {
+    "source": "CVE-2024-34199",
+    "target": "CVE-2024-5193",
+    "tier": "t3",
+    "category": "co_fixed",
+    "confidence": "high",
+    "reasoning": "Both vulnerabilities in TinyWeb 1.94 were fixed in the same commit (d49c3da), representing different vulnerability classes (Buffer Overflow vs CRLF Injection) patched together.",
+    "signal_phrase": "commit d49c3da referenced in both CVE patches"
+  },
+  {
+    "source": "CVE-2024-55893",
+    "target": "CVE-2024-55920",
+    "tier": "t3",
+    "category": "co_fixed",
+    "confidence": "high",
+    "reasoning": "Both are TYPO3 CSRF vulnerabilities in different modules with identical affected version ranges, fixed in the same releases, referenced together in commit metadata.",
+    "signal_phrase": "Security-References: CVE-2024-55920"
+  },
+  {
+    "source": "CVE-2024-55894",
+    "target": "CVE-2024-55920",
+    "tier": "t3",
+    "category": "co_disclosed",
+    "confidence": "high",
+    "reasoning": "Both CVEs are distinct CSRF vulnerabilities in different TYPO3 modules (Backend User vs Dashboard) disclosed jointly in the same advisory with identical affected versions and fix versions.",
+    "signal_phrase": "Security-References: CVE-2024-55894... CVE-2024-55920"
+  },
+  {
+    "source": "CVE-2024-5998",
+    "target": "CVE-2024-3095",
+    "tier": "t3",
+    "category": "co_fixed",
+    "confidence": "high",
+    "reasoning": "Two distinct vulnerabilities in langchain (deserialization vs SSRF in different components) addressed together in the same commit forcing WebResearchRetriever opt-in.",
+    "signal_phrase": "Force opt-in for WebResearchRetriever (CVE-2024-3095)"
+  },
+  {
+    "source": "CVE-2025-26625",
+    "target": "CVE-2024-32004",
+    "tier": "t3",
+    "category": "related_issue",
+    "confidence": "high",
+    "reasoning": "Git LFS symlink vulnerability (CWE-59) is a different attack vector than Git core RCE (CWE-114), mentioned as contextual reference rather than variant.",
+    "signal_phrase": "vulnerability identified as CVE-2024-32004, on Windows this type of implementation"
+  }
+]

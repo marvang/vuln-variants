@@ -1,6 +1,6 @@
 # CVE Variant Chain Analysis Report
 
-**Date:** 2026-04-03
+**Date:** 2026-04-11
 **Dataset:** cvelistV5 (341,154 files, 323,709 published CVEs)
 
 ## Method
@@ -16,6 +16,7 @@ The pipeline runs in tiers, each adding new edges from progressively deeper sour
 | T3 | Git commits | GitHub commit messages fetched via API (20,672 unique commits) |
 | T4 | Shared bug IDs | CVE pairs sharing Bugzilla/GitHub issue/PR references (weak signal) |
 | T5 | LLM classification | Per-CVE evidence (fetched URLs, commits) classified via OpenRouter |
+| T6 | Variant phrases | Signal-phrase regex across all fields (88 patterns, 5 categories) |
 
 Every edge carries a provenance label (`t1_description`, `t2_ref_name`, `t3_commit`, etc.) so results can be filtered or audited by source. When multiple tiers find the same edge, all evidence is preserved.
 
@@ -35,7 +36,10 @@ Every edge carries a provenance label (`t1_description`, `t2_ref_name`, `t3_comm
 | Deepest chain | 61 | 61 | 61 | 61 | 61* |
 | Corroborating edges | — | 37,853 | 34 | 216 | 7 |
 
-*T5 column shows T1+T2+T3+T5 (without T4 weak edges). T5 proof-of-concept: 531 CVEs and 362 pairs classified so far.
+*T5 column shows T1+T2+T3+T5 (without T4 weak edges). The published
+T1+T2+T3+T5+T6 snapshot has the same 42,057 unique edges because every T6
+pair is already present in T1 or T2. T5 proof-of-concept: 531 CVEs and 362
+pairs classified so far.
 
 ### T1: CNA descriptions (39,294 edges)
 
@@ -60,21 +64,44 @@ Fetched 20,672 unique commit messages via GitHub API. Developers write "fix for 
 
 Finds CVE pairs that reference the same Bugzilla bug, GitHub issue, or GitHub PR but never mention each other in text. These are structural links — same bug doesn't prove a variant relationship — but provide context for T5 LLM classification.
 
-| ID Type | Edges |
+| ID type | New edges |
 |---|---|
-| GitHub issues | 2,452 |
-| Bugzilla | 1,913 |
-| GitHub PRs | 883 |
+| GitHub issues | 2,319 |
+| Bugzilla | 1,756 |
+| GitHub PRs | 812 |
+| Multiple shared ID types | 145 |
+
+### T6: Variant-phrase search (36,387 edges: 3,207 positive + 33,180 negative)
+
+Searches all CVE text fields for specific phrases that indicate the nature of a cross-reference. Derived from a 140-sample edge taxonomy study that classified why CVEs reference each other (see `datasets/edge_taxonomy_report.md`). Uses 88 regex patterns across 5 categories.
+
+| Category | Edges | Signal | Description |
+|---|---|---|---|
+| batch_disambiguation | 33,180 | Negative | "different vulnerability than" / "unique from" |
+| related_issue | 1,564 | Positive | "related issue to" / "similar to" / "variant of" / "differs from" / "SPLIT from" |
+| incomplete_fix | 857 | Positive | "insufficient fix" / "bypass" / "regression" / "re-introduced" |
+| same_or_duplicate | 616 | Positive | "same issue as" / "duplicate of" / "equivalent to" |
+| chained | 170 | Positive | "by exploiting" / "in conjunction with" / "leveraging" |
+
+All unique positive T6 pairs already appear in T1 or T2, and 99%
+already appear in T1. T6 heuristically classifies a substantial portion of T1's 39,294 edges
+as noise or positive signal. The
+857 incomplete_fix edges represent the strongest heuristic variant
+signals in the dataset outside of T5 LLM classification.
+
+### Edge taxonomy study
+
+A 140-sample study (100 T1, 20 T2, 20 T3 edges) was classified by independent LLM agents to answer: *why do CVEs reference each other?* Key finding: 89% of T1 edges are batch disambiguation ("different vulnerability than"), with only 5% being true variants. This directly inspired T6. Full methodology and results: `datasets/edge_taxonomy_report.md`. Raw classifications: `datasets/edge_classifications.json`.
 
 ### Top 5 largest clusters (T1+T2+T3+T4)
 
 | Cluster size | Deepest chain | Root CVE(s) | Notes |
 |---|---|---|---|
 | 237 | 8 | CVE-2007-0086, CVE-2008-3281, CVE-2003-1564 | Multi-root, XML/HTTP parser vulnerabilities |
-| 61 | 61 | CVE-2015-8428 | Adobe Flash Player |
+| 61 | 61 | CVE-2015-8048 | Adobe Flash Player |
 | 50 | 4 | CVE-2010-1632, CVE-2021-30468 | Apache CXF / Axis |
-| 49 | 49 | CVE-2016-6995 | Adobe Reader/Acrobat |
-| 47 | 47 | CVE-2016-4101 | Adobe Flash Player |
+| 49 | 49 | CVE-2016-6940 | Adobe Reader/Acrobat |
+| 47 | 47 | CVE-2016-1037 | Adobe Flash Player |
 
 ### Cluster size distribution (T1+T2+T3+T4)
 
@@ -211,6 +238,7 @@ Example new edges found by T5:
 | `output/edges_t2_allfields.json` | T2 edges (new + corroborating, deduplicated against T1) |
 | `output/edges_t3_commits.json` | T3 edges from GitHub commit messages |
 | `output/edges_t4_shared_ids.json` | T4 edges from shared bug tracker IDs (weak signal) |
+| `output/edges_t6_variant_phrases.json` | T6 edges with signal-phrase categories and matched patterns |
 | `datasets/edges_t5_llm.json` | Cumulative T5 edges + processed CVE/pair tracking (git-tracked) |
 | `datasets/t5_classifications.jsonl` | Cumulative T5 classifications with full reasoning (git-tracked) |
 | `datasets/github_commits.jsonl` | Researcher-friendly dataset: CVE-to-commit-message mapping |

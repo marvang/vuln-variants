@@ -6,9 +6,9 @@ finds connected components, and outputs tree-structured chains
 with provenance tracking (which tier found each edge).
 
 Usage:
-  uv run python build_chains.py                  # T1 only (default)
-  uv run python build_chains.py --tiers 1,2      # T1 + T2
-  uv run python build_chains.py --tiers 1,2,3    # all tiers
+  uv run python build_chains.py                  # auto-detect all available tiers
+  uv run python build_chains.py --tiers 1,2,3    # only T1-T3 (exclude T4/T5/T6)
+  uv run python build_chains.py --tiers 1,2,3,5  # exclude weak T4 and T6
 """
 
 import argparse
@@ -28,6 +28,7 @@ TIER_FILES = {
     "3": OUTPUT_DIR / "edges_t3_commits.json",
     "4": OUTPUT_DIR / "edges_t4_shared_ids.json",
     "5": DATASETS_DIR / "edges_t5_llm.json",
+    "6": OUTPUT_DIR / "edges_t6_variant_phrases.json",
 }
 
 
@@ -135,6 +136,25 @@ def published_sort_key(cve_id, cve_data):
     return cve_data.get(cve_id, {}).get("published") or "9999-12-31T23:59:59"
 
 
+def cve_sort_key(cve_id, cve_data):
+    """Stable CVE ordering for roots, children, and edge serialization."""
+    return published_sort_key(cve_id, cve_data), cve_id
+
+
+def select_component_roots(component, parents, cve_data):
+    """Choose deterministic roots for one connected component."""
+    roots = [n for n in component if not (parents.get(n, set()) & component)]
+    if not roots:
+        roots = [min(component, key=lambda x: cve_sort_key(x, cve_data))]
+    return sorted(roots, key=lambda x: cve_sort_key(x, cve_data))
+
+
+def component_sort_key(component, cve_data):
+    """Sort larger components first, then break ties deterministically."""
+    earliest = min(cve_sort_key(cve_id, cve_data) for cve_id in component)
+    return -len(component), earliest
+
+
 def build_tree(cve_id, cve_data, children, parents, edge_provenance, visited, parent_id=None):
     """Recursively build a tree node with provenance tracking."""
     if cve_id in visited:
@@ -162,7 +182,7 @@ def build_tree(cve_id, cve_data, children, parents, edge_provenance, visited, pa
     # Sort children chronologically
     child_ids = sorted(
         children.get(cve_id, set()),
-        key=lambda x: published_sort_key(x, cve_data),
+        key=lambda x: cve_sort_key(x, cve_data),
     )
 
     for child_id in child_ids:
@@ -194,12 +214,21 @@ def main():
         "--min-size", type=int, default=2, help="Minimum chain size (default: 2)"
     )
     parser.add_argument(
-        "--tiers", default="1,2,3",
-        help="Comma-separated tier numbers (default: 1,2,3). Add 4 for weak T4, 5 for LLM T5"
+        "--tiers", default=None,
+        help=(
+            "Comma-separated tier numbers. Default: auto-detect all available "
+            "tier files. Example: --tiers 1,2,3 to exclude T4/T5/T6"
+        ),
     )
     args = parser.parse_args()
 
-    tiers = [t.strip() for t in args.tiers.split(",")]
+    if args.tiers is not None:
+        tiers = [t.strip() for t in args.tiers.split(",")]
+    else:
+        tiers = [t for t, path in sorted(TIER_FILES.items()) if path.exists()]
+        if not tiers:
+            print("ERROR: No tier files found. Run parse_cves.py first.")
+            return
     print(f"Loading edges from tier(s): {', '.join(tiers)}")
 
     edge_provenance, edges_by_tier = load_edges(tiers)
@@ -223,7 +252,7 @@ def main():
 
     # Filter and sort
     components = [c for c in components if len(c) >= args.min_size]
-    components.sort(key=len, reverse=True)
+    components.sort(key=lambda c: component_sort_key(c, cve_data))
 
     print(f"Found {len(components):,} chains (min size {args.min_size})\n")
 
@@ -231,14 +260,7 @@ def main():
     size_distribution = defaultdict(int)
 
     for i, component in enumerate(components):
-        roots = [n for n in component if not (parents.get(n, set()) & component)]
-
-        if not roots:
-            roots = [
-                min(component, key=lambda x: published_sort_key(x, cve_data))
-            ]
-
-        roots.sort(key=lambda x: published_sort_key(x, cve_data))
+        roots = select_component_roots(component, parents, cve_data)
 
         visited = set()
         trees = []
@@ -299,7 +321,14 @@ def main():
 
     # Raw graph: flat edge list with all evidence, before treeification
     raw_edges = []
-    for (source, target), evidence_list in edge_provenance.items():
+    sorted_edges = sorted(
+        edge_provenance.items(),
+        key=lambda item: (
+            cve_sort_key(item[0][0], cve_data),
+            cve_sort_key(item[0][1], cve_data),
+        ),
+    )
+    for (source, target), evidence_list in sorted_edges:
         raw_edges.append({
             "source": source,
             "target": target,

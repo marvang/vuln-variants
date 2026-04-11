@@ -1,0 +1,48 @@
+{
+  "release_id": "2026-04-10",
+  "release_type": "frozen_snapshot",
+  "description": "Published snapshot of T1+T2+T3+T5+T6 run. Adds T6 variant-phrase edges (88 signal patterns, 5 categories) and 140-sample edge taxonomy study.",
+  "source": {
+    "copied_from": "output/",
+    "report_path": "REPORT.md"
+  },
+  "pipeline": {
+    "tiers_used": [
+      "t1",
+      "t2",
+      "t3",
+      "t5",
+      "t6"
+    ],
+    "total_cves_scanned": 323709,
+    "total_cves_in_chains": 17085,
+    "pct_cves_in_chains": 5.28,
+    "chains_found": 6172,
+    "largest_chain_size": 235,
+    "deepest_chain_depth": 61,
+    "total_unique_edges": 42057,
+    "t6_positive_edges": 3207,
+    "t6_negative_edges": 33180
+  },
+  "files": [
+    {
+      "path": "variant_chains.json",
+      "description": "Tree-structured chains with per-edge evidence lists.",
+      "generated_at": "2026-04-10T21:57:25.981695",
+      "bytes": 16905974,
+      "sha256": "b22c0e26369a2c0a16df7b484067b7bdca76e245cafce4da36325a313c69d816"
+    },
+    {
+      "path": "edge_graph.json",
+      "description": "Flat edge graph with all evidence preserved for auditing.",
+      "generated_at": "2026-04-10T21:57:25.989424",
+      "bytes": 27805036,
+      "sha256": "4f4ba593f776716acb74926d41104e93de3440f4fc855e8a75fec82be7468b61"
+    }
+  ],
+  "authoritative_files": [
+    "variant_chains.json",
+    "edge_graph.json",
+    "manifest.json"
+  ]
+}

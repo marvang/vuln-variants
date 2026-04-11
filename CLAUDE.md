@@ -9,22 +9,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 uv sync
 git clone --depth 1 https://github.com/CVEProject/cvelistV5.git data/cvelistV5
 
-# Run pipeline
-uv run python parse_cves.py                      # Writes parsed_cves.json + T1 graph/edges (~30s)
-uv run python parse_cves_t2.py                   # Tier 2: all-fields regex (~1min)
-uv run python build_chains.py --tiers 1,2        # Build chains from tiers
+# Run pipeline (build_chains.py auto-detects all available tier files)
+uv run python parse_cves.py                      # T1: parsed_cves.json + edges (~30s)
+uv run python parse_cves_t2.py                   # T2: all-fields regex (~1min)
+uv run python build_chains.py                    # Rebuild graph after each new tier
 uv run python validate.py                        # Validate against ground_truth.json
 
 # T3: GitHub commit messages (needs GITHUB_TOKEN for 5k req/hr)
 uv run python build_reference_index.py           # Build reference index (~1min)
 uv run python parse_commits_t3.py --sample 50    # Test on 50 commits
 uv run python parse_commits_t3.py                # All 22k commits (~4.5hr with token)
-uv run python build_chains.py --tiers 1,2,3      # Include T3 edges
+uv run python build_chains.py                    # Rebuild graph
 
-# T4: Shared bug tracker IDs (fast, local)
+# T4: Shared bug tracker IDs (fast, local, weak signal)
 uv run python find_shared_ids_t4.py              # Find CVE pairs sharing Bugzilla/GitHub IDs
 uv run python find_shared_ids_t4.py --include-jira  # Include noisy JIRA matches
-uv run python build_chains.py --tiers 1,2,3,4    # Include weak T4 edges
+uv run python build_chains.py                    # Rebuild graph
 
 # T5: LLM classification (needs OPENROUTER_API_KEY)
 uv run python classify_variants_t5.py                          # Per-CVE, default 100 CVEs
@@ -34,7 +34,18 @@ uv run python classify_variants_t5.py --cve CVE-2021-45046     # Specific CVE(s)
 uv run python classify_variants_t5.py --candidates             # Candidate pair mode (T4)
 uv run python classify_variants_t5.py --workers 50             # More parallel threads (default 20)
 uv run python classify_variants_t5.py --dry-run                # Count items, no API calls
-uv run python build_chains.py --tiers 1,2,3,5                  # Include strong T5 edges
+uv run python build_chains.py                                  # Rebuild graph
+
+# T6: Variant-phrase search (local, ~5min)
+uv run python find_variant_phrases_t6.py              # Search all CVEs for variant signal phrases
+uv run python build_chains.py                         # Rebuild graph
+
+# Explicit tier selection (to exclude specific tiers)
+uv run python build_chains.py --tiers 1,2,3           # Only T1-T3, exclude T4/T5/T6
+
+# Edge taxonomy analysis
+uv run python sample_edges.py                         # Sample 140 edges for manual review
+# See datasets/edge_taxonomy_report.md for classification results
 
 # Analysis
 uv run python analyze_references.py --all        # Reference URL domain analysis
@@ -70,6 +81,7 @@ find_shared_ids_t4.py     → output/edges_t4_shared_ids.json     (shared-ID wea
 classify_variants_t5.py   → datasets/edges_t5_llm.json          (cumulative LLM edges, git-tracked)
                           → datasets/t5_classifications.jsonl   (cumulative classifications, git-tracked)
                           → output/t5_classifications.json      (per-run audit artifact)
+find_variant_phrases_t6.py→ output/edges_t6_variant_phrases.json (signal-phrase edges, pos + neg)
 build_chains.py           → output/variant_chains.json          (trees with provenance)
                           → output/edge_graph.json              (raw flat edge list)
 validate.py               → output/validation_results.json
@@ -91,7 +103,7 @@ Each edge carries a list of evidence from every tier that found it:
 }
 ```
 
-Labels: `t1_description`, `t2_ref_name`, `t2_ref_url`, `t2_title`, `t2_adp_description`, `t2_legacy`, `t3_commit`, `t4_shared_bugzilla`, `t4_shared_github_issue`, `t4_shared_github_pr`, `t5_llm`.
+Labels: `t1_description`, `t2_ref_name`, `t2_ref_url`, `t2_title`, `t2_adp_description`, `t2_legacy`, `t3_commit`, `t4_shared_bugzilla`, `t4_shared_github_issue`, `t4_shared_github_pr`, `t4_shared_ids`, `t5_llm`, `t6_incomplete_fix`, `t6_chained`, `t6_related_issue`, `t6_same_or_duplicate`, `t6_batch_disambiguation`.
 
 The raw graph (`edge_graph.json`) preserves all edges with all evidence before treeification. Use it for auditing — the tree view drops alternative parents.
 
@@ -113,6 +125,8 @@ The raw graph (`edge_graph.json`) preserves all edges with all evidence before t
 - `classify_variants_t5.load_dataset()` / `save_dataset()` — cumulative dataset in datasets/
 - `classify_variants_t5.merge_into_dataset(...)` — deduplicating edge merge into cumulative dataset
 - `classify_variants_t5.append_classifications(...)` — cumulative JSONL export
+- `find_variant_phrases_t6.VARIANT_PHRASES` — dict of category → regex pattern lists (88 patterns, 5 categories)
+- `find_variant_phrases_t6.find_variant_phrases(cve_id, data)` — search all text fields for signal phrases, returns edge dicts
 
 ### CVE JSON structure (cvelistV5)
 
@@ -153,3 +167,20 @@ Two modes, one script, same output files:
 **Resumable across researchers**: `datasets/edges_t5_llm.json` is the single source of truth — stores edges, and lists of processed CVE IDs and candidate pairs. Re-running automatically skips already-processed items. Classifications with full reasoning exported to `datasets/t5_classifications.jsonl` (disable with `--no-export-classifications`). Use `--cve` to force re-processing specific CVEs. Default `--limit 100`.
 
 Tracks token usage and cost per run (OpenRouter `usage` field). Full pipeline traces saved per CVE in `data/llm_cache/` and `output/t5_classifications.json`.
+
+### T6 variant-phrase search
+
+Searches all CVE text fields for 88 regex patterns across 5 categories:
+`incomplete_fix` (31 patterns), `chained` (17), `same_or_duplicate` (16),
+`related_issue` (18), `batch_disambiguation` (6). Derived from a 140-sample
+edge taxonomy study where independent LLM agents classified why CVEs reference
+each other.
+
+T6 is unique among tiers in producing both positive and negative signal. The
+`batch_disambiguation` category (33,180 edges) marks known noise phrases
+("different vulnerability than", "unique from") and the positive categories
+(3,207 edges) mark high-confidence relationship types. Each edge only targets
+the CVE ID or governed CVE list attached to that phrase, not all CVE IDs in the
+surrounding text.
+
+Output: `output/edges_t6_variant_phrases.json`. Each edge includes `category`, `context`, and the matched `pattern`. Edges are deduplicated per (source, target, category).
